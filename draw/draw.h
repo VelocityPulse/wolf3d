@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 15:17:56 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/03/21 12:17:47 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/03/21 12:45:30 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include "draw_structs.h"
-# include "libft.h"
+# include "../headers/libft.h"
 # include "../libmlx/mlx.h"
 
 t_mlx		*ft_mlx_init(int width, int height, char *name);
