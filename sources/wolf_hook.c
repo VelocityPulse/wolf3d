@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 16:06:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/03/21 17:57:03 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/03/22 17:59:19 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@ int		unpress_wolf3d(int keycode, t_wolf3d *w3d)
 int		loop_wolf3d(t_wolf3d *w3d)
 {
 	static int		x = 0;
-	static int		y = W_HEIGHT / 2;
+	static float	y = 0;
 	struct timeval		t1;
 	struct timeval		t2;
-	double				elipsedTime;
-	int					lolol = 0;
+	static double		elipsedTime = 1;
 
 	gettimeofday(&t1, NULL);
 	x = -1;
@@ -42,14 +41,18 @@ int		loop_wolf3d(t_wolf3d *w3d)
 	if (w3d->key != -1)
 	{
 		while (++x < W_WIDTH)
-			ft_draw_pixel(w3d->mlx, 0xffffff, ft_make_pt(x, y));
-		while (lolol < 5000000)
-			lolol++;
+		{
+			ft_draw_pixel(w3d->mlx, 0xffffff, ft_make_pt(x, round(y)));
+			usleep(1200);
+		}
+		y += ((elipsedTime / 1000) * 60);
+		if (y > W_HEIGHT)
+			y = 1 + (y - W_HEIGHT);
 	}
 	ft_flush_image(w3d->mlx);
 	gettimeofday(&t2, NULL);
 	elipsedTime = (t2.tv_sec - t1.tv_sec) * 1000;
 	elipsedTime += (t2.tv_usec - t1.tv_usec) / 1000;
-	printf("%f\n", elipsedTime);
+	printf("%f - delta : %f\n", elipsedTime, elipsedTime / 1000);
 	return (0);
 }
