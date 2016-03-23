@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/03/23 12:05:21 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/03/23 12:47:30 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ int				press_wolf3d(int keycode, t_wolf3d *w3d);
 int				unpress_wolf3d(int keycode, t_wolf3d *w3d);
 int				loop_wolf3d(t_wolf3d *w3d);
 
-void			ft_wolf3d_refresh(t_wolf3d *w3d);
+void			ft_wolf3d(t_wolf3d *w3d);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 16:06:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/03/23 12:04:52 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/03/23 12:46:44 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int		unpress_wolf3d(int keycode, t_wolf3d *w3d)
 int		loop_wolf3d(t_wolf3d *w3d)
 {
 	gettimeofday(&w3d->d.t1, NULL);
-	
-	ft_wolf3d_refresh(w3d);
+
+	ft_wolf3d(w3d);
 
 	gettimeofday(&w3d->d.t2, NULL);
 	get_deltatime(&w3d->d);
