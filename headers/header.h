@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/03/21 16:46:51 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/03/23 12:05:21 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@
 # define W_WIDTH 1080
 # define W_HEIGHT 750
 
+typedef struct	s_delta
+{
+	double			dt;
+	struct timeval	t1;
+	struct timeval	t2;
+	double			elipsedTime;
+}				t_delta;
+
 typedef struct	s_player
 {
 	t_pt	pos;
@@ -34,14 +42,17 @@ typedef struct	s_player
 
 typedef struct	s_wolf3d
 {
-	t_mlx		*mlx;
-	t_player	player;
-	int			key;
+	t_mlx				*mlx;
+	t_player			player;
+	int					key;
+	t_delta				d;
 }				t_wolf3d;
 
-void	ft_start(void);
-int		press_wolf3d(int keycode, t_wolf3d *w3d);
-int		unpress_wolf3d(int keycode, t_wolf3d *w3d);
-int		loop_wolf3d(t_wolf3d *w3d);
+void			ft_start(void);
+int				press_wolf3d(int keycode, t_wolf3d *w3d);
+int				unpress_wolf3d(int keycode, t_wolf3d *w3d);
+int				loop_wolf3d(t_wolf3d *w3d);
+
+void			ft_wolf3d_refresh(t_wolf3d *w3d);
 
 #endif

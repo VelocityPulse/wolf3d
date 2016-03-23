@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/03/21 16:44:29 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/03/23 11:38:25 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static t_wolf3d		*ft_init_wolf3d(void)
 	w3d->key = -1;
 	w3d->player.pos = ft_make_pt(10, 10);
 	w3d->player.dir = 90;
+	w3d->d.dt = 1;
+	w3d->d.elipsedTime = 0;
 	return (w3d);
 }
 
