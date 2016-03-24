@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/03/23 12:47:30 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/03/24 12:25:17 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,27 @@ typedef struct	s_player
 	float	dir;
 }				t_player;
 
+typedef struct	s_map
+{
+	t_pt	size;
+	char	*map;
+}				t_map;
+
 typedef struct	s_wolf3d
 {
-	t_mlx				*mlx;
-	t_player			player;
-	int					key;
-	t_delta				d;
+	t_mlx		*mlx;
+	t_player	player;
+	int			key;
+	t_delta		d;
+	t_map		map;
 }				t_wolf3d;
 
 void			ft_start(void);
 int				press_wolf3d(int keycode, t_wolf3d *w3d);
 int				unpress_wolf3d(int keycode, t_wolf3d *w3d);
 int				loop_wolf3d(t_wolf3d *w3d);
+
+void			get_map1(t_map *mapi);
 
 void			ft_wolf3d(t_wolf3d *w3d);
 
