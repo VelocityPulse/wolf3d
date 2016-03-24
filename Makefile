@@ -14,11 +14,17 @@ NAME =			wolf3d
 
 SRC =			./sources/main.c \
 				./sources/start.c \
-				./sources/wolf_hook.c
+				./sources/wolf_hook.c \
+				./sources/wolf_map.c \
+				./sources/wolf3d.c \
+				./sources/dist.c
 
 OBJS =			./main.o \
 				./start.o \
-				./wolf_hook.o
+				./wolf_hook.o \
+				./wolf_map.o \
+				./wolf3d.o \
+				./dist.o
 
 DRAW =			./draw/draw.a
 

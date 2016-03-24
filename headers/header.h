@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/03/24 12:25:17 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/03/24 16:25:28 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ typedef struct	s_delta
 	double			elipsedTime;
 }				t_delta;
 
+typedef struct	s_wall
+{
+	float		dist;
+	int			code;
+}				t_wall;
+
 typedef struct	s_player
 {
 	t_pt	pos;
@@ -59,6 +65,8 @@ void			ft_start(void);
 int				press_wolf3d(int keycode, t_wolf3d *w3d);
 int				unpress_wolf3d(int keycode, t_wolf3d *w3d);
 int				loop_wolf3d(t_wolf3d *w3d);
+
+t_wall			ft_dist(t_map map, t_player player, float deg);
 
 void			get_map1(t_map *mapi);
 
