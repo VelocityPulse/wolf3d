@@ -17,14 +17,14 @@ SRC =			./sources/main.c \
 				./sources/wolf_hook.c \
 				./sources/wolf_map.c \
 				./sources/wolf3d.c \
-				./sources/dist.c
+				./sources/wolf_dist.c
 
 OBJS =			./main.o \
 				./start.o \
 				./wolf_hook.o \
 				./wolf_map.o \
 				./wolf3d.o \
-				./dist.o
+				./wolf_dist.o
 
 DRAW =			./draw/draw.a
 
@@ -36,7 +36,7 @@ LMLX =			#-lmlx
 
 FRAMEWORK =		$(LMLX) -framework OpenGL -framework AppKit
 
-FLAGS =			-Wall -Wextra -Werror -fsanitize=address
+FLAGS =			#-Wall -Wextra -Werror -fsanitize=address
 
 CC =			gcc
 
