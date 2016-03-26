@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 14:29:29 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/03/25 17:39:07 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/03/26 12:33:46 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,9 @@ static t_wall	ft_digit_diff_analyser_x(t_pt pos, t_map m, t_pt var, float d)
 			err -= 1;
 			p.y += var.y;
 			printf("impact : x %d ; y %d\n", p.x, p.y);
-			sleep(1);
 		}
 		p.x += var.x;
 		printf("impact : x %d ; y %d\n", p.x, p.y);
-		sleep(1);
 	}
 	printf("impact : x %d ; y %d\n", p.x, p.y);
 	w.dist = ft_calc_dist(p, pos, d);
@@ -80,11 +78,9 @@ static t_wall	ft_digit_diff_analyser_y(t_pt pos, t_map m, t_pt var, float d)
 			err -= 1;
 			p.x += var.x;
 			printf("impact : x %d ; y %d\n", p.x, p.y);
-			sleep(1);
 		}
 		p.y += var.y;
 		printf("impact : x %d ; y %d\n", p.x, p.y);
-		sleep(1);
 	}
 	printf("impact : x %d ; y %d\n", p.x, p.y);
 	w.dist = ft_calc_dist(p, pos, d);
@@ -98,10 +94,10 @@ t_wall			ft_dist(t_map map, t_pt pos, float deg)
 	t_wall		w;
 	t_pt		var;
 
-//	if (deg >= 0 && deg <= 45)
+	if (deg >= 0 && deg <= 45)
 		w = ft_digit_diff_analyser_y(pos, map, ft_make_pt(1, -1), deg);
-//	else if (deg > 45 && deg <= 90)
-		w = ft_digit_diff_analyser_x(pos, map, ft_make_pt(1, -1), deg);
+	if  (deg > 45 && deg <= 90)
+		w = ft_digit_diff_analyser_x(pos, map, ft_make_pt(1, -1), 45 - (deg - 45));
 
 	return (w);
 }

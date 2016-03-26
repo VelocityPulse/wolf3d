@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/03/25 17:38:22 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/03/26 12:34:26 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void				ft_start(void)
 
 	t_wall	w;
 
-	w = ft_dist(w3d->map, w3d->player.pos, 60);
+	w = ft_dist(w3d->map, w3d->player.pos, 90);
 
 }
