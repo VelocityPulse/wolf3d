@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/03/26 17:06:57 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/03/27 16:42:07 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,16 @@ void				ft_start(void)
 
 	w3d = (t_wolf3d *)ft_memalloc(sizeof(t_wolf3d));
 	w3d->key = -1;
-	w3d->player.pos = ft_make_pt(8, 4);
+	w3d->player.pos = ft_make_pt(8, 5);
 	w3d->player.dir = 0;
 	w3d->d.dt = 1;
 	w3d->d.elipsedTime = 0;
 	get_map1(&w3d->map);
 
 	t_wall	w;
+	float deg = 0;
 
-	w = ft_dist(w3d->map, w3d->player.pos, 90);
+	while (deg < 360)
+		w = ft_dist(w3d->map, w3d->player.pos, deg++);
 
 }
