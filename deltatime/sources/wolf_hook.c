@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 16:06:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/03/23 11:00:03 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/03/30 16:46:01 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ int		loop_wolf3d(t_wolf3d *w3d)
 	elipsedTime = (t2.tv_sec - t1.tv_sec) * 1000;
 	elipsedTime += (t2.tv_usec - t1.tv_usec) / 1000;
 	printf("%f - delta : %f\n", elipsedTime, elipsedTime / 1000);
+	printf("FPS : %f\n", 1 / (elipsedTime / 1000));
 	return (0);
 }

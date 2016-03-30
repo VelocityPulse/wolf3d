@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/03/26 16:53:46 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/03/30 16:49:30 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct	s_delta
 	struct timeval	t1;
 	struct timeval	t2;
 	double			elipsedTime;
+	double			fps;
 }				t_delta;
 
 typedef struct	s_wall
@@ -40,11 +41,18 @@ typedef struct	s_wall
 	int			code;
 }				t_wall;
 
-typedef struct	s_player
+typedef struct	s_raycasting
 {
-	t_pt	pos;
-	float	dir;
-}				t_player;
+	double	posX;
+	double	posY;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
+	double	cameraX;
+	double	rayPosX;
+	double	rayPosY;
+}				t_raycasting;
 
 typedef struct	s_map
 {
@@ -54,11 +62,11 @@ typedef struct	s_map
 
 typedef struct	s_wolf3d
 {
-	t_mlx		*mlx;
-	t_player	player;
-	int			key;
-	t_delta		d;
-	t_map		map;
+	t_mlx			*mlx;
+	int				key;
+	t_delta			d;
+	t_map			map;
+	t_raycasting	r;
 }				t_wolf3d;
 
 void			ft_start(void);
@@ -69,6 +77,8 @@ int				loop_wolf3d(t_wolf3d *w3d);
 t_wall			ft_dist(t_map map, t_pt pos, float deg);
 
 void			get_map1(t_map *mapi);
+
+void			ft_edit_wolf3d(t_wolf3d *w3d);
 
 void			ft_wolf3d(t_wolf3d *w3d);
 

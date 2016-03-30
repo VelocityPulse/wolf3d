@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 16:06:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/03/23 12:46:44 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/03/30 16:49:35 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void		get_deltatime(t_delta *d)
 	d->elipsedTime = (d->t2.tv_sec - d->t1.tv_sec) * 1000;
 	d->elipsedTime = (d->t2.tv_usec - d->t1.tv_usec) / 1000;
 	d->dt = d->elipsedTime / 1000;
+	d->fps = 1 / d->dt;
 }
 
 int		press_wolf3d(int keycode, t_wolf3d *w3d)
