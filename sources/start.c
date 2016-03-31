@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/03/30 16:27:26 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/03/31 14:28:19 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static t_wolf3d		*ft_init_wolf3d(void)
 	w3d->r.posX = 4;
 	w3d->r.posY = 3;
 	w3d->r.dirX = -1;
+	w3d->r.dirY = 0;
 	w3d->r.planeX = 0;
 	w3d->r.planeY = 0.66;
 	return (w3d);

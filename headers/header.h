@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/03/30 16:49:30 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/03/31 14:26:27 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,6 @@ typedef struct	s_delta
 	double			fps;
 }				t_delta;
 
-typedef struct	s_wall
-{
-	float		dist;
-	int			code;
-}				t_wall;
-
 typedef struct	s_raycasting
 {
 	double	posX;
@@ -49,9 +43,6 @@ typedef struct	s_raycasting
 	double	dirY;
 	double	planeX;
 	double	planeY;
-	double	cameraX;
-	double	rayPosX;
-	double	rayPosY;
 }				t_raycasting;
 
 typedef struct	s_map
@@ -73,8 +64,6 @@ void			ft_start(void);
 int				press_wolf3d(int keycode, t_wolf3d *w3d);
 int				unpress_wolf3d(int keycode, t_wolf3d *w3d);
 int				loop_wolf3d(t_wolf3d *w3d);
-
-t_wall			ft_dist(t_map map, t_pt pos, float deg);
 
 void			get_map1(t_map *mapi);
 
