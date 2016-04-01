@@ -17,7 +17,6 @@ SRC =			./sources/main.c \
 				./sources/wolf_hook.c \
 				./sources/wolf_map.c \
 				./sources/wolf3d.c \
-				./sources/wolf_dist.c \
 				./sources/edit_wolf.c
 
 OBJS =			./main.o \
@@ -25,7 +24,6 @@ OBJS =			./main.o \
 				./wolf_hook.o \
 				./wolf_map.o \
 				./wolf3d.o \
-				./wolf_dist.o \
 				./edit_wolf.o
 
 DRAW =			./draw/draw.a
