@@ -17,14 +17,16 @@ SRC =			./sources/main.c \
 				./sources/wolf_hook.c \
 				./sources/wolf_map.c \
 				./sources/wolf3d.c \
-				./sources/edit_wolf.c
+				./sources/edit_wolf.c \
+				./sources/reset_image.c
 
 OBJS =			./main.o \
 				./start.o \
 				./wolf_hook.o \
 				./wolf_map.o \
 				./wolf3d.o \
-				./edit_wolf.o
+				./edit_wolf.o \
+				./reset_image.o
 
 DRAW =			./draw/draw.a
 

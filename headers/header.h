@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/01 15:25:58 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/01 18:16:40 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct	s_raycasting
 	double	dirY;
 	double	planeX;
 	double	planeY;
+	int		horizon;
 }				t_raycasting;
 
 typedef struct	s_map
@@ -70,6 +71,7 @@ void			get_map1(t_map *mapi);
 
 void			ft_edit_wolf3d(t_wolf3d *w3d);
 void			ft_init_rc(t_raycasting *r);
+void			ft_reset_wolf_horizon(t_wolf3d *w3d);
 
 void			ft_wolf3d(t_wolf3d *w3d);
 

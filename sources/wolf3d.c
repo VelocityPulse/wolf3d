@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/01 13:13:04 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/01 18:17:27 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int worldMap[mapWidth][mapHeight]=
 
 void	ft_wolf3d(t_wolf3d *w3d)
 {
-	ft_reset_image(w3d->mlx, 0);
+//	ft_reset_image(w3d->mlx, 0);
+	ft_reset_wolf_horizon(w3d);
 	t_raycasting	r;
 
 	int		x;
