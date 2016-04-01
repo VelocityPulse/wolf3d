@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
+/*                                                       ::::      ::::::::   */
 /*   edit_wolf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/30 16:32:15 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/03/31 15:04:38 by                  ###   ########.fr       */
+/*   Updated: 2016/04/01 13:11:18 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/header.h"
+
+extern int worldMap[24][24];
 
 void	ft_edit_wolf3d(t_wolf3d *w3d)
 {
@@ -20,22 +22,23 @@ void	ft_edit_wolf3d(t_wolf3d *w3d)
 	double		oldDirX;
 	double		oldPlaneX;
 
-
 	moveSpeed = w3d->d.dt * 5;
 	rotSpeed = w3d->d.dt * 3;
 	pos = ft_make_pt(w3d->r.posX, w3d->r.posY);
+	if (w3d->key == 49)
+		ft_init_rc(&w3d->r);
 	if (w3d->key == 126)
 	{
-		if (w3d->map.map[(int)(((pos.y - 1) * w3d->map.size.x) + ((pos.x - 1) + w3d->r.dirX * moveSpeed))] == 0)
+		if (worldMap[(int)(w3d->r.posX + w3d->r.dirX * moveSpeed)][(int)w3d->r.posY]== 0)
 			w3d->r.posX += w3d->r.dirX * moveSpeed;
-		if (w3d->map.map[(int)(((pos.y - 1) + w3d->r.dirY * moveSpeed) * w3d->map.size.x + (pos.x - 1))] == 0)
+		if (worldMap[pos.x][(int)(w3d->r.posY + w3d->r.dirY * moveSpeed)] == 0)
 			w3d->r.posY += w3d->r.dirY * moveSpeed;
 	}
 	else if (w3d->key == 125)
 	{
-		if (w3d->map.map[(int)(((pos.y - 1) * w3d->map.size.x) + ((pos.x - 1) - w3d->r.dirX * moveSpeed))] == 0)
+		if (worldMap[(int)(w3d->r.posX - w3d->r.dirX * moveSpeed)][(int)w3d->r.posY] == 0)
 			w3d->r.posX -= w3d->r.dirX * moveSpeed;
-		if (w3d->map.map[(int)(((pos.y - 1) - w3d->r.dirY * moveSpeed) * w3d->map.size.x + (pos.x - 1))] == 0)
+		if (worldMap[(int)w3d->r.posX][(int)(w3d->r.posY - w3d->r.dirY * moveSpeed)] == 0)
 			w3d->r.posY -= w3d->r.dirY * moveSpeed;
 	}
 	else if (w3d->key == 124)

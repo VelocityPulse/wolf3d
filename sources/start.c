@@ -6,11 +6,21 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/03/31 14:28:19 by                  ###   ########.fr       */
+/*   Updated: 2016/04/01 12:42:20 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/header.h"
+
+void				ft_init_rc(t_raycasting *r)
+{
+	r->posX = 22;
+	r->posY = 12;
+	r->dirX = -1;
+	r->dirY = 0;
+	r->planeX = 0;
+	r->planeY = 0.66;
+}
 
 static t_wolf3d		*ft_init_wolf3d(void)
 {
@@ -22,12 +32,7 @@ static t_wolf3d		*ft_init_wolf3d(void)
 	w3d->d.dt = 1;
 	w3d->d.elipsedTime = 0;
 	get_map1(&w3d->map);
-	w3d->r.posX = 4;
-	w3d->r.posY = 3;
-	w3d->r.dirX = -1;
-	w3d->r.dirY = 0;
-	w3d->r.planeX = 0;
-	w3d->r.planeY = 0.66;
+	ft_init_rc(&w3d->r);
 	return (w3d);
 }
 
