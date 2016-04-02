@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/01 17:47:13 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/01 18:15:44 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/02 14:26:57 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_reset_wolf_horizon(t_wolf3d *w3d)
 	octet = w3d->mlx->mlx_img->bpp / 8;
 	max_size = w3d->mlx->mlx_img->max_size;
 	position = 0;
-	color = 0xFF6633;
+	color = 0x33CCFF;
 	while (position < max_size / 2)
 	{
 		ft_memcpy(img + position, &color, octet);

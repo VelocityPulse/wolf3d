@@ -36,7 +36,7 @@ LIBMLX =		./libmlx/libmlx.a
 
 LMLX =			#-lmlx
 
-FRAMEWORK =		$(LMLX) -framework OpenGL -framework AppKit
+FRAMEWORK =		$(LMLX) -framework OpenGL -framework AppKit -o3
 
 FLAGS =			#-Wall -Wextra -Werror -fsanitize=address
 

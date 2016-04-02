@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/01 18:17:27 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/02 15:53:44 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ void	ft_wolf3d(t_wolf3d *w3d)
 		drawEnd = lineHeight / 2 + W_HEIGHT / 2;
 		if (drawEnd >= W_HEIGHT)
 			drawEnd = W_HEIGHT - 1;
-
+		
 		// correct brightness
 		if (worldMap[mapX][mapY] == 1)
 			color = 0x555555;
@@ -159,8 +159,16 @@ void	ft_wolf3d(t_wolf3d *w3d)
 		else
 			color = 0x0f0f00;
 
-		//		if (side == 1)
-		//			color /= 2;
+		if (side == 1)
+		{
+			t_rgb c;
+			
+			c = ft_get_rgb(color);
+			c.r /= 2;
+			c.g /= 2;
+			c.b /= 2;
+			color = ft_get_hexa(c);
+		}
 
 		ft_draw_line(ft_make_line(x, drawStart, x, drawEnd), w3d->mlx, color);
 	}
