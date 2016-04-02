@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/02 14:25:17 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/02 20:26:53 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct	s_wolf3d
 	t_mlx			*mlx;
 	int				key1;
 	int				key2;
+	int				key3;
 	t_delta			d;
 	t_map			map;
 	t_raycasting	r;

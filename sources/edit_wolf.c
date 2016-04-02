@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/30 16:32:15 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/02 20:21:07 by                  ###   ########.fr       */
+/*   Updated: 2016/04/02 20:26:35 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,33 +25,33 @@ void	ft_edit_wolf3d(t_wolf3d *w3d)
 	moveSpeed = w3d->d.dt * 5;
 	rotSpeed = w3d->d.dt * 3;
 	pos = ft_make_pt(w3d->r.posX, w3d->r.posY);
-	if (w3d->key1 == 49 || w3d->key2 == 49)
+	if (w3d->key1 == 49 || w3d->key2 == 49 || w3d->key3 == 49)
 		ft_init_rc(&w3d->r);
-	if (w3d->key1 == 13 || w3d->key2 == 13)
+	if (w3d->key1 == 13 || w3d->key2 == 13 || w3d->key3  == 13)
 	{
 		if (worldMap[(int)(w3d->r.posX + w3d->r.dirX * moveSpeed)][(int)w3d->r.posY]== 0)
 			w3d->r.posX += w3d->r.dirX * moveSpeed;
 		if (worldMap[pos.x][(int)(w3d->r.posY + w3d->r.dirY * moveSpeed)] == 0)
 			w3d->r.posY += w3d->r.dirY * moveSpeed;
 	}
-	else if (w3d->key1 == 1 || w3d->key2 == 1)
+	else if (w3d->key1 == 1 || w3d->key2 == 1 || w3d->key3 == 1)
 	{
 		if (worldMap[(int)(w3d->r.posX - w3d->r.dirX * moveSpeed)][(int)w3d->r.posY] == 0)
 			w3d->r.posX -= w3d->r.dirX * moveSpeed;
 		if (worldMap[(int)w3d->r.posX][(int)(w3d->r.posY - w3d->r.dirY * moveSpeed)] == 0)
 			w3d->r.posY -= w3d->r.dirY * moveSpeed;
 	}
-	if (w3d->key1 == 0 || w3d->key2 == 0)
+	if (w3d->key1 == 0 || w3d->key2 == 0 || w3d->key3 == 0)
 	{
 		w3d->r.posY += w3d->r.dirX * moveSpeed;
 		w3d->r.posX -= w3d->r.dirY * moveSpeed;
 	}
-	if (w3d->key1 == 2 || w3d->key2 == 2)
+	if (w3d->key1 == 2 || w3d->key2 == 2 || w3d->key3 == 2)
 	{
 		w3d->r.posY -= w3d->r.dirX * moveSpeed;
 		w3d->r.posX += w3d->r.dirY * moveSpeed;
 	}
-	if (w3d->key1 == 124 || w3d->key2 == 124)
+	if (w3d->key1 == 124 || w3d->key2 == 124 || w3d->key3 == 124)
 	{
 		oldDirX = w3d->r.dirX;
 		w3d->r.dirX = w3d->r.dirX * cos(-rotSpeed) - w3d->r.dirY * sin(-rotSpeed);
@@ -60,7 +60,7 @@ void	ft_edit_wolf3d(t_wolf3d *w3d)
 		w3d->r.planeX = w3d->r.planeX * cos(-rotSpeed) - w3d->r.planeY * sin(-rotSpeed);
 		w3d->r.planeY = oldPlaneX * sin(-rotSpeed) + w3d->r.planeY * cos(-rotSpeed);
 	}
-	else if (w3d->key1 == 123 || w3d->key2 == 123)
+	else if (w3d->key1 == 123 || w3d->key2 == 123 || w3d->key3 == 123)
 	{
 		oldDirX = w3d->r.dirX;
 		w3d->r.dirX = w3d->r.dirX * cos(rotSpeed) - w3d->r.dirY * sin(rotSpeed);
