@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 16:06:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/01 17:40:55 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/02 16:10:47 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		get_deltatime(t_delta *d)
 	d->dt = d->elipsedTime / 1000;
 	d->dt = d->dt < 0 ? -d->dt : d->dt;
 	d->fps = 1 / d->dt;
-	if (1)
+	if (0)
 	{
 		timer += d->elipsedTime / 1000;
 		if (timer >= 0.5)
