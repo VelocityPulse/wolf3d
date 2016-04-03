@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/30 16:32:15 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/02 20:26:35 by                  ###   ########.fr       */
+/*   Updated: 2016/04/03 11:59:01 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,17 @@ void	ft_edit_wolf3d(t_wolf3d *w3d)
 	}
 	if (w3d->key1 == 0 || w3d->key2 == 0 || w3d->key3 == 0)
 	{
-		w3d->r.posY += w3d->r.dirX * moveSpeed;
-		w3d->r.posX -= w3d->r.dirY * moveSpeed;
+		if (worldMap[(int)(w3d->r.posX - w3d->r.dirY * moveSpeed)][(int)(w3d->r.posY)] == 0)
+			w3d->r.posX -= w3d->r.dirY * moveSpeed;
+		if (worldMap[(int)(w3d->r.posX)][(int)(w3d->r.posY + w3d->r.dirX * moveSpeed)] == 0)
+			w3d->r.posY += w3d->r.dirX * moveSpeed;
 	}
 	if (w3d->key1 == 2 || w3d->key2 == 2 || w3d->key3 == 2)
 	{
-		w3d->r.posY -= w3d->r.dirX * moveSpeed;
-		w3d->r.posX += w3d->r.dirY * moveSpeed;
+		if (worldMap[(int)(w3d->r.posX + w3d->r.dirY * moveSpeed)][(int)(w3d->r.posY)] == 0)
+			w3d->r.posX += w3d->r.dirY * moveSpeed;
+		if (worldMap[(int)(w3d->r.posX)][(int)(w3d->r.posY - w3d->r.dirX * moveSpeed)] == 0)
+			w3d->r.posY -= w3d->r.dirX * moveSpeed;
 	}
 	if (w3d->key1 == 124 || w3d->key2 == 124 || w3d->key3 == 124)
 	{
