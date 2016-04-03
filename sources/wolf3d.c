@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/02 19:36:02 by                  ###   ########.fr       */
+/*   Updated: 2016/04/03 12:22:47 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ void	ft_wolf3d(t_wolf3d *w3d)
 	while (++x < W_WIDTH)
 	{
 		cameraX = 2 * x / (double)W_WIDTH - 1;
-		rayPosX = r.posX;
-		rayPosY = r.posY;
-		rayDirX = r.dirX + r.planeX * cameraX;
-		rayDirY = r.dirY + r.planeY * cameraX;
+		rayPosX = r.pos.x;
+		rayPosY = r.pos.y;
+		rayDirX = r.dir.x + r.plane.x * cameraX;
+		rayDirY = r.dir.y + r.plane.y * cameraX;
 		mapX = (int)rayPosX;
 		mapY = (int)rayPosY;
 

@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/02 20:26:53 by                  ###   ########.fr       */
+/*   Updated: 2016/04/03 12:20:45 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,9 @@ typedef struct	s_delta
 
 typedef struct	s_raycasting
 {
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
+	t_ptd	pos;
+	t_ptd	dir;
+	t_ptd	plane;
 	int		horizon;
 }				t_raycasting;
 

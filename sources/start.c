@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/02 20:29:53 by                  ###   ########.fr       */
+/*   Updated: 2016/04/03 12:22:10 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 void				ft_init_rc(t_raycasting *r)
 {
-	r->posX = 22;
-	r->posY = 12;
-	r->dirX = -1;
-	r->dirY = 0;
-	r->planeX = 0;
-	r->planeY = 0.66;
+	r->pos = ft_make_ptd(22, 12);
+	r->dir = ft_make_ptd(-1, 0);
+	r->plane = ft_make_ptd(0, 0.66);
 }
 
 static t_wolf3d		*ft_init_wolf3d(void)
