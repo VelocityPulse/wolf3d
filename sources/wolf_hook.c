@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 16:06:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/02 20:28:29 by                  ###   ########.fr       */
+/*   Updated: 2016/04/03 14:40:30 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int		press_wolf3d(int keycode, t_wolf3d *w3d)
 
 int		unpress_wolf3d(int keycode, t_wolf3d *w3d)
 {
-	(void)keycode;
 	if (w3d->key1 == keycode)
 		w3d->key1 = -1;
 	if (w3d->key2 == keycode)
