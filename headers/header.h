@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/03 12:20:45 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/04 15:22:51 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct	s_wolf3d
 	int				key1;
 	int				key2;
 	int				key3;
+	double			diff_x;
+	int				fps_mode;
 	t_delta			d;
 	t_map			map;
 	t_raycasting	r;
@@ -63,11 +65,13 @@ typedef struct	s_wolf3d
 void			ft_start(void);
 int				press_wolf3d(int keycode, t_wolf3d *w3d);
 int				unpress_wolf3d(int keycode, t_wolf3d *w3d);
+int				mouse_wolf3d(int x, int y, t_wolf3d *w3d);
 int				loop_wolf3d(t_wolf3d *w3d);
 
 void			get_map1(t_map *mapi);
 
 void			ft_edit_wolf3d(t_wolf3d *w3d);
+void			edit_direction(t_wolf3d *w3d, t_ptd *pos, t_ptd *dir, t_ptd *p);
 void			ft_init_rc(t_raycasting *r);
 void			ft_reset_wolf_horizon(t_wolf3d *w3d);
 

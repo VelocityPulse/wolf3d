@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/03 14:55:44 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/03 14:55:55 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/04 15:20:15 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,32 +56,39 @@ static void		edit_lateral(t_wolf3d *w3d, t_ptd *pos, t_ptd *dir)
 	}
 }
 
-static void		edit_direction(t_wolf3d *w3d, t_ptd *pos, t_ptd *dir, t_ptd *pl)
+void		edit_direction(t_wolf3d *w3d, t_ptd *pos, t_ptd *dir, t_ptd *p)
 {
 	double		rot_speed;
 	double		old_dirx;
 	double		old_planex;
 
-	rot_speed = w3d->d.dt * 3;
+	rot_speed = w3d->d.dt * 3 * w3d->diff_x;
 	if (w3d->key1 == 124 || w3d->key2 == 124 || w3d->key3 == 124)
 	{
 		old_dirx = dir->x;
 		dir->x = dir->x * cos(-rot_speed) - dir->y * sin(-rot_speed);
 		dir->y = old_dirx * sin(-rot_speed) + dir->y * cos(-rot_speed);
-		old_planex = pl->x;
-		pl->x = pl->x * cos(-rot_speed) - pl->y * sin(-rot_speed);
-		pl->y = old_planex * sin(-rot_speed) + pl->y * cos(-rot_speed);
+		old_planex = p->x;
+		p->x = p->x * cos(-rot_speed) - p->y * sin(-rot_speed);
+		p->y = old_planex * sin(-rot_speed) + p->y * cos(-rot_speed);
 	}
 	else if (w3d->key1 == 123 || w3d->key2 == 123 || w3d->key3 == 123)
 	{
 		old_dirx = dir->x;
 		dir->x = dir->x * cos(rot_speed) - dir->y * sin(rot_speed);
 		dir->y = old_dirx * sin(rot_speed) + dir->y * cos(rot_speed);
-		old_planex = pl->x;
-		pl->x = pl->x * cos(rot_speed) - pl->y * sin(rot_speed);
-		pl->y = old_planex * sin(rot_speed) + pl->y * cos(rot_speed);
+		old_planex = p->x;
+		p->x = p->x * cos(rot_speed) - p->y * sin(rot_speed);
+		p->y = old_planex * sin(rot_speed) + p->y * cos(rot_speed);
 	}
 }
+
+/*
+ **
+ ** void edit_direction(); is not a static because
+ ** she called in mouse_wolf3d in wolf_hook.c
+ **
+*/
 
 void			ft_edit_wolf3d(t_wolf3d *w3d)
 {
