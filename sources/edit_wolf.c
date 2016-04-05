@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/03 14:55:44 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/04 15:20:15 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/05 15:38:35 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void		edit_direction(t_wolf3d *w3d, t_ptd *pos, t_ptd *dir, t_ptd *p)
 /*
  **
  ** void edit_direction(); is not a static because
- ** she called in mouse_wolf3d in wolf_hook.c
+ ** she's called in mouse_wolf3d in wolf_hook.c
  **
 */
 
