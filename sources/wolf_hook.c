@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 16:06:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/04 15:31:52 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/05 16:02:49 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,14 @@ int		loop_wolf3d(t_wolf3d *w3d)
 {
 	gettimeofday(&w3d->d.t1, NULL);
 
-	ft_wolf3d(w3d);
+//	ft_wolf3d(w3d);
+	int x;
+	int y;
+	void *image = mlx_xpm_file_to_image(w3d->mlx->p_mlx, "./images/eagle.xpm",
+			&x, &y);
+	mlx_put_image_to_window(w3d->mlx->p_mlx, w3d->mlx->p_win, image, x, y);
+//	ft_flush_image(w3d->mlx);
+	printf("x %d\ny %d\n\n", x, y);
 
 	gettimeofday(&w3d->d.t2, NULL);
 	get_deltatime(&w3d->d, w3d->fps_mode);
