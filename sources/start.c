@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/05 15:50:33 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/06 11:36:13 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_wolf3d		*ft_init_wolf3d(void)
 	w3d->diff_x = 1;
 	w3d->fps_mode = 0;
 	w3d->d.dt = 1;
-	w3d->d.elipsedTime = 0;
+	w3d->d.elipsed_time = 0;
 	get_map1(&w3d->map);
 	ft_init_rc(&w3d->r);
 	return (w3d);

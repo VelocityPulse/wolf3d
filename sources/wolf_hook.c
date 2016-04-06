@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 16:06:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/05 16:02:49 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/06 11:32:48 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ static void		get_deltatime(t_delta *d, int fps_mode)
 {
 	static double		timer = 0;
 
-	d->elipsedTime = (d->t2.tv_sec - d->t1.tv_sec) * 1000;
-	d->elipsedTime += (d->t2.tv_usec - d->t1.tv_usec) / 1000;
-	d->dt = d->elipsedTime / 1000;
+	d->elipsed_time = (d->t2.tv_sec - d->t1.tv_sec) * 1000;
+	d->elipsed_time += (d->t2.tv_usec - d->t1.tv_usec) / 1000;
+	d->dt = d->elipsed_time / 1000;
 	d->dt = d->dt < 0 ? -d->dt : d->dt;
 	d->fps = 1 / d->dt;
 	if (fps_mode)
 	{
-		timer += d->elipsedTime / 1000;
+		timer += d->elipsed_time / 1000;
 		if (timer >= 0.5)
 		{
 			ft_putstr("FPS : ");
