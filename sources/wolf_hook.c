@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 16:06:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/08 12:15:27 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/08 15:50:38 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@ static void		get_deltatime(t_delta *d, int fps_mode)
 	}
 }
 
-int		press_wolf3d(int keycode, t_wolf3d *w3d)
+int				press_wolf3d(int keycode, t_wolf3d *w3d)
 {
 	if (keycode == 53)
 		exit(0);
+	if (keycode == 257)
+		return (w3d->key_sprint = 2);
 	if (keycode == 3 && w3d->fps_mode == 0)
 	{
 		ft_putstr("FPS = ON\n");
@@ -56,12 +58,13 @@ int		press_wolf3d(int keycode, t_wolf3d *w3d)
 		w3d->key2 = keycode;
 	else if (w3d->key3 == -1 && w3d->key1 != keycode && w3d->key2 != keycode)
 		w3d->key3 = keycode;
-
 	return (0);
 }
 
-int		unpress_wolf3d(int keycode, t_wolf3d *w3d)
+int				unpress_wolf3d(int keycode, t_wolf3d *w3d)
 {
+	if (keycode == 257)
+		return (w3d->key_sprint = 1);
 	if (w3d->key1 == keycode)
 		w3d->key1 = -1;
 	if (w3d->key2 == keycode)
@@ -71,7 +74,7 @@ int		unpress_wolf3d(int keycode, t_wolf3d *w3d)
 	return (0);
 }
 
-int		mouse_wolf3d(int x, int y, t_wolf3d *w3d)
+int				mouse_wolf3d(int x, int y, t_wolf3d *w3d)
 {
 	static double	old_x = 0;
 
@@ -98,12 +101,10 @@ int		mouse_wolf3d(int x, int y, t_wolf3d *w3d)
 	return (0);
 }
 
-int		loop_wolf3d(t_wolf3d *w3d)
+int				loop_wolf3d(t_wolf3d *w3d)
 {
 	gettimeofday(&w3d->d.t1, NULL);
-
 	ft_wolf3d(w3d);
-
 	gettimeofday(&w3d->d.t2, NULL);
 	get_deltatime(&w3d->d, w3d->fps_mode);
 	return (0);

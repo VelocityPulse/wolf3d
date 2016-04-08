@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/03 14:55:44 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/08 15:30:03 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/08 15:48:10 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		edit_backfront(t_wolf3d *w3d, t_ptd *pos, t_ptd *dir)
 {
 	double		move_speed;
 
-	move_speed = w3d->d.dt * 5;
+	move_speed = (w3d->d.dt * 5) * w3d->key_sprint;
 	if (w3d->key1 == 13 || w3d->key2 == 13 || w3d->key3 == 13)
 	{
 		if (w3d->def_map[(int)(pos->x + dir->x * move_speed)][(int)pos->y] == 0)

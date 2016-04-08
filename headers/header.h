@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/08 15:33:29 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/08 15:47:42 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct	s_wolf3d
 	int				key1;
 	int				key2;
 	int				key3;
+	int				key_sprint;
 	double			diff_x;
 	int				fps_mode;
 	t_delta			d;
