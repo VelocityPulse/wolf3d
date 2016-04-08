@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/04 15:22:51 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/08 12:44:55 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct	s_delta
 	double			dt;
 	struct timeval	t1;
 	struct timeval	t2;
-	double			elipsedTime;
+	double			elipsed_time;
 	double			fps;
 }				t_delta;
 
@@ -43,12 +43,6 @@ typedef struct	s_raycasting
 	int		horizon;
 }				t_raycasting;
 
-typedef struct	s_map
-{
-	t_pt	size;
-	char	*map;
-}				t_map;
-
 typedef struct	s_wolf3d
 {
 	t_mlx			*mlx;
@@ -58,7 +52,7 @@ typedef struct	s_wolf3d
 	double			diff_x;
 	int				fps_mode;
 	t_delta			d;
-	t_map			map;
+	int			def_map[14][16];
 	t_raycasting	r;
 }				t_wolf3d;
 
@@ -68,7 +62,7 @@ int				unpress_wolf3d(int keycode, t_wolf3d *w3d);
 int				mouse_wolf3d(int x, int y, t_wolf3d *w3d);
 int				loop_wolf3d(t_wolf3d *w3d);
 
-void			get_map1(t_map *mapi);
+void			get_map1(t_wolf3d *w3d);
 
 void			ft_edit_wolf3d(t_wolf3d *w3d);
 void			edit_direction(t_wolf3d *w3d, t_ptd *pos, t_ptd *dir, t_ptd *p);

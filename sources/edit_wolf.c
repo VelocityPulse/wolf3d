@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/03 14:55:44 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/05 15:38:35 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/08 12:45:19 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ static void		edit_backfront(t_wolf3d *w3d, t_ptd *pos, t_ptd *dir)
 	move_speed = w3d->d.dt * 5;
 	if (w3d->key1 == 13 || w3d->key2 == 13 || w3d->key3 == 13)
 	{
-		if (worldMap[(int)(pos->x + dir->x * move_speed)][(int)pos->y] == 0)
+		if (w3d->def_map[(int)(pos->x + dir->x * move_speed)][(int)pos->y] == 0)
 			pos->x += w3d->r.dir.x * move_speed;
-		if (worldMap[(int)(pos->x)][(int)(pos->y + dir->y * move_speed)] == 0)
+		if (w3d->def_map[(int)(pos->x)][(int)(pos->y + dir->y * move_speed)] == 0)
 			pos->y += dir->y * move_speed;
 	}
 	else if (w3d->key1 == 1 || w3d->key2 == 1 || w3d->key3 == 1)
 	{
-		if (worldMap[(int)(pos->x - dir->x * move_speed)][(int)pos->y] == 0)
+		if (w3d->def_map[(int)(pos->x - dir->x * move_speed)][(int)pos->y] == 0)
 			pos->x -= dir->x * move_speed;
-		if (worldMap[(int)pos->x][(int)(pos->y - dir->y * move_speed)] == 0)
+		if (w3d->def_map[(int)pos->x][(int)(pos->y - dir->y * move_speed)] == 0)
 			pos->y -= dir->y * move_speed;
 	}
 }
@@ -42,16 +42,16 @@ static void		edit_lateral(t_wolf3d *w3d, t_ptd *pos, t_ptd *dir)
 	move_speed = w3d->d.dt * 5;
 	if (w3d->key1 == 0 || w3d->key2 == 0 || w3d->key3 == 0)
 	{
-		if (worldMap[(int)(pos->x - dir->y * move_speed)][(int)(pos->y)] == 0)
+		if (w3d->def_map[(int)(pos->x - dir->y * move_speed)][(int)(pos->y)] == 0)
 			pos->x -= dir->y * move_speed;
-		if (worldMap[(int)(pos->x)][(int)(pos->y + dir->x * move_speed)] == 0)
+		if (w3d->def_map[(int)(pos->x)][(int)(pos->y + dir->x * move_speed)] == 0)
 			pos->y += dir->x * move_speed;
 	}
 	if (w3d->key1 == 2 || w3d->key2 == 2 || w3d->key3 == 2)
 	{
-		if (worldMap[(int)(pos->x + dir->y * move_speed)][(int)(pos->y)] == 0)
+		if (w3d->def_map[(int)(pos->x + dir->y * move_speed)][(int)(pos->y)] == 0)
 			pos->x += dir->y * move_speed;
-		if (worldMap[(int)(pos->x)][(int)(pos->y - dir->x * move_speed)] == 0)
+		if (w3d->def_map[(int)(pos->x)][(int)(pos->y - dir->x * move_speed)] == 0)
 			pos->y -= dir->x * move_speed;
 	}
 }

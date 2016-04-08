@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/03 12:22:47 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/08 12:51:37 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,8 @@ void	ft_wolf3d(t_wolf3d *w3d)
 		}
 
 		// DDA
-		while (worldMap[mapX][mapY] == 0)
+//		while (worldMap[mapX][mapY] == 0)
+		while(w3d->def_map[mapX][mapY] == 0)
 		{
 			if (sideDistX < sideDistY)
 			{
@@ -131,6 +132,7 @@ void	ft_wolf3d(t_wolf3d *w3d)
 			}
 		}
 
+		int		val = w3d->def_map[mapX][mapY];
 		// correct fisheye
 		if (side == 0)
 			perpWallDist = (mapX - rayPosX + (1 - stepX) / 2) / rayDirX;
@@ -148,13 +150,14 @@ void	ft_wolf3d(t_wolf3d *w3d)
 			drawEnd = W_HEIGHT - 1;
 		
 		// correct brightness
-		if (worldMap[mapX][mapY] == 1)
+//		if (worldMap[mapX][mapY] == 1)
+		if (val == 1)
 			color = 0x555555;
-		else if (worldMap[mapX][mapY] == 2)
+		else if (val == 2)
 			color = 0x00ff00;
-		else if (worldMap[mapX][mapY] == 3)
+		else if (val == 3)
 			color = 0xff0000;
-		else if (worldMap[mapX][mapY] == 4)
+		else if (val == 4)
 			color = 0x0000ff;
 		else
 			color = 0x0f0f00;
@@ -162,7 +165,7 @@ void	ft_wolf3d(t_wolf3d *w3d)
 		if (side == 1)
 		{
 			t_rgb c;
-			
+
 			c = ft_get_rgb(color);
 			c.r /= 2;
 			c.g /= 2;
