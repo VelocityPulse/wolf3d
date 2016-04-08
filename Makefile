@@ -6,7 +6,7 @@
 #    By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/15 16:45:32 by cchameyr          #+#    #+#              #
-#*   Updated: 2016/03/15 17:13:25 by                  ###   ########.fr       *#
+#*   Updated: 2016/04/08 23:29:00 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRC =			./sources/main.c \
 				./sources/wolf3d.c \
 				./sources/edit_wolf.c \
 				./sources/reset_image.c \
-				./sources/delta_time.c
+				./sources/delta_time.c \
+				./sources/get_next_line.c
 
 OBJS =			./main.o \
 				./start.o \
@@ -28,7 +29,8 @@ OBJS =			./main.o \
 				./wolf3d.o \
 				./edit_wolf.o \
 				./reset_image.o \
-				./delta_time.o
+				./delta_time.o \
+				./get_next_line.o
 
 DRAW =			./draw/draw.a
 

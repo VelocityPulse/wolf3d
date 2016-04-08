@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wolf_get_path.c                                    :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/08 15:39:55 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/08 23:37:06 by                  ###   ########.fr       */
+/*   Created: 2015/12/18 14:44:27 by cchameyr          #+#    #+#             */
+/*   Updated: 2016/04/08 23:29:26 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/header.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void	ft_get_map_path(t_wolf3d *w3d, int fd)
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include "libft.h"
+
+# define BUFF_SIZE 1
+
+typedef struct	s_gnl
 {
-	char		*line;
-	t_lstline	*list;
+	char		*buff;
+	char		*temp;
+	int			ret;
+}				t_gnl;
 
-	line = NULL;
-	list = NULL;
-	while (get_next_line(fd, &line) > 0)
-	{
-		if (ft_check_line(line) == 0)
-		{
-			ft_lstline_del(list);
-			
-		}
-	}
-}
+int				get_next_line(const int fd, char **line);
+
+#endif

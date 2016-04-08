@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/08 16:04:16 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/08 23:28:37 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "delta_time.h"
 # include "libft.h"
 # include "draw.h"
+# include "get_next_line.h"
 # include "../libmlx/mlx.h"
 # include "../libmlx/X.h"
 
