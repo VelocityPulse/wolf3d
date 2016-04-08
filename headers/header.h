@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/08 14:28:07 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/08 15:15:59 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include <sys/time.h>
+# include <stdbool.h>
 # include "libft.h"
 # include "draw.h"
 # include "../libmlx/mlx.h"
@@ -46,17 +48,20 @@ typedef struct	s_raycasting
 typedef struct	s_wolf3d
 {
 	t_mlx			*mlx;
+	t_ptd			start;
 	int				key1;
 	int				key2;
 	int				key3;
 	double			diff_x;
 	int				fps_mode;
 	t_delta			d;
-	int			def_map[15][20];
+	bool			default_map;
+	int				def_map[15][20];
+	int				**map;
 	t_raycasting	r;
 }				t_wolf3d;
 
-void			ft_start(void);
+void			ft_start(char *path);
 int				press_wolf3d(int keycode, t_wolf3d *w3d);
 int				unpress_wolf3d(int keycode, t_wolf3d *w3d);
 int				mouse_wolf3d(int x, int y, t_wolf3d *w3d);
@@ -66,7 +71,7 @@ void			get_map1(t_wolf3d *w3d);
 
 void			ft_edit_wolf3d(t_wolf3d *w3d);
 void			edit_direction(t_wolf3d *w3d, t_ptd *pos, t_ptd *dir, t_ptd *p);
-void			ft_init_rc(t_raycasting *r);
+void			ft_init_rc(t_wolf3d *w3d);
 void			ft_reset_wolf_horizon(t_wolf3d *w3d);
 
 void			ft_wolf3d(t_wolf3d *w3d);

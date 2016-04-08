@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/03 14:55:44 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/08 12:45:19 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/08 15:13:58 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void		edit_direction(t_wolf3d *w3d, t_ptd *pos, t_ptd *dir, t_ptd *p)
 void			ft_edit_wolf3d(t_wolf3d *w3d)
 {
 	if (w3d->key1 == 49 || w3d->key2 == 49 || w3d->key3 == 49)
-		ft_init_rc(&w3d->r);
+		ft_init_rc(w3d);
 	edit_backfront(w3d, &w3d->r.pos, &w3d->r.dir);
 	edit_lateral(w3d, &w3d->r.pos, &w3d->r.dir);
 	edit_direction(w3d, &w3d->r.pos, &w3d->r.dir, &w3d->r.plane);

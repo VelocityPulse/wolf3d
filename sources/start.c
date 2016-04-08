@@ -6,24 +6,46 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/08 12:53:27 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/08 15:15:32 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/header.h"
 
-void				ft_init_rc(t_raycasting *r)
+void			ft_init_rc(t_wolf3d *w3d)
 {
-	r->pos = ft_make_ptd(3, 3);
-	r->dir = ft_make_ptd(-1, 0);
-	r->plane = ft_make_ptd(0, 0.66);
+	w3d->r.pos = w3d->start;
+	w3d->r.dir = ft_make_ptd(-1, 0);
+	w3d->r.plane = ft_make_ptd(0, 0.66);
 }
 
-static t_wolf3d		*ft_init_wolf3d(void)
-{
-	t_wolf3d	*w3d;
+/*
+ **
+ ** void ft_init_rc(t_raycasting *r); is not a static beacause
+ ** she's called in ft_edit_wolf3d in edit_wolf.c
+ **
+ */
 
-	w3d = (t_wolf3d *)ft_memalloc(sizeof(t_wolf3d));
+static void		ft_open_fd(t_wolf3d *w3d, char *path)
+{
+	int		fd;
+
+	if (!path)
+	{
+		w3d->default_map = true;
+		return ;
+	}
+	if ((fd = open(path, O_RDONLY) == -1))
+	{
+		ft_putstr("Bad path\n");
+		exit(0);
+	}
+	w3d->default_map = false;
+
+}
+
+static void		ft_init_wolf3d(t_wolf3d *w3d)
+{
 	w3d->mlx = ft_mlx_init(W_WIDTH, W_HEIGHT, "wolf3d");
 	w3d->key1 = -1;
 	w3d->key2 = -1;
@@ -32,16 +54,21 @@ static t_wolf3d		*ft_init_wolf3d(void)
 	w3d->fps_mode = 0;
 	w3d->d.dt = 1;
 	w3d->d.elipsed_time = 0;
-	get_map1(w3d);
-	ft_init_rc(&w3d->r);
-	return (w3d);
+	if (w3d->default_map == true)
+	{
+		get_map1(w3d);
+		w3d->start = ft_make_pt(3, 3);
+	}
+	ft_init_rc(w3d);
 }
 
-void				ft_start(void)
+void			ft_start(char *path)
 {
 	t_wolf3d	*w3d;
 
-	w3d = ft_init_wolf3d();
+	w3d = (t_wolf3d *)ft_memalloc(sizeof(t_wolf3d));
+	ft_open_fd(w3d, path);
+	ft_init_wolf3d(w3d);
 
 	mlx_hook(w3d->mlx->p_win, KeyPress, KeyPressMask, press_wolf3d, w3d);
 	mlx_hook(w3d->mlx->p_win, KeyRelease, KeyPressMask, unpress_wolf3d, w3d);
