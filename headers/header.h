@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/08 15:47:42 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/08 16:04:16 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <sys/time.h>
 # include <stdbool.h>
+# include "delta_time.h"
 # include "libft.h"
 # include "draw.h"
 # include "../libmlx/mlx.h"
@@ -27,15 +27,6 @@
 
 # define W_WIDTH 1080
 # define W_HEIGHT 750
-
-typedef struct	s_delta
-{
-	double			dt;
-	struct timeval	t1;
-	struct timeval	t2;
-	double			elipsed_time;
-	double			fps;
-}				t_delta;
 
 typedef struct	s_raycasting
 {

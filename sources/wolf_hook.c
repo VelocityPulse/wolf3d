@@ -6,33 +6,11 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 16:06:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/08 15:50:38 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/08 16:05:07 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/header.h"
-
-static void		get_deltatime(t_delta *d, int fps_mode)
-{
-	static double		timer = 0;
-
-	d->elipsed_time = (d->t2.tv_sec - d->t1.tv_sec) * 1000;
-	d->elipsed_time += (d->t2.tv_usec - d->t1.tv_usec) / 1000;
-	d->dt = d->elipsed_time / 1000;
-	d->dt = d->dt < 0 ? -d->dt : d->dt;
-	d->fps = 1 / d->dt;
-	if (fps_mode)
-	{
-		timer += d->elipsed_time / 1000;
-		if (timer >= 0.5)
-		{
-			ft_putstr("FPS : ");
-			ft_putnbr(d->fps);
-			ft_putchar('\n');
-			timer = 0;
-		}
-	}
-}
 
 int				press_wolf3d(int keycode, t_wolf3d *w3d)
 {
@@ -103,9 +81,9 @@ int				mouse_wolf3d(int x, int y, t_wolf3d *w3d)
 
 int				loop_wolf3d(t_wolf3d *w3d)
 {
-	gettimeofday(&w3d->d.t1, NULL);
+	start_delta(&w3d->d);
 	ft_wolf3d(w3d);
-	gettimeofday(&w3d->d.t2, NULL);
+	end_delta(&w3d->d);
 	get_deltatime(&w3d->d, w3d->fps_mode);
 	return (0);
 }
