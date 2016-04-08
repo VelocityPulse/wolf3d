@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/08 12:44:55 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/08 14:28:07 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct	s_wolf3d
 	double			diff_x;
 	int				fps_mode;
 	t_delta			d;
-	int			def_map[14][16];
+	int			def_map[15][20];
 	t_raycasting	r;
 }				t_wolf3d;
 

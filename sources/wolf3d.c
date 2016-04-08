@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/08 12:51:37 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/08 13:57:51 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,6 @@ void	ft_wolf3d(t_wolf3d *w3d)
 		else
 			perpWallDist = (mapY - rayPosY + (1 - stepY) / 2) / rayDirY;
 
-		// calculate height of column
 		lineHeight = (int)(W_HEIGHT / perpWallDist);
 
 		drawStart = -lineHeight / 2 + W_HEIGHT / 2;
@@ -165,7 +164,6 @@ void	ft_wolf3d(t_wolf3d *w3d)
 		if (side == 1)
 		{
 			t_rgb c;
-
 			c = ft_get_rgb(color);
 			c.r /= 2;
 			c.g /= 2;
