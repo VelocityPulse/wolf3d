@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 16:06:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/08 16:05:07 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/08 17:17:17 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ int				mouse_wolf3d(int x, int y, t_wolf3d *w3d)
 		}
 	}
 	old_x = x;
-	(void)y;
 	w3d->diff_x = 1;
+	(void)y;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 15:52:06 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/08 16:05:40 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/08 17:16:25 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ typedef struct	s_delta
 	double			fps;
 }				t_delta;
 
-void	get_deltatime(t_delta *d, const int fps_mode);
-void	start_delta(t_delta *d);
-void	end_delta(t_delta *d);
+void				get_deltatime(t_delta *d, const int fps_mode);
+void				start_delta(t_delta *d);
+void				end_delta(t_delta *d);
 
 #endif
