@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/08 15:15:32 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/08 15:38:32 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			ft_init_rc(t_wolf3d *w3d)
 {
-	w3d->r.pos = w3d->start;
+	w3d->r.pos = w3d->start_pos;
 	w3d->r.dir = ft_make_ptd(-1, 0);
 	w3d->r.plane = ft_make_ptd(0, 0.66);
 }
@@ -24,7 +24,7 @@ void			ft_init_rc(t_wolf3d *w3d)
  ** void ft_init_rc(t_raycasting *r); is not a static beacause
  ** she's called in ft_edit_wolf3d in edit_wolf.c
  **
- */
+*/
 
 static void		ft_open_fd(t_wolf3d *w3d, char *path)
 {
@@ -41,7 +41,7 @@ static void		ft_open_fd(t_wolf3d *w3d, char *path)
 		exit(0);
 	}
 	w3d->default_map = false;
-
+	//call get_path_map
 }
 
 static void		ft_init_wolf3d(t_wolf3d *w3d)
@@ -57,7 +57,7 @@ static void		ft_init_wolf3d(t_wolf3d *w3d)
 	if (w3d->default_map == true)
 	{
 		get_map1(w3d);
-		w3d->start = ft_make_pt(3, 3);
+		w3d->start_pos = ft_make_ptd(13, 3);
 	}
 	ft_init_rc(w3d);
 }
