@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/08 16:00:34 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/09 12:20:52 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,21 @@ static void		ft_open_fd(t_wolf3d *w3d, char *path)
 	if (!path)
 	{
 		w3d->default_map = true;
+		w3d->mlx = ft_mlx_init(W_WIDTH, W_HEIGHT, "wolf3d");
 		return ;
 	}
-	if ((fd = open(path, O_RDONLY) == -1))
+	if ((fd = open(path, O_RDONLY)) == -1)
 	{
 		ft_putstr("Bad path\n");
-		exit(0);
+		ft_exit_wolf3d(w3d, 1);
 	}
 	w3d->default_map = false;
-	//call get_path_map
+	get_map_path(w3d, fd);
+	w3d->mlx = ft_mlx_init(W_WIDTH, W_HEIGHT, "wolf3d");
 }
 
 static void		ft_init_wolf3d(t_wolf3d *w3d)
 {
-	w3d->mlx = ft_mlx_init(W_WIDTH, W_HEIGHT, "wolf3d");
 	w3d->key1 = -1;
 	w3d->key2 = -1;
 	w3d->key3 = -1;
@@ -57,8 +58,8 @@ static void		ft_init_wolf3d(t_wolf3d *w3d)
 	w3d->d.elipsed_time = 0;
 	if (w3d->default_map == true)
 	{
-		get_map1(w3d);
 		w3d->start_pos = ft_make_ptd(13, 3);
+		get_map1(w3d);
 	}
 	ft_init_rc(w3d);
 }

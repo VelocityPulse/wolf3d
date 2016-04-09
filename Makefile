@@ -20,7 +20,9 @@ SRC =			./sources/main.c \
 				./sources/edit_wolf.c \
 				./sources/reset_image.c \
 				./sources/delta_time.c \
-				./sources/get_next_line.c
+				./sources/get_next_line.c \
+				./sources/wolf_get_path.c \
+				./sources/exit_wolf.c
 
 OBJS =			./main.o \
 				./start.o \
@@ -30,7 +32,9 @@ OBJS =			./main.o \
 				./edit_wolf.o \
 				./reset_image.o \
 				./delta_time.o \
-				./get_next_line.o
+				./get_next_line.o \
+				./wolf_get_path.o \
+				./exit_wolf.o
 
 DRAW =			./draw/draw.a
 
