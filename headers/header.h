@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/10 12:17:47 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/10 22:11:23 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@
 
 typedef struct	s_raycasting
 {
+	int		step_x;
+	int		step_y;
+	int		side;
+	double	side_distx;
+	double	side_disty;
+	double	delta_distx;
+	double	delta_disty;
 	t_ptd	pos;
 	t_ptd	dir;
 	t_ptd	plane;
@@ -63,6 +70,9 @@ int				loop_wolf3d(t_wolf3d *w3d);
 void			get_map1(t_wolf3d *w3d);
 void			get_map_path(t_wolf3d *w3d, const int fd);
 int				ft_check_map(t_wolf3d *w3d, t_lstline *begin);
+
+int				dda_normal_map(t_raycasting *r, t_wolf3d *w3d, int *x, int *y);
+int				dda_def_map(t_raycasting *r, t_wolf3d *w3d, int *x, int *y);
 
 void			ft_edit_wolf3d(t_wolf3d *w3d);
 void			edit_direction(t_wolf3d *w3d, t_ptd *pos, t_ptd *dir, t_ptd *p);

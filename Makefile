@@ -6,7 +6,7 @@
 #    By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/15 16:45:32 by cchameyr          #+#    #+#              #
-#*   Updated: 2016/04/08 23:29:00 by                  ###   ########.fr       *#
+#*   Updated: 2016/04/10 22:12:53 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRC =			./sources/main.c \
 				./sources/get_next_line.c \
 				./sources/wolf_get_path.c \
 				./sources/exit_wolf.c \
-				./sources/wolf_check_map.c
+				./sources/wolf_check_map.c \
+				./sources/dda.c
 
 OBJS =			./main.o \
 				./start.o \
@@ -36,7 +37,8 @@ OBJS =			./main.o \
 				./get_next_line.o \
 				./wolf_get_path.o \
 				./exit_wolf.o \
-				./wolf_check_map.o
+				./wolf_check_map.o \
+				./dda.o
 
 DRAW =			./draw/draw.a
 

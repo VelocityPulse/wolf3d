@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/08 13:57:51 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/10 22:27:58 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,7 @@ void	ft_wolf3d(t_wolf3d *w3d)
 	int		mapX;
 	int		mapY;
 
-	double	sideDistX;
-	double	sideDistY;
-	double	deltaDistX;
-	double	deltaDistY;
 	double	perpWallDist;
-
-	int		stepX;
-	int		stepY;
-	int		side;
 
 	int		lineHeight;
 	int		drawStart;
@@ -89,55 +81,38 @@ void	ft_wolf3d(t_wolf3d *w3d)
 		mapX = (int)rayPosX;
 		mapY = (int)rayPosY;
 
-		deltaDistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
-		deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
+		r.delta_distx = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
+		r.delta_disty = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
 
 		// calculate step
 		if (rayDirX < 0)
 		{
-			stepX = -1;
-			sideDistX = (rayPosX - mapX) * deltaDistX;
+			r.step_x = -1;
+			r.side_distx = (rayPosX - mapX) * r.delta_distx;
 		}
 		else
 		{
-			stepX = 1;
-			sideDistX = (mapX + 1 - rayPosX) * deltaDistX;
+			r.step_x = 1;
+			r.side_distx = (mapX + 1 - rayPosX) * r.delta_distx;
 		}
 		if (rayDirY < 0)
 		{
-			stepY = -1;
-			sideDistY = (rayPosY - mapY) * deltaDistY;
+			r.step_y = -1;
+			r.side_disty = (rayPosY - mapY) * r.delta_disty;
 		}
 		else
 		{
-			stepY = 1;
-			sideDistY = (mapY + 1 - rayPosY) * deltaDistY;
+			r.step_y = 1;
+			r.side_disty = (mapY + 1 - rayPosY) * r.delta_disty;
 		}
 
 		// DDA
-//		while (worldMap[mapX][mapY] == 0)
-		while(w3d->def_map[mapX][mapY] == 0)
-		{
-			if (sideDistX < sideDistY)
-			{
-				sideDistX += deltaDistX;
-				mapX += stepX;
-				side = 0;
-			}
-			else
-			{
-				sideDistY += deltaDistY;
-				mapY += stepY;
-				side = 1;
-			}
-		}
-
-		int		val = w3d->def_map[mapX][mapY];
+		int		val = dda_def_map(&r, w3d, &mapX, &mapY);
 		// correct fisheye
-		if (side == 0)
-			perpWallDist = (mapX - rayPosX + (1 - stepX) / 2) / rayDirX;
+		if (r.side == 0)
+			perpWallDist = (mapX - rayPosX + (1 - r.step_x) / 2) / rayDirX;
 		else
-			perpWallDist = (mapY - rayPosY + (1 - stepY) / 2) / rayDirY;
+			perpWallDist = (mapY - rayPosY + (1 - r.step_y) / 2) / rayDirY;
 
 		lineHeight = (int)(W_HEIGHT / perpWallDist);
 
@@ -149,7 +124,6 @@ void	ft_wolf3d(t_wolf3d *w3d)
 			drawEnd = W_HEIGHT - 1;
 		
 		// correct brightness
-//		if (worldMap[mapX][mapY] == 1)
 		if (val == 1)
 			color = 0x555555;
 		else if (val == 2)
@@ -161,7 +135,7 @@ void	ft_wolf3d(t_wolf3d *w3d)
 		else
 			color = 0x0f0f00;
 
-		if (side == 1)
+		if (r.side == 1)
 		{
 			t_rgb c;
 			c = ft_get_rgb(color);
