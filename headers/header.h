@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/09 12:34:00 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/10 12:17:47 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct	s_wolf3d
 	bool			default_map;
 	int				def_map[15][20];
 	int				**map;
-	int				nb_line;
 	t_raycasting	r;
 }				t_wolf3d;
 
@@ -63,6 +62,7 @@ int				loop_wolf3d(t_wolf3d *w3d);
 
 void			get_map1(t_wolf3d *w3d);
 void			get_map_path(t_wolf3d *w3d, const int fd);
+int				ft_check_map(t_wolf3d *w3d, t_lstline *begin);
 
 void			ft_edit_wolf3d(t_wolf3d *w3d);
 void			edit_direction(t_wolf3d *w3d, t_ptd *pos, t_ptd *dir, t_ptd *p);

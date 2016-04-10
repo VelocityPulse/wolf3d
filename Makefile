@@ -22,7 +22,8 @@ SRC =			./sources/main.c \
 				./sources/delta_time.c \
 				./sources/get_next_line.c \
 				./sources/wolf_get_path.c \
-				./sources/exit_wolf.c
+				./sources/exit_wolf.c \
+				./sources/wolf_check_map.c
 
 OBJS =			./main.o \
 				./start.o \
@@ -34,7 +35,8 @@ OBJS =			./main.o \
 				./delta_time.o \
 				./get_next_line.o \
 				./wolf_get_path.o \
-				./exit_wolf.o
+				./exit_wolf.o \
+				./wolf_check_map.o
 
 DRAW =			./draw/draw.a
 
