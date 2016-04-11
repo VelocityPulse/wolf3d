@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/10 22:11:23 by                  ###   ########.fr       */
+/*   Updated: 2016/04/11 12:09:56 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@
 
 typedef struct	s_raycasting
 {
+	int		map_x;
+	int		map_y;
+	double	ray_dirx;
+	double	ray_diry;
+	double	ray_posx;
+	double	ray_posy;
 	int		step_x;
 	int		step_y;
 	int		side;

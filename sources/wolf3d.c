@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/11 11:52:38 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/11 12:40:09 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,38 @@
 #define mapWidth 24
 #define mapHeight 24
 
+static void		calculate_step(t_raycasting *r)
+{
+	if (r->ray_dirx < 0)
+	{
+		r->step_x = -1;
+		r->side_distx = (r->ray_posx - r->map_x) * r->delta_distx;
+	}
+	else
+	{
+		r->step_x = 1;
+		r->side_distx = (r->map_x + 1 - r->ray_posx) * r->delta_distx;
+	}
+	if (r->ray_diry < 0)
+	{
+		r->step_y = -1;
+		r->side_disty = (r->ray_posy - r->map_y) * r->delta_disty;
+	}
+	else
+	{
+		r->step_y = 1;
+		r->side_disty = (r->map_y + 1 - r->ray_posy) * r->delta_disty;
+	}
+}
+
 void	ft_wolf3d(t_wolf3d *w3d)
 {
-//	ft_reset_image(w3d->mlx, 0);
+	//	ft_reset_image(w3d->mlx, 0);
 	ft_reset_wolf_horizon(w3d);
 	t_raycasting	r;
 
 	int		x;
-	double	rayDirX;
-	double	rayDirY;
-	double	rayPosX;
-	double	rayPosY;
 	double	cameraX;
-	int		mapX;
-	int		mapY;
 
 	double	perpWallDist;
 
@@ -46,45 +64,26 @@ void	ft_wolf3d(t_wolf3d *w3d)
 	while (++x < W_WIDTH)
 	{
 		cameraX = 2 * x / (double)W_WIDTH - 1;
-		rayPosX = r.pos.x;
-		rayPosY = r.pos.y;
-		rayDirX = r.dir.x + r.plane.x * cameraX;
-		rayDirY = r.dir.y + r.plane.y * cameraX;
-		mapX = (int)rayPosX;
-		mapY = (int)rayPosY;
+		r.ray_posx = r.pos.x;
+		r.ray_posy = r.pos.y;
+		r.ray_dirx = r.dir.x + r.plane.x * cameraX;
+		r.ray_diry = r.dir.y + r.plane.y * cameraX;
+		r.map_x = (int)r.ray_posx;
+		r.map_y = (int)r.ray_posy;
 
-		r.delta_distx = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
-		r.delta_disty = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
+		r.delta_distx = sqrt(1 + (r.ray_diry * r.ray_diry) / (r.ray_dirx * r.ray_dirx));
+		r.delta_disty = sqrt(1 + (r.ray_dirx * r.ray_dirx) / (r.ray_diry * r.ray_diry));
 
 		// calculate step
-		if (rayDirX < 0)
-		{
-			r.step_x = -1;
-			r.side_distx = (rayPosX - mapX) * r.delta_distx;
-		}
-		else
-		{
-			r.step_x = 1;
-			r.side_distx = (mapX + 1 - rayPosX) * r.delta_distx;
-		}
-		if (rayDirY < 0)
-		{
-			r.step_y = -1;
-			r.side_disty = (rayPosY - mapY) * r.delta_disty;
-		}
-		else
-		{
-			r.step_y = 1;
-			r.side_disty = (mapY + 1 - rayPosY) * r.delta_disty;
-		}
+		calculate_step(&r);
 
 		// DDA
-		int		val = dda_def_map(&r, w3d, &mapX, &mapY);
+		int		val = dda_def_map(&r, w3d, &r.map_x, &r.map_y);
 		// correct fisheye
 		if (r.side == 0)
-			perpWallDist = (mapX - rayPosX + (1 - r.step_x) / 2) / rayDirX;
+			perpWallDist = (r.map_x - r.ray_posx + (1 - r.step_x) / 2) / r.ray_dirx;
 		else
-			perpWallDist = (mapY - rayPosY + (1 - r.step_y) / 2) / rayDirY;
+			perpWallDist = (r.map_y - r.ray_posy + (1 - r.step_y) / 2) / r.ray_diry;
 
 		lineHeight = (int)(W_HEIGHT / perpWallDist);
 
@@ -94,7 +93,7 @@ void	ft_wolf3d(t_wolf3d *w3d)
 		drawEnd = lineHeight / 2 + W_HEIGHT / 2;
 		if (drawEnd >= W_HEIGHT)
 			drawEnd = W_HEIGHT - 1;
-		
+
 		// correct brightness
 		if (val == 1)
 			color = 0x555555;
