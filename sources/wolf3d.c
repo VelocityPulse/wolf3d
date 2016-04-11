@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/11 15:52:10 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/11 16:20:09 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void		calculate_step(t_raycasting *r)
 
 static void		init_ray(t_raycasting *r, int x)
 {
-	int		camera_x;
+	double		camera_x;
 
 	camera_x = 2 * x / (double)W_WIDTH - 1;
 	r->ray_posx = r->pos.x;
@@ -57,6 +57,26 @@ static void		init_ray(t_raycasting *r, int x)
 			(r->ray_diry * r->ray_diry));
 }
 
+static void			calculate_line(t_raycasting *r, int *start, int *end)
+{
+	int			line_height;
+	double		perp_wall_dist;
+
+	if (r->side == 0)
+		perp_wall_dist = (r->map_x - r->ray_posx + (1 - r->step_x) / 2) / r->ray_dirx;
+	else
+		perp_wall_dist = (r->map_y - r->ray_posy + (1 - r->step_y) / 2) / r->ray_diry;
+
+	line_height = (int)(W_HEIGHT / perp_wall_dist);
+
+	*start = -line_height / 2 + W_HEIGHT / 2;
+	if (*start < 0)
+		*start = 0;
+	*end = line_height / 2 + W_HEIGHT / 2;
+	if (*end >= W_HEIGHT)
+		*end = W_HEIGHT - 1;
+}
+
 void			ft_wolf3d(t_wolf3d *w3d)
 {
 	//	ft_reset_image(w3d->mlx, 0);
@@ -65,12 +85,8 @@ void			ft_wolf3d(t_wolf3d *w3d)
 
 	int		x;
 	double	cameraX;
-
-	double	perpWallDist;
-
-	int		lineHeight;
-	int		drawStart;
-	int		drawEnd;
+	int		line_start;
+	int		line_end;
 
 	int		color;
 
@@ -94,19 +110,8 @@ void			ft_wolf3d(t_wolf3d *w3d)
 
 
 		// correct fisheye
-		if (r.side == 0)
-			perpWallDist = (r.map_x - r.ray_posx + (1 - r.step_x) / 2) / r.ray_dirx;
-		else
-			perpWallDist = (r.map_y - r.ray_posy + (1 - r.step_y) / 2) / r.ray_diry;
+		calculate_line(&r, &line_start, &line_end);
 
-		lineHeight = (int)(W_HEIGHT / perpWallDist);
-
-		drawStart = -lineHeight / 2 + W_HEIGHT / 2;
-		if (drawStart < 0)
-			drawStart = 0;
-		drawEnd = lineHeight / 2 + W_HEIGHT / 2;
-		if (drawEnd >= W_HEIGHT)
-			drawEnd = W_HEIGHT - 1;
 
 		// correct brightness
 		if (val == 1)
@@ -130,7 +135,7 @@ void			ft_wolf3d(t_wolf3d *w3d)
 			color = ft_get_hexa(c);
 		}
 
-		ft_draw_line(ft_make_line(x, drawStart, x, drawEnd), w3d->mlx, color);
+		ft_draw_line(ft_make_line(x, line_start, x, line_end), w3d->mlx, color);
 	}
 	ft_flush_image(w3d->mlx);
 }
