@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/11 16:24:04 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/11 17:11:40 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void		init_ray(t_raycasting *r, int x)
 			(r->ray_diry * r->ray_diry));
 }
 
-static void		calculate_line(t_raycasting *r, int *start, int *end)
+static void		calculate_line(t_raycasting *r, int *start, int *end, double sq)
 {
 	int			line_height;
 	double		perp_wall_dist;
@@ -65,10 +65,10 @@ static void		calculate_line(t_raycasting *r, int *start, int *end)
 		perp_wall_dist = (r->map_y - r->ray_posy +
 				(1 - r->step_y) / 2) / r->ray_diry;
 	line_height = (int)(W_HEIGHT / perp_wall_dist);
-	*start = -line_height / 2 + W_HEIGHT / 2;
+	*start = (-line_height / 2 + W_HEIGHT / 2) - (sq == 1 ? 0 : 120);
 	if (*start < 0)
 		*start = 0;
-	*end = line_height / 2 + W_HEIGHT / 2;
+	*end = (line_height / 2 + W_HEIGHT / 2) - (sq == 1 ? 0 : 120);
 	if (*end >= W_HEIGHT)
 		*end = W_HEIGHT - 1;
 }
@@ -83,7 +83,7 @@ void			ft_wolf3d(t_wolf3d *w3d)
 	int val;
 
 	ft_edit_wolf3d(w3d);
-	ft_reset_wolf_horizon(w3d);
+	ft_reset_wolf_horizon(w3d, w3d->key_squat);
 	r = w3d->r;
 	x = -1;
 	while (++x < W_WIDTH)
@@ -94,7 +94,7 @@ void			ft_wolf3d(t_wolf3d *w3d)
 			val = dda_def_map(&r, w3d, &r.map_x, &r.map_y);
 		else
 			val = dda_normal_map(&r, w3d, &r.map_x, &r.map_y);
-		calculate_line(&r, &line_start, &line_end);
+		calculate_line(&r, &line_start, &line_end, w3d->key_squat);
 		if (val == 1)
 			color = 0x555555;
 		else if (val == 2)
