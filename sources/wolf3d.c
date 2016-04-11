@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/11 15:38:36 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/11 15:52:10 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void			ft_wolf3d(t_wolf3d *w3d)
 	while (++x < W_WIDTH)
 	{
 
-
+		init_ray(&r, x);
 		// calculate step
 		calculate_step(&r);
 
