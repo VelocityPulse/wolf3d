@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/11 16:20:09 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/11 16:21:58 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,41 +79,28 @@ static void			calculate_line(t_raycasting *r, int *start, int *end)
 
 void			ft_wolf3d(t_wolf3d *w3d)
 {
-	//	ft_reset_image(w3d->mlx, 0);
-	ft_reset_wolf_horizon(w3d);
-	t_raycasting	r;
 
+	t_raycasting	r;
 	int		x;
 	double	cameraX;
 	int		line_start;
 	int		line_end;
-
 	int		color;
+	int val;
 
 	ft_edit_wolf3d(w3d);
+	ft_reset_wolf_horizon(w3d);
 	r = w3d->r;
-
 	x = -1;
 	while (++x < W_WIDTH)
 	{
-
 		init_ray(&r, x);
-		// calculate step
 		calculate_step(&r);
-
-		// DDA
-		int val;
 		if (w3d->default_map == true)
 			val = dda_def_map(&r, w3d, &r.map_x, &r.map_y);
 		else
 			val = dda_normal_map(&r, w3d, &r.map_x, &r.map_y);
-
-
-		// correct fisheye
 		calculate_line(&r, &line_start, &line_end);
-
-
-		// correct brightness
 		if (val == 1)
 			color = 0x555555;
 		else if (val == 2)
@@ -124,7 +111,6 @@ void			ft_wolf3d(t_wolf3d *w3d)
 			color = 0x0000ff;
 		else
 			color = 0x0f0f00;
-
 		if (r.side == 1)
 		{
 			t_rgb c;
@@ -134,7 +120,6 @@ void			ft_wolf3d(t_wolf3d *w3d)
 			c.b /= 2;
 			color = ft_get_hexa(c);
 		}
-
 		ft_draw_line(ft_make_line(x, line_start, x, line_end), w3d->mlx, color);
 	}
 	ft_flush_image(w3d->mlx);
