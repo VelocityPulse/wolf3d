@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/11 12:40:09 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/11 15:38:36 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,24 @@ static void		calculate_step(t_raycasting *r)
 	}
 }
 
-void	ft_wolf3d(t_wolf3d *w3d)
+static void		init_ray(t_raycasting *r, int x)
+{
+	int		camera_x;
+
+	camera_x = 2 * x / (double)W_WIDTH - 1;
+	r->ray_posx = r->pos.x;
+	r->ray_posy = r->pos.y;
+	r->ray_dirx = r->dir.x + r->plane.x * camera_x;
+	r->ray_diry = r->dir.y + r->plane.y * camera_x;
+	r->map_x = (int)r->ray_posx;
+	r->map_y = (int)r->ray_posy;
+	r->delta_distx = sqrt(1 + (r->ray_diry * r->ray_diry) /
+			(r->ray_dirx * r->ray_dirx));
+	r->delta_disty = sqrt(1 + (r->ray_dirx * r->ray_dirx) /
+			(r->ray_diry * r->ray_diry));
+}
+
+void			ft_wolf3d(t_wolf3d *w3d)
 {
 	//	ft_reset_image(w3d->mlx, 0);
 	ft_reset_wolf_horizon(w3d);
@@ -63,22 +80,19 @@ void	ft_wolf3d(t_wolf3d *w3d)
 	x = -1;
 	while (++x < W_WIDTH)
 	{
-		cameraX = 2 * x / (double)W_WIDTH - 1;
-		r.ray_posx = r.pos.x;
-		r.ray_posy = r.pos.y;
-		r.ray_dirx = r.dir.x + r.plane.x * cameraX;
-		r.ray_diry = r.dir.y + r.plane.y * cameraX;
-		r.map_x = (int)r.ray_posx;
-		r.map_y = (int)r.ray_posy;
 
-		r.delta_distx = sqrt(1 + (r.ray_diry * r.ray_diry) / (r.ray_dirx * r.ray_dirx));
-		r.delta_disty = sqrt(1 + (r.ray_dirx * r.ray_dirx) / (r.ray_diry * r.ray_diry));
 
 		// calculate step
 		calculate_step(&r);
 
 		// DDA
-		int		val = dda_def_map(&r, w3d, &r.map_x, &r.map_y);
+		int val;
+		if (w3d->default_map == true)
+			val = dda_def_map(&r, w3d, &r.map_x, &r.map_y);
+		else
+			val = dda_normal_map(&r, w3d, &r.map_x, &r.map_y);
+
+
 		// correct fisheye
 		if (r.side == 0)
 			perpWallDist = (r.map_x - r.ray_posx + (1 - r.step_x) / 2) / r.ray_dirx;
