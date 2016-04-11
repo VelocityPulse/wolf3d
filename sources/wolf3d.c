@@ -6,15 +6,11 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/11 16:21:58 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/11 16:24:04 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/header.h"
-
-
-#define mapWidth 24
-#define mapHeight 24
 
 static void		calculate_step(t_raycasting *r)
 {
@@ -57,18 +53,18 @@ static void		init_ray(t_raycasting *r, int x)
 			(r->ray_diry * r->ray_diry));
 }
 
-static void			calculate_line(t_raycasting *r, int *start, int *end)
+static void		calculate_line(t_raycasting *r, int *start, int *end)
 {
 	int			line_height;
 	double		perp_wall_dist;
 
 	if (r->side == 0)
-		perp_wall_dist = (r->map_x - r->ray_posx + (1 - r->step_x) / 2) / r->ray_dirx;
+		perp_wall_dist = (r->map_x - r->ray_posx +
+				(1 - r->step_x) / 2) / r->ray_dirx;
 	else
-		perp_wall_dist = (r->map_y - r->ray_posy + (1 - r->step_y) / 2) / r->ray_diry;
-
+		perp_wall_dist = (r->map_y - r->ray_posy +
+				(1 - r->step_y) / 2) / r->ray_diry;
 	line_height = (int)(W_HEIGHT / perp_wall_dist);
-
 	*start = -line_height / 2 + W_HEIGHT / 2;
 	if (*start < 0)
 		*start = 0;
@@ -79,10 +75,8 @@ static void			calculate_line(t_raycasting *r, int *start, int *end)
 
 void			ft_wolf3d(t_wolf3d *w3d)
 {
-
 	t_raycasting	r;
 	int		x;
-	double	cameraX;
 	int		line_start;
 	int		line_end;
 	int		color;
