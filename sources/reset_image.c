@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/01 17:47:13 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/11 17:15:17 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/13 12:34:23 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void	ft_reset_wolf_horizon(t_wolf3d *w3d, double squat)
 	max_size = w3d->mlx->mlx_img->max_size;
 	position = 0;
 	color = 0x33CCFF;
-	squat = (squat == 1 ? 0 : 120);
-	printf("squat : %f\n", squat);
+	squat = (squat == 1 ? 0 : 480);
 	while (position < (max_size / 2) - squat * W_WIDTH)
 	{
 		ft_memcpy(img + position, &color, octet);

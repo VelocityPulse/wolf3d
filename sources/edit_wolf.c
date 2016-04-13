@@ -6,13 +6,11 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/03 14:55:44 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/11 16:51:11 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/13 12:11:40 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/header.h"
-
-extern int		worldMap[24][24];
 
 static void		edit_backfront(t_wolf3d *w3d, t_ptd *pos, t_ptd *dir)
 {
