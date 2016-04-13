@@ -6,18 +6,18 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/10 12:16:02 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/11 16:39:31 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/13 16:52:27 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/header.h"
 
-static void		ft_check_spawn(char *n, int *spawn, t_ptd *start_pos, t_pt p)
+static void		ft_check_spawn(char *n, int *spawn, t_wolf3d *w3d, t_pt p)
 {
 	if (*n == 'x' || *n == 'X')
 	{
 		*spawn = *spawn + 1;
-		*start_pos = ft_make_ptd(p.x, p.y);
+		w3d->start_pos = ft_make_ptd(p.y - 0.5, p.x - 0.30);
 		*n = '0';
 	}
 }
@@ -56,6 +56,7 @@ static int		ft_error_line(t_pt p)
 int				ft_check_map(t_wolf3d *w3d, t_lstline *list)
 {
 	t_pt		p;
+	int			cx;
 	int			spawn;
 
 	spawn = 0;
@@ -63,9 +64,12 @@ int				ft_check_map(t_wolf3d *w3d, t_lstline *list)
 	while (list && (++p.y))
 	{
 		p.x = -1;
+		cx = 1;
 		while (list->line[++p.x])
 		{
-			ft_check_spawn(&list->line[p.x], &spawn, &w3d->start_pos, p);
+			if (list->line[p.x] == ' ')
+				cx++;
+			ft_check_spawn(&list->line[p.x], &spawn, w3d, ft_make_pt(cx, p.y));
 			if (!(list->line[p.x] >= '0' && list->line[p.x] <= '9') &&
 					list->line[p.x] != ' ')
 					return (ft_error_line(p));
