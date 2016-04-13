@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/11 16:55:56 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/13 14:49:20 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ typedef struct	s_wolf3d
 	int				fps_mode;
 	t_delta			d;
 	bool			default_map;
-	int				def_map[15][20];
 	int				**map;
 	t_raycasting	r;
 }				t_wolf3d;
@@ -83,9 +82,6 @@ int				loop_wolf3d(t_wolf3d *w3d);
 void			get_map1(t_wolf3d *w3d);
 void			get_map_path(t_wolf3d *w3d, const int fd);
 int				ft_check_map(t_wolf3d *w3d, t_lstline *begin);
-
-int				dda_normal_map(t_raycasting *r, t_wolf3d *w3d, int *x, int *y);
-int				dda_def_map(t_raycasting *r, t_wolf3d *w3d, int *x, int *y);
 
 void			ft_edit_wolf3d(t_wolf3d *w3d);
 void			edit_direction(t_wolf3d *w3d, t_ptd *pos, t_ptd *dir, t_ptd *p);

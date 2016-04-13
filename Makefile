@@ -24,7 +24,6 @@ SRC =			./sources/main.c \
 				./sources/wolf_get_path.c \
 				./sources/exit_wolf.c \
 				./sources/wolf_check_map.c \
-				./sources/dda.c
 
 OBJS =			./main.o \
 				./start.o \
@@ -38,7 +37,6 @@ OBJS =			./main.o \
 				./wolf_get_path.o \
 				./exit_wolf.o \
 				./wolf_check_map.o \
-				./dda.o
 
 DRAW =			./draw/draw.a
 
@@ -50,8 +48,7 @@ LMLX =			#-lmlx
 
 FRAMEWORK =		$(LMLX) -framework OpenGL -framework AppKit -o3
 
-FLAGS =			#-Wall -Wextra -Werror -fsanitize=address
-
+FLAGS =			#-fsanitize=address #-Wall -Wextra -Werror
 CC =			gcc
 
 RM =			rm -f

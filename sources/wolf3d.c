@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/13 12:34:06 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/13 15:50:34 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,26 @@ static void		init_ray(t_raycasting *r, int x)
 			(r->ray_diry * r->ray_diry));
 }
 
+static int		dda(t_raycasting *r, t_wolf3d *w3d, int *x, int *y)
+{
+	while (w3d->map[*x][*y] == 0)
+	{
+		if (r->side_distx < r->side_disty)
+		{
+			r->side_distx += r->delta_distx;
+			*x += r->step_x;
+			r->side = 0;
+		}
+		else
+		{
+			r->side_disty += r->delta_disty;
+			*y += r->step_y;
+			r->side = 1;
+		}
+	}
+	return (w3d->map[*x][*y]);
+}
+
 static void		calculate_line(t_raycasting *r, int *start, int *end, double sq)
 {
 	int			line_height;
@@ -90,10 +110,7 @@ void			ft_wolf3d(t_wolf3d *w3d)
 	{
 		init_ray(&r, x);
 		calculate_step(&r);
-		if (w3d->default_map == true)
-			val = dda_def_map(&r, w3d, &r.map_x, &r.map_y);
-		else
-			val = dda_normal_map(&r, w3d, &r.map_x, &r.map_y);
+		val = dda(&r, w3d, &r.map_x, &r.map_y);
 		calculate_line(&r, &line_start, &line_end, w3d->key_squat);
 		if (val == 1)
 			color = 0x555555;

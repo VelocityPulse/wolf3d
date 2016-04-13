@@ -6,13 +6,23 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/24 12:04:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/11 12:05:56 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/13 15:26:59 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/header.h"
 
-void	get_map1(t_wolf3d *w3d)
+static void		malloc_map(t_wolf3d *w3d)
+{
+	int		i;
+
+	i = -1;
+	w3d->map = (int **)ft_memalloc(sizeof(int *) * 15);
+	while (++i < 15)
+		w3d->map[i] = (int *)ft_memalloc(sizeof(int) * 20);
+}
+
+void			get_map1(t_wolf3d *w3d)
 {
 	t_pt			p;
 	static int		map[15][20] = {
@@ -32,11 +42,11 @@ void	get_map1(t_wolf3d *w3d)
 		{1, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
 
-	p = ft_make_pt(-1, -1);
-	while (++p.y <= 15)
+	p.y = -1;
+	malloc_map(w3d);
+	while (++p.y < 15 && (p.x = -1))
 	{
-		p.x = -1;
-		while (++p.x <= 20)
-			w3d->def_map[p.y][p.x] = map[p.y][p.x];
+		while (++p.x < 20)
+			w3d->map[p.y][p.x] = map[p.y][p.x];
 	}
 }
