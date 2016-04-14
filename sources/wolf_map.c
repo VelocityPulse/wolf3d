@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/24 12:04:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/13 15:26:59 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/14 14:12:15 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void		malloc_map(t_wolf3d *w3d)
 	w3d->map = (int **)ft_memalloc(sizeof(int *) * 15);
 	while (++i < 15)
 		w3d->map[i] = (int *)ft_memalloc(sizeof(int) * 20);
+	w3d->height = 15;
 }
 
 void			get_map1(t_wolf3d *w3d)

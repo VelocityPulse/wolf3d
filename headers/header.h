@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/13 14:49:20 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/14 14:18:51 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,18 @@ typedef struct	s_wolf_line
 	int		line_start;
 	int		line_end;
 }				t_wolf_line;
+
+typedef struct	s_texture
+{
+	t_img	bluestone;
+	t_img	colorstone;
+	t_img	eagle;
+	t_img	greystone;
+	t_img	mossy;
+	t_img	purplestone;
+	t_img	redbrick;
+	t_img	wood;
+}				t_texture;
 
 typedef struct	s_raycasting
 {
@@ -70,6 +82,7 @@ typedef struct	s_wolf3d
 	t_delta			d;
 	bool			default_map;
 	int				**map;
+	int				height;
 	t_raycasting	r;
 }				t_wolf3d;
 

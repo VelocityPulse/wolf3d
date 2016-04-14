@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 16:06:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/11 16:49:09 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/14 14:16:46 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int				press_wolf3d(int keycode, t_wolf3d *w3d)
 {
 	if (keycode == 53)
-		exit(0);
+		ft_exit_wolf3d(w3d, 3);
 	if (keycode == 257)
 		return (w3d->key_sprint = 2);
 	if (keycode == 256)
