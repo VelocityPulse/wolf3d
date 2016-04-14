@@ -24,6 +24,7 @@ SRC =			./sources/main.c \
 				./sources/wolf_get_path.c \
 				./sources/exit_wolf.c \
 				./sources/wolf_check_map.c \
+				./sources/error_text.c
 
 OBJS =			./main.o \
 				./start.o \
@@ -37,6 +38,7 @@ OBJS =			./main.o \
 				./wolf_get_path.o \
 				./exit_wolf.o \
 				./wolf_check_map.o \
+				./error_text.o
 
 DRAW =			./draw/draw.a
 

@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/10 12:16:02 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/13 16:52:27 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/14 15:49:57 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 
 static void		ft_check_spawn(char *n, int *spawn, t_wolf3d *w3d, t_pt p)
 {
+	static int		space = 0;
+
+	if (*n == ' ')
+		space++;
+	else
+		space = 0;
+	if (space > 1)
+	{
+		ft_putstr("Too much space ");
+		return (ft_error_line(p, 1));
+	}
 	if (*n == 'x' || *n == 'X')
 	{
 		*spawn = *spawn + 1;
@@ -22,48 +33,29 @@ static void		ft_check_spawn(char *n, int *spawn, t_wolf3d *w3d, t_pt p)
 	}
 }
 
-static int		ft_error(const int nb_spawn, const int y)
+static int		ft_check_pos_spawn2(t_wolf3d *w3d, int cx, t_lstline **list)
 {
-	if (nb_spawn > 1)
+	if (round(w3d->start_pos.y) == cx)
 	{
-		ft_putstr("Too much spawn\n");
+		ft_putstr("Position of spawn can be the end line\n");
 		return (0);
 	}
-	else if (nb_spawn < 1)
-	{
-		ft_putstr("No spawn\nCharacter spawn is 'x'\n");
-		return (0);
-	}
-	else if (y < 3)
-	{
-		ft_putstr("Map is bad formated\nNumber of line must be > 3\n");
-		return (0);
-	}
-	else
-		return (1);
-}
-
-static int		ft_error_line(t_pt p)
-{
-	ft_putstr("Bad character\nLINE : ");
-	ft_putnbr(p.y);
-	ft_putstr(" COLON : ");
-	ft_putnbr(p.x);
-	ft_putchar('\n');
-	return (0);
+	*list = (*list)->next;
+	return (1);
 }
 
 int				ft_check_map(t_wolf3d *w3d, t_lstline *list)
 {
 	t_pt		p;
 	int			cx;
+	int			max_x;
 	int			spawn;
 
 	spawn = 0;
 	p.y = 0;
-	while (list && (++p.y))
+	max_x = 0;
+	while (list && (++p.y) && (p.x = -1))
 	{
-		p.x = -1;
 		cx = 1;
 		while (list->line[++p.x])
 		{
@@ -72,9 +64,12 @@ int				ft_check_map(t_wolf3d *w3d, t_lstline *list)
 			ft_check_spawn(&list->line[p.x], &spawn, w3d, ft_make_pt(cx, p.y));
 			if (!(list->line[p.x] >= '0' && list->line[p.x] <= '9') &&
 					list->line[p.x] != ' ')
-					return (ft_error_line(p));
+				return (ft_error_line(p, 0));
+			if (ft_check_pos_spawn(w3d, &max_x, p, spawn) == 0)
+				return (0);
 		}
-		list = list->next;
+		if (ft_check_pos_spawn2(w3d, cx, &list) == 0)
+			return (0);
 	}
-	return (ft_error(spawn, p.y));
+	return (ft_error(w3d, spawn, p.y, max_x));
 }
