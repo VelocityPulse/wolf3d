@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 15:39:55 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/14 15:46:53 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/14 18:21:28 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void			get_map_path(t_wolf3d *w3d, const int fd)
 	}
 	if (list == NULL)
 		 ft_exit_wolf3d(w3d, 2);
-	if (!ft_check_map(w3d, list))
+	if (!ft_check_map(w3d, list, 0, 0))
 	{
 		ft_lstline_del(list);
 		ft_exit_wolf3d(w3d, 1);

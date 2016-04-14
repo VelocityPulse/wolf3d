@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 15:00:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/14 15:48:20 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/14 18:38:59 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ int		ft_check_pos_spawn(t_wolf3d *w3d, int *max_x, t_pt p, int spwn)
 	*max_x = *max_x < p.x ? p.x : *max_x;
 	if (spwn == 1)
 	{
-		if (s_pos.x < 1)
-		{
-			ft_putstr("Position of spawn can be on colon 0\n");
-			return (0);
-		}
 		if (s_pos.y < 1)
 		{
-			ft_putstr("Position of spawn can be on the first line\n");
+			ft_putstr("Position of spawn can't be on colon 0\n");
+			return (0);
+		}
+		if (s_pos.x < 1)
+		{
+			ft_putstr("Position of spawn can't be on the first line\n");
 			return (0);
 		}
 	}
@@ -36,9 +36,9 @@ int		ft_check_pos_spawn(t_wolf3d *w3d, int *max_x, t_pt p, int spwn)
 
 int		ft_check_pos_spawn3(t_wolf3d *w3d)
 {
-	if (w3d->start_pos.y == w3d->height)
+	if (w3d->start_pos.y >= w3d->height)
 	{
-		ft_putstr("Position of spawn can be on the last line\n");
+		ft_putstr("Position of spawn can't be on the last line\n");
 		return (0);
 	}
 	return (1);
@@ -66,7 +66,7 @@ int		ft_error(t_wolf3d *w3d, int nb_spawn, int y, int max_x)
 		ft_putstr("map is bad formated\nNumber of COLON must be > 3\n");
 		return (0);
 	}
-	return (ft_check_pos_spawn3(w3d));
+	return (1);
 }
 
 int		ft_error_line(t_pt p, int code)
