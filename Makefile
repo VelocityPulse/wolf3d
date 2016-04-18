@@ -6,7 +6,7 @@
 #    By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/15 16:45:32 by cchameyr          #+#    #+#              #
-#*   Updated: 2016/04/10 22:12:53 by                  ###   ########.fr       *#
+#*   Updated: 2016/04/18 23:04:07 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ SRC =			./sources/main.c \
 				./sources/wolf_get_path.c \
 				./sources/exit_wolf.c \
 				./sources/wolf_check_map.c \
-				./sources/error_text.c
+				./sources/error_text.c \
+				./sources/wolf_complete_case.c \
+				./sources/display_map.c
 
 OBJS =			./main.o \
 				./start.o \
@@ -38,7 +40,9 @@ OBJS =			./main.o \
 				./wolf_get_path.o \
 				./exit_wolf.o \
 				./wolf_check_map.o \
-				./error_text.o
+				./error_text.o \
+				./wolf_complete_case.o \
+				./display_map.o
 
 DRAW =			./draw/draw.a
 
@@ -50,7 +54,8 @@ LMLX =			#-lmlx
 
 FRAMEWORK =		$(LMLX) -framework OpenGL -framework AppKit -o3
 
-FLAGS =			#-fsanitize=address #-Wall -Wextra -Werror
+FLAGS =			-fsanitize=address -Wall -Wextra -Werror
+
 CC =			gcc
 
 RM =			rm -f

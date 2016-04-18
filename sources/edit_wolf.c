@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/03 14:55:44 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/13 15:52:19 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/18 22:43:53 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void		edit_lateral(t_wolf3d *w3d, t_ptd *pos, t_ptd *dir)
 	}
 }
 
-void			edit_direction(t_wolf3d *w3d, t_ptd *pos, t_ptd *dir, t_ptd *p)
+void			edit_direction(t_wolf3d *w3d, t_ptd *dir, t_ptd *p)
 {
 	double		rot_speed;
 	double		old_dirx;
@@ -92,5 +92,5 @@ void			ft_edit_wolf3d(t_wolf3d *w3d)
 		ft_init_rc(w3d);
 	edit_backfront(w3d, &w3d->r.pos, &w3d->r.dir);
 	edit_lateral(w3d, &w3d->r.pos, &w3d->r.dir);
-	edit_direction(w3d, &w3d->r.pos, &w3d->r.dir, &w3d->r.plane);
+	edit_direction(w3d, &w3d->r.dir, &w3d->r.plane);
 }

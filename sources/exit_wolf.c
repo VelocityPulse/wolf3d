@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:32 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/14 15:35:15 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/18 21:39:15 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void		ft_exit_3(t_wolf3d *w3d)
 	while (++i < w3d->height)
 		ft_memdel((void **)&w3d->map[i]);
 	ft_memdel((void **)w3d->map);
+	ft_memdel((void **)&w3d->len_map);
 	ft_clear_mlx(w3d->mlx);
 	ft_memdel((void **)&w3d);
 	exit(0);

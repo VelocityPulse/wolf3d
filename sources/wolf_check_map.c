@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/10 12:16:02 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/14 18:21:22 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/18 22:45:13 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,5 @@ int				ft_check_map(t_wolf3d *w3d, t_lstline *l, int max_x, int s)
 		if (ft_check_pos_spawn2(w3d, cx, &l) == 0)
 			return (0);
 	}
-	return (ft_error(w3d, s, p.y, max_x));
+	return (ft_error(s, p.y, max_x));
 }

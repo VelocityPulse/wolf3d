@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/13 15:30:52 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/18 23:03:30 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void			ft_start(char *path)
 	w3d = (t_wolf3d *)ft_memalloc(sizeof(t_wolf3d));
 	ft_open_fd(w3d, path);
 	ft_init_wolf3d(w3d);
+	ft_display_final_map(w3d);
 
 	mlx_hook(w3d->mlx->p_win, KeyPress, KeyPressMask, press_wolf3d, w3d);
 	mlx_hook(w3d->mlx->p_win, KeyRelease, KeyPressMask, unpress_wolf3d, w3d);

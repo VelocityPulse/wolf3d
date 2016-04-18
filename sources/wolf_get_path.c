@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 15:39:55 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/14 18:21:28 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/18 22:16:55 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ static void		ft_line_to_tab(t_lstline *list, int nb_line, t_wolf3d *w3d)
 	char	**str;
 	int		y;
 	int		x;
-	int		len;
 
 	w3d->map = (int **)ft_memalloc(sizeof(int *) * (nb_line + 1));
+	w3d->len_map = (int *)ft_memalloc(sizeof(int) * nb_line + 1);
 	y = -1;
 	while (++y < nb_line)
 	{
 		str = ft_strsplit(list->line, ' ');
-		len = ft_memlen((void **)str);
-		w3d->map[y] = (int *)ft_memalloc(sizeof(int) * (len + 1));
+		w3d->len_map[y] = ft_memlen((void **)str);
+		w3d->map[y] = (int *)ft_memalloc(sizeof(int) * (w3d->len_map[y] + 1));
 		x = -1;
 		while (str[++x])
 			w3d->map[y][x] = ft_atoi(str[x]);
@@ -51,7 +51,7 @@ void			get_map_path(t_wolf3d *w3d, const int fd)
 		nb_line++;
 	}
 	if (list == NULL)
-		 ft_exit_wolf3d(w3d, 2);
+		ft_exit_wolf3d(w3d, 2);
 	if (!ft_check_map(w3d, list, 0, 0))
 	{
 		ft_lstline_del(list);
@@ -61,4 +61,5 @@ void			get_map_path(t_wolf3d *w3d, const int fd)
 	ft_lstline_del(list);
 	w3d->height = nb_line;
 	ft_check_pos_spawn3(w3d);
+	ft_complete_case(w3d);
 }
