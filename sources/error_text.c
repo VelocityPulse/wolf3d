@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 15:00:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/18 22:44:45 by                  ###   ########.fr       */
+/*   Updated: 2016/04/19 18:04:35 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		ft_check_pos_spawn(t_wolf3d *w3d, int *max_x, t_pt p, int spwn)
 	{
 		if (s_pos.y < 1)
 		{
-			ft_putstr("Position of spawn can't be on colon 0\n");
+			ft_putstr("Left of spawn is empty");
 			return (0);
 		}
 		if (s_pos.x < 1)
@@ -36,9 +36,24 @@ int		ft_check_pos_spawn(t_wolf3d *w3d, int *max_x, t_pt p, int spwn)
 
 int		ft_check_pos_spawn3(t_wolf3d *w3d)
 {
-	if (w3d->start_pos.y >= w3d->height)
+	if (w3d->start_pos.x >= w3d->height - 1)
 	{
 		ft_putstr("Position of spawn can't be on the last line\n");
+		return (0);
+	}
+	if (w3d->start_pos.y > w3d->len_map[(int)w3d->start_pos.x - 1])
+	{
+		ft_putstr("Top of spawn is empty\n");
+		return (0);
+	}
+	if (w3d->start_pos.y > w3d->len_map[(int)w3d->start_pos.x + 1])
+	{
+		ft_putstr("Bottom of spawn is empty\n");
+		return (0);
+	}
+	if ((int)w3d->start_pos.y == w3d->len_map[(int)w3d->start_pos.x] - 1)
+	{
+		ft_putstr("Right of spawn is empty\n");
 		return (0);
 	}
 	return (1);
@@ -80,4 +95,3 @@ int		ft_error_line(t_pt p, int code)
 	ft_putchar('\n');
 	return (0);
 }
-

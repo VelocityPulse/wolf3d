@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 15:39:55 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/18 22:16:55 by                  ###   ########.fr       */
+/*   Updated: 2016/04/19 12:11:18 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void			get_map_path(t_wolf3d *w3d, const int fd)
 	ft_line_to_tab(list, nb_line, w3d);
 	ft_lstline_del(list);
 	w3d->height = nb_line;
-	ft_check_pos_spawn3(w3d);
+	if (!ft_check_pos_spawn3(w3d))
+		ft_exit_wolf3d(w3d, 4);
 	ft_complete_case(w3d);
 }

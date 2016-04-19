@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/10 12:16:02 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/18 22:45:13 by                  ###   ########.fr       */
+/*   Updated: 2016/04/19 18:00:25 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,6 @@ static int		ft_check_spawn(char *n, int *spawn, t_wolf3d *w3d, t_pt p)
 	return (1);
 }
 
-static int		ft_check_pos_spawn2(t_wolf3d *w3d, int cx, t_lstline **list)
-{
-	if (round(w3d->start_pos.y) == cx)
-	{
-		ft_putstr("Position of spawn can be the end line\n");
-		return (0);
-	}
-	*list = (*list)->next;
-	return (1);
-}
-
 int				ft_check_map(t_wolf3d *w3d, t_lstline *l, int max_x, int s)
 {
 	t_pt		p;
@@ -66,8 +55,7 @@ int				ft_check_map(t_wolf3d *w3d, t_lstline *l, int max_x, int s)
 			if (ft_check_pos_spawn(w3d, &max_x, p, s) == 0)
 				return (0);
 		}
-		if (ft_check_pos_spawn2(w3d, cx, &l) == 0)
-			return (0);
+		l = l->next;
 	}
 	return (ft_error(s, p.y, max_x));
 }

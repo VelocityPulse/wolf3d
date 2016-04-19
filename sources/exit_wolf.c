@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:32 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/18 21:39:15 by                  ###   ########.fr       */
+/*   Updated: 2016/04/19 12:13:20 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,24 @@ static void		ft_exit_3(t_wolf3d *w3d)
 	int		i;
 
 	i = -1;
+	ft_clear_mlx(w3d->mlx);
 	while (++i < w3d->height)
 		ft_memdel((void **)&w3d->map[i]);
 	ft_memdel((void **)w3d->map);
 	ft_memdel((void **)&w3d->len_map);
-	ft_clear_mlx(w3d->mlx);
+	ft_memdel((void **)&w3d);
+	exit(0);
+}
+
+static void		ft_exit_4(t_wolf3d *w3d)
+{
+	int		i;
+
+	i = -1;
+	while (++i < w3d->height)
+		ft_memdel((void **)&w3d->map[i]);
+	ft_memdel((void **)w3d->map);
+	ft_memdel((void **)&w3d->len_map);
 	ft_memdel((void **)&w3d);
 	exit(0);
 }
@@ -47,4 +60,6 @@ void			ft_exit_wolf3d(t_wolf3d *w3d, const int exit_code)
 		ft_exit_2(w3d);
 	else if (exit_code == 3)
 		ft_exit_3(w3d);
+	else if (exit_code == 4)
+		ft_exit_4(w3d);
 }
