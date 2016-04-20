@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/19 12:08:20 by                  ###   ########.fr       */
+/*   Updated: 2016/04/20 11:13:01 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct	s_wolf3d
 	int				*len_map;
 	int				**map;
 	int				height;
+	t_texture		t;
 	t_raycasting	r;
 }				t_wolf3d;
 
@@ -103,6 +104,9 @@ int				ft_error(int nb_spawn, int y, int max_x);
 int				ft_error_line(t_pt p, int code);
 int				ft_check_pos_spawn(t_wolf3d *w3d, int *max_x, t_pt p, int spwn);
 int				ft_check_pos_spawn3(t_wolf3d *w3d);
+
+void			ft_load_textures(t_mlx *mlx, t_texture *t);
+void			ft_clear_textures(t_mlx *mlx, t_texture t);
 
 void			ft_edit_wolf3d(t_wolf3d *w3d);
 void			edit_direction(t_wolf3d *w3d, t_ptd *dir, t_ptd *p);

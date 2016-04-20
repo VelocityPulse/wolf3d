@@ -6,7 +6,7 @@
 #    By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/15 16:45:32 by cchameyr          #+#    #+#              #
-#*   Updated: 2016/04/18 23:04:07 by                  ###   ########.fr       *#
+#*   Updated: 2016/04/20 11:02:48 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRC =			./sources/main.c \
 				./sources/wolf_check_map.c \
 				./sources/error_text.c \
 				./sources/wolf_complete_case.c \
-				./sources/display_map.c
+				./sources/display_map.c \
+				./sources/load_texture.c
 
 OBJS =			./main.o \
 				./start.o \
@@ -42,7 +43,8 @@ OBJS =			./main.o \
 				./wolf_check_map.o \
 				./error_text.o \
 				./wolf_complete_case.o \
-				./display_map.o
+				./display_map.o \
+				./load_texture.o
 
 DRAW =			./draw/draw.a
 
