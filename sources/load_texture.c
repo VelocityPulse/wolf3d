@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 19:17:32 by                   #+#    #+#             */
-/*   Updated: 2016/04/20 11:54:30 by                  ###   ########.fr       */
+/*   Updated: 2016/04/20 11:56:16 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ static void		ft_load_image(t_mlx *m, t_img *i, char *path)
 
 void			ft_load_textures(t_mlx *mlx, t_texture *t)
 {
-	printf("mlx->width : %d\nimg->width : %d\n", mlx->width, mlx->mlx_img->width);
-
 	ft_load_image(mlx, &t->bluestone, "./images/bluestone.xpm");
 	ft_load_image(mlx, &t->colorstone, "./images/colorstone.xpm");
 	ft_load_image(mlx, &t->eagle, "./images/eagle.xpm");
