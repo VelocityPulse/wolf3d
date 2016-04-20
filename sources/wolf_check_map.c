@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/10 12:16:02 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/19 18:00:25 by                  ###   ########.fr       */
+/*   Updated: 2016/04/20 17:55:46 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int		ft_check_spawn(char *n, int *spawn, t_wolf3d *w3d, t_pt p)
 		space = 0;
 	if (space > 1)
 	{
-		ft_putstr("Too much space ");
+		ft_putstr("\nERROR:\nToo much space ");
 		return (ft_error_line(p, 1));
 	}
 	if (*n == 'x' || *n == 'X')

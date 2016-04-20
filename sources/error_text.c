@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 15:00:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/19 18:04:35 by                  ###   ########.fr       */
+/*   Updated: 2016/04/20 17:55:36 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ int		ft_check_pos_spawn(t_wolf3d *w3d, int *max_x, t_pt p, int spwn)
 	{
 		if (s_pos.y < 1)
 		{
-			ft_putstr("Left of spawn is empty");
+			ft_putstr("\nERROR:\nLeft of spawn is empty");
 			return (0);
 		}
 		if (s_pos.x < 1)
 		{
+			ft_putstr("\nERROR:\n");
 			ft_putstr("Position of spawn can't be on the first line\n");
 			return (0);
 		}
@@ -38,22 +39,22 @@ int		ft_check_pos_spawn3(t_wolf3d *w3d)
 {
 	if (w3d->start_pos.x >= w3d->height - 1)
 	{
-		ft_putstr("Position of spawn can't be on the last line\n");
+		ft_putstr("\nERROR:\nPosition of spawn can't be on the last line\n");
 		return (0);
 	}
 	if (w3d->start_pos.y > w3d->len_map[(int)w3d->start_pos.x - 1])
 	{
-		ft_putstr("Top of spawn is empty\n");
+		ft_putstr("\nERROR:\nTop of spawn is empty\n");
 		return (0);
 	}
 	if (w3d->start_pos.y > w3d->len_map[(int)w3d->start_pos.x + 1])
 	{
-		ft_putstr("Bottom of spawn is empty\n");
+		ft_putstr("\nERROR:\nBottom of spawn is empty\n");
 		return (0);
 	}
 	if ((int)w3d->start_pos.y == w3d->len_map[(int)w3d->start_pos.x] - 1)
 	{
-		ft_putstr("Right of spawn is empty\n");
+		ft_putstr("\nERROR:\nRight of spawn is empty\n");
 		return (0);
 	}
 	return (1);
@@ -63,22 +64,24 @@ int		ft_error(int nb_spawn, int y, int max_x)
 {
 	if (nb_spawn > 1)
 	{
-		ft_putstr("Too much spawn\n");
+		ft_putstr("\nERROR:\nToo much spawn\n");
 		return (0);
 	}
 	else if (nb_spawn < 1)
 	{
-		ft_putstr("No spawn\nCharacter spawn is 'x'\n");
+		ft_putstr("\nERROR:\nNo spawn\nCharacter spawn is 'x'\n");
 		return (0);
 	}
 	else if (y < 3)
 	{
-		ft_putstr("Map is bad formated\nNumber of LINE must be > 3\n");
+		ft_putstr("\nERROR:\nMap is bad formated\n");
+		ft_putstr("Number of LINE must be > 3\n");
 		return (0);
 	}
 	else if (max_x < 3)
 	{
-		ft_putstr("map is bad formated\nNumber of COLON must be > 3\n");
+		ft_putstr("\nERROR:\nMap is bad formated\n");
+		ft_putstr("Number of COLON must be > 3\n");
 		return (0);
 	}
 	return (1);
