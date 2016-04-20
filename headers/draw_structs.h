@@ -6,14 +6,14 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:17:17 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/03/21 12:44:20 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/03/21 12:46:12 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _DRAW_STRUCTS_H
 # define _DRAW_STRUCTS_H
 
-# include "libft.h"
+# include "../headers/libft.h"
 
 typedef struct	s_area
 {
