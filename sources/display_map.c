@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 21:45:46 by                   #+#    #+#             */
-/*   Updated: 2016/04/18 22:36:29 by                  ###   ########.fr       */
+/*   Updated: 2016/04/21 16:35:41 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void		ft_display2(t_wolf3d *w3d)
 	}
 }
 
-void			ft_display_final_map(t_wolf3d *w3d)
+void			ft_display_map(t_wolf3d *w3d)
 {
 	if (w3d->default_map == false)
 		ft_display1(w3d);

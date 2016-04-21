@@ -6,20 +6,38 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 16:06:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/18 22:56:42 by                  ###   ########.fr       */
+/*   Updated: 2016/04/21 16:36:06 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/header.h"
 
-int				press_wolf3d(int keycode, t_wolf3d *w3d)
+static int		except_press(int keycode, t_wolf3d *w3d)
 {
 	if (keycode == 53)
 		ft_exit_wolf3d(w3d, 3);
 	if (keycode == 257)
-		return (w3d->key_sprint = 2);
+	{
+		w3d->key_sprint = 2;
+		return (1);
+	}
 	if (keycode == 256)
-		return (w3d->key_squat = 0.2);
+	{
+		w3d->key_squat = 0.2;
+		return (1);
+	}
+	if (keycode == 46)
+	{
+		ft_display_map(w3d);
+		return (1);
+	}
+	return (0);
+}
+
+int				press_wolf3d(int keycode, t_wolf3d *w3d)
+{
+	if (except_press(keycode, w3d) == 1)
+		return (0);
 	if (keycode == 3 && w3d->fps_mode == 0)
 	{
 		ft_putstr("FPS = ON\n");
