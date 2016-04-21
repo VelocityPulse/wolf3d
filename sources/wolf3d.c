@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/13 15:50:34 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/04/21 12:01:37 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,53 +75,45 @@ static int		dda(t_raycasting *r, t_wolf3d *w3d, int *x, int *y)
 
 static void		calculate_line(t_raycasting *r, int *start, int *end, double sq)
 {
-	int			line_height;
-	double		perp_wall_dist;
-
 	if (r->side == 0)
-		perp_wall_dist = (r->map_x - r->ray_posx +
+		r->perp_wall_dist = (r->map_x - r->ray_posx +
 				(1 - r->step_x) / 2) / r->ray_dirx;
 	else
-		perp_wall_dist = (r->map_y - r->ray_posy +
+		r->perp_wall_dist = (r->map_y - r->ray_posy +
 				(1 - r->step_y) / 2) / r->ray_diry;
-	line_height = (int)(W_HEIGHT / perp_wall_dist);
-	*start = (-line_height / 2 + W_HEIGHT / 2) - (sq == 1 ? 0 : 120);
+	r->line_height = (int)(W_HEIGHT / r->perp_wall_dist);
+	*start = (-r->line_height / 2 + W_HEIGHT / 2) - (sq == 1 ? 0 : 120);
 	if (*start < 0)
 		*start = 0;
-	*end = (line_height / 2 + W_HEIGHT / 2) - (sq == 1 ? 0 : 120);
+	*end = (r->line_height / 2 + W_HEIGHT / 2) - (sq == 1 ? 0 : 120);
 	if (*end >= W_HEIGHT)
 		*end = W_HEIGHT - 1;
 }
 
 void			ft_wolf3d(t_wolf3d *w3d)
 {
-	t_raycasting	r;
-	int		x;
-	int		line_start;
-	int		line_end;
-	int		color;
-	int val;
+	t_raycasting	*r;
+	int				x;
+	int				line_start;
+	int				line_end;
 
 	ft_edit_wolf3d(w3d);
 	ft_reset_wolf_horizon(w3d, w3d->key_squat);
-	r = w3d->r;
+	r = &w3d->r;
 	x = -1;
 	while (++x < W_WIDTH)
 	{
-		init_ray(&r, x);
-		calculate_step(&r);
-		val = dda(&r, w3d, &r.map_x, &r.map_y);
-		calculate_line(&r, &line_start, &line_end, w3d->key_squat);
-		if (val == 1)
-			color = 0x555555;
-		else if (val == 2)
-			color = 0x00ff00;
-		else if (val == 3)
-			color = 0xff0000;
-		else if (val == 4)
-			color = 0x0000ff;
-		else
-			color = 0x0f0f00;
+		init_ray(r, x);
+		calculate_step(r);
+		r->val = dda(r, w3d, &r->map_x, &r->map_y);
+		calculate_line(r, &line_start, &line_end, w3d->key_squat);
+		ft_trace(w3d, line_start, line_end, x);
+	}
+	ft_flush_image(w3d->mlx);
+}
+
+
+/*
 		if (r.side == 1)
 		{
 			t_rgb c;
@@ -131,7 +123,4 @@ void			ft_wolf3d(t_wolf3d *w3d)
 			c.b /= 2;
 			color = ft_get_hexa(c);
 		}
-		ft_draw_line(ft_make_line(x, line_start, x, line_end), w3d->mlx, color);
-	}
-	ft_flush_image(w3d->mlx);
-}
+*/

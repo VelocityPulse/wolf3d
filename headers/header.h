@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/20 11:13:01 by                  ###   ########.fr       */
+/*   Updated: 2016/04/21 15:00:56 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct	s_texture
 	t_img	purplestone;
 	t_img	redbrick;
 	t_img	wood;
+	t_img	**list;
 }				t_texture;
 
 typedef struct	s_raycasting
@@ -57,15 +58,18 @@ typedef struct	s_raycasting
 	double	ray_posy;
 	int		step_x;
 	int		step_y;
+	double	perp_wall_dist;
 	int		side;
 	double	side_distx;
 	double	side_disty;
 	double	delta_distx;
 	double	delta_disty;
+	int		line_height;
 	t_ptd	pos;
 	t_ptd	dir;
 	t_ptd	plane;
 	int		horizon;
+	int		val;
 }				t_raycasting;
 
 typedef struct	s_wolf3d
@@ -105,8 +109,10 @@ int				ft_error_line(t_pt p, int code);
 int				ft_check_pos_spawn(t_wolf3d *w3d, int *max_x, t_pt p, int spwn);
 int				ft_check_pos_spawn3(t_wolf3d *w3d);
 
-void			ft_load_textures(t_mlx *mlx, t_texture *t);
+void			ft_load_textures(t_wolf3d *w3d, t_mlx *mlx, t_texture *t);
 void			ft_clear_textures(t_mlx *mlx, t_texture t);
+
+void			ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x);
 
 void			ft_edit_wolf3d(t_wolf3d *w3d);
 void			edit_direction(t_wolf3d *w3d, t_ptd *dir, t_ptd *p);
