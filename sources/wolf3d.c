@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/22 11:18:43 by                  ###   ########.fr       */
+/*   Updated: 2016/04/22 17:32:17 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,16 +111,3 @@ void			ft_wolf3d(t_wolf3d *w3d)
 	}
 	ft_flush_image(w3d->mlx);
 }
-
-
-/*
-		if (r.side == 1)
-		{
-			t_rgb c;
-			c = ft_get_rgb(color);
-			c.r /= 2;
-			c.g /= 2;
-			c.b /= 2;
-			color = ft_get_hexa(c);
-		}
-*/
