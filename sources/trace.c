@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 17:11:57 by                   #+#    #+#             */
-/*   Updated: 2016/04/22 12:13:35 by                  ###   ########.fr       */
+/*   Updated: 2016/04/22 13:59:55 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 	int				tex_x;
 	int				line_height;
 	int				 color;
-	t_img			*tex;
 
 	r = &w3d->r;
 	t = &w3d->t;
@@ -36,9 +35,8 @@ void	ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 	wall_x -= floor(wall_x);
 	if (r->val >= 30 && r->val <= 37)
 	{
-		tex = t->list_img[r->val - 30];
-		size_x = tex->size.x;
-		size_y = tex->size.y;
+		size_x = t->list_img[r->val - 30]->size.x;
+		size_y = t->list_img[r->val - 30]->size.y;
 		tex_x = (int)(wall_x * (double)size_x);
 		if (r->side == 0 && r->ray_dirx > 0)
 			tex_x = size_x - tex_x - 1;
@@ -55,7 +53,7 @@ void	ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 			d = y * 256 - W_HEIGHT * 128 + line_height * 128;
 			int tex_y;
 			tex_y = ((d * size_y) / line_height) / 256;
-			color = ft_get_pixel_image(tex, ft_make_pt(tex_x, tex_y));
+			color = t->list_text[r->val - 30][tex_y][tex_x];
 			if (r->side == 1)
 			{
 				t_rgb c;

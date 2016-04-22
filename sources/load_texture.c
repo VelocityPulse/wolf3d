@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 19:17:32 by                   #+#    #+#             */
-/*   Updated: 2016/04/22 12:42:01 by                  ###   ########.fr       */
+/*   Updated: 2016/04/22 13:56:06 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,17 @@ static void		ft_list_texture(t_texture *t)
 
 	t->list_text = (int ***)ft_memalloc(sizeof(int **) * 8);
 	i = -1;
-	while (i <= 7)
+	while (++i <= 7)
 	{
 		y = t->list_img[i]->size.y;
 		t->list_text[i] = (int **)ft_memalloc(sizeof(int *) * y);
-		y++;
 		while (y--)
 		{
 			x = t->list_img[i]->size.x;
 			t->list_text[i][y] = (int *)ft_memalloc(sizeof(int) * x);
-			x++;
 			while (x--)
-			t->list_text[i][y][x] = ft_get_pixel_image(t->list_img[i],
-			ft_make_pt(x, y));
+				t->list_text[i][y][x] = ft_get_pixel_image(t->list_img[i],
+				ft_make_pt(x, y));
 		}
 	}
 }
