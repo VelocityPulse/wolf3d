@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/22 12:22:52 by                   #+#    #+#             */
-/*   Updated: 2016/04/22 12:35:59 by                  ###   ########.fr       */
+/*   Updated: 2016/04/22 17:46:57 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void			ft_clear_image(t_mlx *mlx, t_texture t)
 		mlx_destroy_image(mlx->p_mlx, t.redbrick.p_img);
 	if (t.wood.loaded == 1)
 		mlx_destroy_image(mlx->p_mlx, t.wood.p_img);
+	ft_putstr("Texture image :\tCLEAR\n");
 }
 
 void			ft_clear_list_textures(t_texture *t, int ***list_text)
@@ -46,5 +47,6 @@ void			ft_clear_list_textures(t_texture *t, int ***list_text)
 		ft_memdel((void **)list_text[i]);
 	}
 	free(list_text);
+	ft_putstr("Texture tab :\tCLEAR\n");
 }
 
