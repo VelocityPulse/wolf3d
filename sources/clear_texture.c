@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/22 12:22:52 by                   #+#    #+#             */
-/*   Updated: 2016/04/22 12:34:20 by                  ###   ########.fr       */
+/*   Updated: 2016/04/22 12:35:59 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void			ft_clear_image(t_mlx *mlx, t_texture t)
 	if (t.wood.loaded == 1)
 		mlx_destroy_image(mlx->p_mlx, t.wood.p_img);
 }
-/*
+
 void			ft_clear_list_textures(t_texture *t, int ***list_text)
 {
 	int		i;
@@ -47,4 +47,4 @@ void			ft_clear_list_textures(t_texture *t, int ***list_text)
 	}
 	free(list_text);
 }
-*/
+
