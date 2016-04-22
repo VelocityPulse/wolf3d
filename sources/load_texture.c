@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 19:17:32 by                   #+#    #+#             */
-/*   Updated: 2016/04/21 15:45:18 by                  ###   ########.fr       */
+/*   Updated: 2016/04/22 11:38:15 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static int		ft_load_image(t_mlx *m, t_img *i, char *path)
 		return (1);
 	}
 	d = mlx_get_data_addr(i->p_img, &i->bpp, &i->width, &i->endian);
+	i->octet = i->bpp / 8;
 	i->data = d;
 	i->max_size = (i->bpp / 8) * i->size.x * i->size.y;
 	ft_putstr("Texture ");
