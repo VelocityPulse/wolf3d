@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 17:11:57 by                   #+#    #+#             */
-/*   Updated: 2016/04/21 18:11:21 by                  ###   ########.fr       */
+/*   Updated: 2016/04/22 11:23:14 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ void	ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 			tex_x = size_x - tex_x - 1;
 		if (r->side == 1 && r->ray_diry < 0)
 			tex_x = size_x - tex_x - 1;
+		if (w3d->key_squat != 1)
+		{
+			line_start += 120;
+			line_end += 120;
+		}
 		y = line_start - 1;
 		while (++y < line_end)
 		{
@@ -59,7 +64,8 @@ void	ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 				c.b /= 2;
 				color = ft_get_hexa(c);
 			}
-			ft_draw_pixel(w3d->mlx, color, ft_make_pt(x, y));
+			ft_draw_pixel(w3d->mlx, color, ft_make_pt(x, y -
+			(w3d->key_squat == 1 ? 0 : 120)));
 		}
 	}
 	else
