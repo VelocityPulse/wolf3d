@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/06 13:27:46 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/22 11:37:56 by                  ###   ########.fr       */
+/*   Updated: 2016/04/22 11:52:23 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int		ft_get_pixel_image(t_img *img, t_pt pt)
 		return (0);
 	return (*(unsigned int *)(unsigned long)(img->data +
 				position));
-
 }
 
 int		ft_get_pixel(t_mlx *mlx, t_pt pt)

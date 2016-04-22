@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 17:11:57 by                   #+#    #+#             */
-/*   Updated: 2016/04/22 11:23:14 by                  ###   ########.fr       */
+/*   Updated: 2016/04/22 12:13:35 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 	wall_x -= floor(wall_x);
 	if (r->val >= 30 && r->val <= 37)
 	{
-		tex = t->list[r->val - 30];
+		tex = t->list_img[r->val - 30];
 		size_x = tex->size.x;
 		size_y = tex->size.y;
 		tex_x = (int)(wall_x * (double)size_x);
@@ -53,7 +53,8 @@ void	ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 		while (++y < line_end)
 		{
 			d = y * 256 - W_HEIGHT * 128 + line_height * 128;
-			int tex_y = ((d * size_y) / line_height) / 256;
+			int tex_y;
+			tex_y = ((d * size_y) / line_height) / 256;
 			color = ft_get_pixel_image(tex, ft_make_pt(tex_x, tex_y));
 			if (r->side == 1)
 			{

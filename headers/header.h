@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/21 17:41:17 by                  ###   ########.fr       */
+/*   Updated: 2016/04/22 12:21:24 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ typedef struct	s_texture
 	t_img	purplestone;
 	t_img	redbrick;
 	t_img	wood;
-	t_img	**list;
+	int		***list_text;
+	t_img	**list_img;
 }				t_texture;
 
 typedef struct	s_raycasting
@@ -110,7 +111,8 @@ int				ft_check_pos_spawn(t_wolf3d *w3d, int *max_x, t_pt p, int spwn);
 int				ft_check_pos_spawn3(t_wolf3d *w3d);
 
 void			ft_load_textures(t_wolf3d *w3d, t_mlx *mlx, t_texture *t);
-void			ft_clear_textures(t_mlx *mlx, t_texture t);
+void			ft_clear_list_textures(t_texture *t, int ***list_text);
+void			ft_clear_image(t_mlx *mlx, t_texture t);
 
 void			ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x);
 

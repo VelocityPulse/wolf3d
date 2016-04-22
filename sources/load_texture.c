@@ -6,31 +6,13 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 19:17:32 by                   #+#    #+#             */
-/*   Updated: 2016/04/22 11:38:15 by                  ###   ########.fr       */
+/*   Updated: 2016/04/22 12:42:01 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/header.h"
 
-void			ft_clear_textures(t_mlx *mlx, t_texture t)
-{
-	if (t.bluestone.loaded == 1)
-		mlx_destroy_image(mlx->p_mlx, t.bluestone.p_img);
-	if (t.colorstone.loaded == 1)
-		mlx_destroy_image(mlx->p_mlx, t.colorstone.p_img);
-	if (t.eagle.loaded == 1)
-		mlx_destroy_image(mlx->p_mlx, t.eagle.p_img);
-	if (t.greystone.loaded == 1)
-		mlx_destroy_image(mlx->p_mlx, t.greystone.p_img);
-	if (t.mossy.loaded == 1)
-		mlx_destroy_image(mlx->p_mlx, t.mossy.p_img);
-	if (t.purplestone.loaded == 1)
-		mlx_destroy_image(mlx->p_mlx, t.purplestone.p_img);
-	if (t.redbrick.loaded == 1)
-		mlx_destroy_image(mlx->p_mlx, t.redbrick.p_img);
-	if (t.wood.loaded == 1)
-		mlx_destroy_image(mlx->p_mlx, t.wood.p_img);
-}
+
 
 static int		ft_load_image(t_mlx *m, t_img *i, char *path)
 {
@@ -57,17 +39,42 @@ static int		ft_load_image(t_mlx *m, t_img *i, char *path)
 	return (0);
 }
 
+static void		ft_list_image(t_texture *t)
+{
+	t->list_img = (t_img **)ft_memalloc(sizeof(t_img) * 8);
+	t->list_img[0] = &t->bluestone;
+	t->list_img[1] = &t->colorstone;
+	t->list_img[2] = &t->eagle;
+	t->list_img[3] = &t->greystone;
+	t->list_img[4] = &t->mossy;
+	t->list_img[5] = &t->purplestone;
+	t->list_img[6] = &t->redbrick;
+	t->list_img[7] = &t->wood;
+}
+
 static void		ft_list_texture(t_texture *t)
 {
-	t->list = (t_img **)ft_memalloc(sizeof(t_img) * 8);
-	t->list[0] = &t->bluestone;
-	t->list[1] = &t->colorstone;
-	t->list[2] = &t->eagle;
-	t->list[3] = &t->greystone;
-	t->list[4] = &t->mossy;
-	t->list[5] = &t->purplestone;
-	t->list[6] = &t->redbrick;
-	t->list[7] = &t->wood;
+	int		i;
+	int		x;
+	int		y;
+
+	t->list_text = (int ***)ft_memalloc(sizeof(int **) * 8);
+	i = -1;
+	while (i <= 7)
+	{
+		y = t->list_img[i]->size.y;
+		t->list_text[i] = (int **)ft_memalloc(sizeof(int *) * y);
+		y++;
+		while (y--)
+		{
+			x = t->list_img[i]->size.x;
+			t->list_text[i][y] = (int *)ft_memalloc(sizeof(int) * x);
+			x++;
+			while (x--)
+			t->list_text[i][y][x] = ft_get_pixel_image(t->list_img[i],
+			ft_make_pt(x, y));
+		}
+	}
 }
 
 void			ft_load_textures(t_wolf3d *w3d, t_mlx *mlx, t_texture *t)
@@ -86,6 +93,7 @@ void			ft_load_textures(t_wolf3d *w3d, t_mlx *mlx, t_texture *t)
 	i += ft_load_image(mlx, &t->wood, "./images/wood.xpm");
 	if (i > 0)
 		ft_exit_wolf3d(w3d, 3);
-	ft_list_texture(t);
+	ft_list_image(&w3d->t);
+	ft_list_texture(&w3d->t);
 	ft_putstr("All textures loaded\n");
 }
