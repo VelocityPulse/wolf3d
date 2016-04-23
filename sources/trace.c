@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 17:11:57 by                   #+#    #+#             */
-/*   Updated: 2016/04/22 18:13:58 by                  ###   ########.fr       */
+/*   Updated: 2016/04/23 16:44:23 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 				c.b /= 2;
 				color = ft_get_hexa(c);
 			}
+			if (!(position < 0 || position > w3d->mlx->mlx_img->max_size))
 			ft_memcpy(data + position, &color, w3d->mlx->mlx_img->octet);
 			position += width;
 //			ft_draw_pixel(w3d->mlx, color, ft_make_pt(x, y -
