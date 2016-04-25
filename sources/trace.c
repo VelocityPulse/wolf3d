@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 17:11:57 by                   #+#    #+#             */
-/*   Updated: 2016/04/25 17:40:10 by                  ###   ########.fr       */
+/*   Updated: 2016/04/25 17:49:49 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ void			ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 	int				line_height;
 	int				 color;
 	int				tex_y;
+	int				o = -1;
+		int *colon;
+		int	width;
+		long int	position;
+		void		*data;
+		int			tmp;
+int		sky = 0x44CCFF;
+
 
 	r = &w3d->r;
 	t = &w3d->t;
@@ -46,12 +54,6 @@ void			ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 
 	if (r->val >= 30 && r->val <= 37)
 	{
-		int *colon;
-		int	width;
-		long int	position;
-		void		*data;
-		int			tmp;
-
 		size_y = t->list_img[r->val - 30]->size.y;
 		colon = t->list_text[r->val - 30][ft_tex_x(r, t->list_img[r->val - 30]->size.x)];
 //		if (w3d->key_squat != 1)
@@ -65,9 +67,8 @@ void			ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 		position = x * w3d->mlx->mlx_img->octet;
 		data = w3d->mlx->mlx_img->data;
 		width = w3d->mlx->mlx_img->width;
-		int		o = -1;
-		int		sky = 0x44CCFF;
-		while (++o < line_start)
+
+				while (++o < line_start)
 		{
 			if (!(position < 0 || position > w3d->mlx->mlx_img->max_size))
 				ft_memcpy(data + position, &sky, w3d->mlx->mlx_img->octet);
@@ -112,7 +113,29 @@ void			ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 			c.b /= 2;
 			color = ft_get_hexa(c);
 		}
-		ft_draw_line(ft_make_line(x, line_start, x, line_end), w3d->mlx, color);
+		position = x * w3d->mlx->mlx_img->octet;
+		data = w3d->mlx->mlx_img->data;
+		width = w3d->mlx->mlx_img->width;
+		
+		while (++o < line_start)
+		{
+			if (!(position < 0 || position > w3d->mlx->mlx_img->max_size))
+				ft_memcpy(data + position, &sky, w3d->mlx->mlx_img->octet);
+			position += width;
+		}
+		while (++line_start < line_end)
+		{
+			if (!(position < 0 || position > w3d->mlx->mlx_img->max_size))
+				ft_memcpy(data + position, &color, w3d->mlx->mlx_img->octet);
+			position += width;
+		}
+		color = 0x667882;
+		while (++line_end < w3d->mlx->height)
+		{
+			if (!(position < 0 || position > w3d->mlx->mlx_img->max_size))
+				ft_memcpy(data + position, &color, w3d->mlx->mlx_img->octet);
+			position += width;
+		}
 		return ;
 	}
 }
