@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/03 14:55:44 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/18 22:43:53 by                  ###   ########.fr       */
+/*   Updated: 2016/04/25 21:14:18 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		edit_backfront(t_wolf3d *w3d, t_ptd *pos, t_ptd *dir)
 	{
 		if (w3d->map[(int)(pos->x + dir->x * mv_speed)][(int)pos->y] == 0)
 			pos->x += w3d->r.dir.x * mv_speed;
-		if (w3d->map[(int)(pos->x)][(int)(pos->y + dir->y * mv_speed)] == 0)
+		if (w3d->map[(int)pos->x][(int)(pos->y + dir->y * mv_speed)] == 0)
 			pos->y += dir->y * mv_speed;
 	}
 	else if (w3d->key1 == 1 || w3d->key2 == 1 || w3d->key3 == 1)
@@ -40,16 +40,16 @@ static void		edit_lateral(t_wolf3d *w3d, t_ptd *pos, t_ptd *dir)
 	mv_speed = (w3d->d.dt * 5) * w3d->key_squat;
 	if (w3d->key1 == 0 || w3d->key2 == 0 || w3d->key3 == 0)
 	{
-		if (w3d->map[(int)(pos->x - dir->y * mv_speed)][(int)(pos->y)] == 0)
+		if (w3d->map[(int)(pos->x - dir->y * mv_speed)][(int)pos->y] == 0)
 			pos->x -= dir->y * mv_speed;
-		if (w3d->map[(int)(pos->x)][(int)(pos->y + dir->x * mv_speed)] == 0)
+		if (w3d->map[(int)pos->x][(int)(pos->y + dir->x * mv_speed)] == 0)
 			pos->y += dir->x * mv_speed;
 	}
 	if (w3d->key1 == 2 || w3d->key2 == 2 || w3d->key3 == 2)
 	{
-		if (w3d->map[(int)(pos->x + dir->y * mv_speed)][(int)(pos->y)] == 0)
+		if (w3d->map[(int)(pos->x + dir->y * mv_speed)][(int)pos->y] == 0)
 			pos->x += dir->y * mv_speed;
-		if (w3d->map[(int)(pos->x)][(int)(pos->y - dir->x * mv_speed)] == 0)
+		if (w3d->map[(int)pos->x][(int)(pos->y - dir->x * mv_speed)] == 0)
 			pos->y -= dir->x * mv_speed;
 	}
 }

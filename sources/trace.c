@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 17:11:57 by                   #+#    #+#             */
-/*   Updated: 2016/04/25 17:49:49 by                  ###   ########.fr       */
+/*   Updated: 2016/04/25 21:32:03 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void			ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 	t_raycasting	*r;
 	t_texture		*t;
 	int				size_y;
-	int				d;
+	long int				d;
 	int				line_height;
 	int				 color;
 	int				tex_y;
@@ -56,32 +56,23 @@ int		sky = 0x44CCFF;
 	{
 		size_y = t->list_img[r->val - 30]->size.y;
 		colon = t->list_text[r->val - 30][ft_tex_x(r, t->list_img[r->val - 30]->size.x)];
-//		if (w3d->key_squat != 1)
-//		{
-//			line_start += 120;
-//			line_end += 120;
-//		}
-//		line_start -= 1;
-//		position = ((line_start - (w3d->key_squat == 1 ? 0 : 120)) *
-//				w3d->mlx->mlx_img->width) + (x * w3d->mlx->mlx_img->octet);
 		position = x * w3d->mlx->mlx_img->octet;
 		data = w3d->mlx->mlx_img->data;
 		width = w3d->mlx->mlx_img->width;
-
-				while (++o < line_start)
+		while (++o < line_start)
 		{
 			if (!(position < 0 || position > w3d->mlx->mlx_img->max_size))
 				ft_memcpy(data + position, &sky, w3d->mlx->mlx_img->octet);
 			position += width;
 		}
-		tmp = line_start + (w3d->key_squat == 1 ? 0 : 120) - 1;
+		tmp = line_start + (w3d->key_squat == 1 ? 0 : 120);
 		while (++line_start < line_end)
 		{
 			d = ++tmp * 256 - W_HEIGHT * 128 + line_height * 128;
 			tex_y = ((d * size_y) / line_height) / 256;
-			color = colon[tex_y];
-			if (!(position < 0 || position > w3d->mlx->mlx_img->max_size))
-				ft_memcpy(data + position, &color, w3d->mlx->mlx_img->octet);
+				color = colon[tex_y];
+				if (!(position < 0 || position > w3d->mlx->mlx_img->max_size))
+					ft_memcpy(data + position, &color, w3d->mlx->mlx_img->octet);
 			position += width;
 		}
 		color = 0x667882;
