@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/25 21:04:27 by                  ###   ########.fr       */
+/*   Updated: 2016/04/25 21:33:27 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void			ft_wolf3d(t_wolf3d *w3d)
 	int				line_end;
 
 	ft_edit_wolf3d(w3d);
-//	ft_reset_wolf_horizon(w3d, w3d->key_squat);
 	r = &w3d->r;
 	x = -1;
 	while (++x < W_WIDTH)

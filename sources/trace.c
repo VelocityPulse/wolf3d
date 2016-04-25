@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 17:11:57 by                   #+#    #+#             */
-/*   Updated: 2016/04/25 21:32:03 by                  ###   ########.fr       */
+/*   Updated: 2016/04/25 21:37:08 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void			ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 		void		*data;
 		int			tmp;
 int		sky = 0x44CCFF;
+	int octet;
+	int max_size;
 
 
 	r = &w3d->r;
@@ -66,6 +68,8 @@ int		sky = 0x44CCFF;
 			position += width;
 		}
 		tmp = line_start + (w3d->key_squat == 1 ? 0 : 120);
+		octet = w3d->mlx->mlx_img->octet;
+		max_size = w3d->mlx->mlx_img->max_size;
 		while (++line_start < line_end)
 		{
 			d = ++tmp * 256 - W_HEIGHT * 128 + line_height * 128;
