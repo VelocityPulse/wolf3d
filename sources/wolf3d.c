@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/22 17:32:17 by                  ###   ########.fr       */
+/*   Updated: 2016/04/25 13:40:56 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void			ft_wolf3d(t_wolf3d *w3d)
 	int				line_end;
 
 	ft_edit_wolf3d(w3d);
-	ft_reset_wolf_horizon(w3d, w3d->key_squat);
+//	ft_reset_wolf_horizon(w3d, w3d->key_squat);
 	r = &w3d->r;
 	x = -1;
 	while (++x < W_WIDTH)
@@ -107,7 +107,7 @@ void			ft_wolf3d(t_wolf3d *w3d)
 		calculate_step(r);
 		r->val = dda(r, w3d, &r->map_x, &r->map_y);
 		calculate_line(r, &line_start, &line_end, w3d->key_squat);
-		ft_trace(w3d, line_start, line_end, x);
+		ft_trace(w3d, line_start, line_end, r->x = x);
 	}
 	ft_flush_image(w3d->mlx);
 }

@@ -6,13 +6,13 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 17:11:57 by                   #+#    #+#             */
-/*   Updated: 2016/04/25 13:18:10 by                  ###   ########.fr       */
+/*   Updated: 2016/04/25 17:40:10 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/header.h"
 
-static int		ft_trace_tex_x(t_raycasting *r, int size_x)
+static int		ft_tex_x(t_raycasting *r, int size_x)
 {
 	double	wall_x;
 	int		tex_x;
@@ -34,13 +34,11 @@ void			ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 {
 	t_raycasting	*r;
 	t_texture		*t;
-	int				y;
-	int				size_x;
 	int				size_y;
 	int				d;
-	int				tex_x;
 	int				line_height;
 	int				 color;
+	int				tex_y;
 
 	r = &w3d->r;
 	t = &w3d->t;
@@ -52,42 +50,45 @@ void			ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 		int	width;
 		long int	position;
 		void		*data;
+		int			tmp;
 
-		size_x = t->list_img[r->val - 30]->size.x;
 		size_y = t->list_img[r->val - 30]->size.y;
-		tex_x = ft_trace_tex_x(r, size_x);
-		colon = t->list_text[r->val - 30][tex_x];
-		if (w3d->key_squat != 1)
-		{
-			line_start += 120;
-			line_end += 120;
-		}
-		y = line_start - 1;
-		position = ((y - (w3d->key_squat == 1 ? 0 : 120)) * w3d->mlx->mlx_img->width) +
-			(x * w3d->mlx->mlx_img->octet);
+		colon = t->list_text[r->val - 30][ft_tex_x(r, t->list_img[r->val - 30]->size.x)];
+//		if (w3d->key_squat != 1)
+//		{
+//			line_start += 120;
+//			line_end += 120;
+//		}
+//		line_start -= 1;
+//		position = ((line_start - (w3d->key_squat == 1 ? 0 : 120)) *
+//				w3d->mlx->mlx_img->width) + (x * w3d->mlx->mlx_img->octet);
+		position = x * w3d->mlx->mlx_img->octet;
 		data = w3d->mlx->mlx_img->data;
 		width = w3d->mlx->mlx_img->width;
-		while (++y < line_end)
+		int		o = -1;
+		int		sky = 0x44CCFF;
+		while (++o < line_start)
 		{
-			d = y * 256 - W_HEIGHT * 128 + line_height * 128;
-			int tex_y;
+			if (!(position < 0 || position > w3d->mlx->mlx_img->max_size))
+				ft_memcpy(data + position, &sky, w3d->mlx->mlx_img->octet);
+			position += width;
+		}
+		tmp = line_start + (w3d->key_squat == 1 ? 0 : 120) - 1;
+		while (++line_start < line_end)
+		{
+			d = ++tmp * 256 - W_HEIGHT * 128 + line_height * 128;
 			tex_y = ((d * size_y) / line_height) / 256;
 			color = colon[tex_y];
-			/*			if (r->side == 1)
-						{
-						t_rgb c;
-						c = ft_get_rgb(color);
-						c.r /= 2;
-						c.g /= 2;
-						c.b /= 2;
-						color = ft_get_hexa(c);
-						}
-						*/
 			if (!(position < 0 || position > w3d->mlx->mlx_img->max_size))
 				ft_memcpy(data + position, &color, w3d->mlx->mlx_img->octet);
 			position += width;
-			//			ft_draw_pixel(w3d->mlx, color, ft_make_pt(x, y -
-			//			(w3d->key_squat == 1 ? 0 : 120)));
+		}
+		color = 0x667882;
+		while (++line_end < w3d->mlx->height)
+		{
+			if (!(position < 0 || position > w3d->mlx->mlx_img->max_size))
+				ft_memcpy(data + position, &color, w3d->mlx->mlx_img->octet);
+			position += width;
 		}
 	}
 	else

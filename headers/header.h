@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/22 12:21:24 by                  ###   ########.fr       */
+/*   Updated: 2016/04/24 19:54:53 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct	s_raycasting
 	t_ptd	plane;
 	int		horizon;
 	int		val;
+	int		x;
 }				t_raycasting;
 
 typedef struct	s_wolf3d
