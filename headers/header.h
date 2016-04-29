@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/24 19:54:53 by                  ###   ########.fr       */
+/*   Updated: 2016/04/29 14:48:06 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ typedef struct	s_raycasting
 	double	side_disty;
 	double	delta_distx;
 	double	delta_disty;
-	int		line_height;
 	t_ptd	pos;
 	t_ptd	dir;
 	t_ptd	plane;
@@ -73,6 +72,23 @@ typedef struct	s_raycasting
 	int		val;
 	int		x;
 }				t_raycasting;
+
+typedef struct	s_trace_var
+{
+	t_raycasting	*r;
+	t_texture		*t;
+	void			*data;
+	int				width;
+	int				octet;
+	int				max_size;
+	int				line_start;
+	int				line_end;
+	int				line_height;
+	int				size_y;
+	double			*key_squat;
+	int				tex_val;
+	int				mlx_height;
+}				t_trace_var;
 
 typedef struct	s_wolf3d
 {
@@ -90,6 +106,7 @@ typedef struct	s_wolf3d
 	int				*len_map;
 	int				**map;
 	int				height;
+	t_trace_var		var;
 	t_texture		t;
 	t_raycasting	r;
 }				t_wolf3d;

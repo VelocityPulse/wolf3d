@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/21 17:35:13 by                  ###   ########.fr       */
+/*   Updated: 2016/04/29 14:48:42 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,14 @@ static void		ft_init_wolf3d(t_wolf3d *w3d)
 		get_map1(w3d);
 	}
 	ft_init_rc(w3d);
+	w3d->var.data = w3d->mlx->mlx_img->data;
+	w3d->var.width = w3d->mlx->mlx_img->width;
+	w3d->var.octet = w3d->mlx->mlx_img->octet;
+	w3d->var.max_size = w3d->mlx->mlx_img->max_size;
+	w3d->var.r = &w3d->r;
+	w3d->var.t = &w3d->t;
+	w3d->var.key_squat = &w3d->key_squat;
+	w3d->var.mlx_height = w3d->mlx->height;
 }
 
 void			ft_start(char *path)

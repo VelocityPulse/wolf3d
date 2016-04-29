@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/25 21:33:27 by                  ###   ########.fr       */
+/*   Updated: 2016/04/29 14:48:19 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,40 +73,45 @@ static int		dda(t_raycasting *r, t_wolf3d *w3d, int *x, int *y)
 	return (w3d->map[*x][*y]);
 }
 
-static void		calculate_line(t_raycasting *r, int *start, int *end, double sq)
+static int		calculate_line(t_raycasting *r, int *start, int *end, double sq)
 {
+	int		line_height;
+
 	if (r->side == 0)
 		r->perp_wall_dist = (r->map_x - r->ray_posx +
 				(1 - r->step_x) / 2) / r->ray_dirx;
 	else
 		r->perp_wall_dist = (r->map_y - r->ray_posy +
 				(1 - r->step_y) / 2) / r->ray_diry;
-	r->line_height = (int)(W_HEIGHT / r->perp_wall_dist);
-	*start = (-r->line_height / 2 + W_HEIGHT / 2) - (sq == 1 ? 0 : 120);
+	line_height = (int)(W_HEIGHT / r->perp_wall_dist);
+	*start = (-line_height / 2 + W_HEIGHT / 2) - (sq == 1 ? 0 : 120);
 	if (*start < 0)
 		*start = 0;
-	*end = (r->line_height / 2 + W_HEIGHT / 2) - (sq == 1 ? 0 : 120);
+	*end = (line_height / 2 + W_HEIGHT / 2) - (sq == 1 ? 0 : 120);
 	if (*end >= W_HEIGHT)
 		*end = W_HEIGHT - 1;
+	return (line_height);
 }
 
 void			ft_wolf3d(t_wolf3d *w3d)
 {
 	t_raycasting	*r;
+	t_trace_var		*var;
 	int				x;
-	int				line_start;
-	int				line_end;
 
 	ft_edit_wolf3d(w3d);
 	r = &w3d->r;
+	var = &w3d->var;
 	x = -1;
 	while (++x < W_WIDTH)
 	{
+
 		init_ray(r, x);
 		calculate_step(r);
 		r->val = dda(r, w3d, &r->map_x, &r->map_y);
-		calculate_line(r, &line_start, &line_end, w3d->key_squat);
-		ft_trace(w3d, line_start, line_end, r->x = x);
+		var->line_height = calculate_line(
+		r, &var->line_start, &var->line_end, w3d->key_squat);
+		ft_trace(w3d, var->line_start, var->line_end, r->x = x);
 	}
 	ft_flush_image(w3d->mlx);
 }

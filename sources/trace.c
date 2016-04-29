@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 17:11:57 by                   #+#    #+#             */
-/*   Updated: 2016/04/25 21:37:08 by                  ###   ########.fr       */
+/*   Updated: 2016/04/29 14:59:06 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int		ft_tex_x(t_raycasting *r, int size_x)
 	double	wall_x;
 	int		tex_x;
 
-	if (r->side == 0)
+	if (r->side == 0)	
 		wall_x = r->ray_posy + r->perp_wall_dist * r->ray_diry;
 	else
 		wall_x = r->ray_posx + r->perp_wall_dist * r->ray_dirx;
@@ -30,65 +30,100 @@ static int		ft_tex_x(t_raycasting *r, int size_x)
 	return (tex_x);
 }
 
+int				ft_trace_top(t_trace_var *var, int x, int line_start, int octet)
+{
+	int 	position;
+	int		color;
+	int		o;
+	void	*data;
+	int		width;
+//	int		max_size;
+
+	position = x * octet;
+	color = 0x44CCFF;
+	data = var->data;
+	width = var->width;
+//	max_size = var->max_size;
+	o = -1;
+	while (++o < line_start)
+	{
+//		if (!(position < 0 || position > max_size))
+			ft_memcpy(data + position, &color, octet);
+		position += width;
+	}
+	return (position);
+}
+
+static int		ft_trace_tex(t_trace_var *var, int pos, int l_h, int size_y)
+{
+	int			tmp;
+	int			*colon;
+	int			tex_y;
+	int			color;
+	long int	d;
+
+	size_y = var->t->list_img[var->tex_val]->size.y;
+	colon = var->t->list_text[var->tex_val]
+	[ft_tex_x(var->r, var->t->list_img[var->tex_val]->size.x)];
+	tmp = var->line_start + (*var->key_squat == 1 ? 0 : 120);
+	while (++var->line_start < var->line_end)
+	{
+		d = ++tmp * 256 - W_HEIGHT * 128 + l_h * 128;
+		tex_y = ((d * size_y) / l_h) / 256;
+		color = colon[tex_y];
+//		if (!(pos < 0 || pos > var->max_size))
+			ft_memcpy(var->data + pos, &color, var->octet);
+		pos += var->width;
+	}
+	return (pos);
+}
+
+void			ft_trace_bot(t_trace_var *var, int pos, int line_start)
+{
+	int 	octet;
+	int		color;
+	void	*data;
+	int		width;
+	int		max_size;
+
+	color = 0x667882;
+	data = var->data;
+	octet = var->octet;
+	width = var->width;
+	max_size = var->max_size;
+	while (++line_start < var->mlx_height)
+	{
+		if (!(pos < 0 || pos > max_size))
+			ft_memcpy(data + pos, &color, octet);
+		pos += width;
+	}
+
+}
+
 void			ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 {
 	t_raycasting	*r;
-	t_texture		*t;
-	int				size_y;
-	long int				d;
-	int				line_height;
-	int				 color;
-	int				tex_y;
-	int				o = -1;
-		int *colon;
-		int	width;
-		long int	position;
-		void		*data;
-		int			tmp;
-int		sky = 0x44CCFF;
-	int octet;
-	int max_size;
+	int				color;
 
+	int				width;
+	long int		position;
+	void			*data;
+	t_trace_var		*var;
 
 	r = &w3d->r;
-	t = &w3d->t;
-	line_height = r->line_height;
-
+	var = &w3d->var;
 	if (r->val >= 30 && r->val <= 37)
 	{
-		size_y = t->list_img[r->val - 30]->size.y;
-		colon = t->list_text[r->val - 30][ft_tex_x(r, t->list_img[r->val - 30]->size.x)];
-		position = x * w3d->mlx->mlx_img->octet;
-		data = w3d->mlx->mlx_img->data;
-		width = w3d->mlx->mlx_img->width;
-		while (++o < line_start)
-		{
-			if (!(position < 0 || position > w3d->mlx->mlx_img->max_size))
-				ft_memcpy(data + position, &sky, w3d->mlx->mlx_img->octet);
-			position += width;
-		}
-		tmp = line_start + (w3d->key_squat == 1 ? 0 : 120);
-		octet = w3d->mlx->mlx_img->octet;
-		max_size = w3d->mlx->mlx_img->max_size;
-		while (++line_start < line_end)
-		{
-			d = ++tmp * 256 - W_HEIGHT * 128 + line_height * 128;
-			tex_y = ((d * size_y) / line_height) / 256;
-				color = colon[tex_y];
-				if (!(position < 0 || position > w3d->mlx->mlx_img->max_size))
-					ft_memcpy(data + position, &color, w3d->mlx->mlx_img->octet);
-			position += width;
-		}
-		color = 0x667882;
-		while (++line_end < w3d->mlx->height)
-		{
-			if (!(position < 0 || position > w3d->mlx->mlx_img->max_size))
-				ft_memcpy(data + position, &color, w3d->mlx->mlx_img->octet);
-			position += width;
-		}
+		w3d->var.tex_val  = w3d->r.val - 30;
+		position = ft_trace_top(var, x, var->line_start, var->octet);
+		position = ft_trace_tex(var, position, var->line_height, 0);
+		ft_trace_bot(var, position, var->line_start);
 	}
 	else
 	{
+		data = var->data;
+		width = var->width;
+		position = ft_trace_top(var, x, var->line_start, var->octet);
 		if (r->val == 1)
 			color = 0x555555;
 		else if (r->val == 2)
@@ -108,29 +143,12 @@ int		sky = 0x44CCFF;
 			c.b /= 2;
 			color = ft_get_hexa(c);
 		}
-		position = x * w3d->mlx->mlx_img->octet;
-		data = w3d->mlx->mlx_img->data;
-		width = w3d->mlx->mlx_img->width;
-		
-		while (++o < line_start)
-		{
-			if (!(position < 0 || position > w3d->mlx->mlx_img->max_size))
-				ft_memcpy(data + position, &sky, w3d->mlx->mlx_img->octet);
-			position += width;
-		}
 		while (++line_start < line_end)
 		{
-			if (!(position < 0 || position > w3d->mlx->mlx_img->max_size))
-				ft_memcpy(data + position, &color, w3d->mlx->mlx_img->octet);
+			if (!(position < 0 || position > var->max_size))
+				ft_memcpy(data + position, &color, var->octet);
 			position += width;
 		}
-		color = 0x667882;
-		while (++line_end < w3d->mlx->height)
-		{
-			if (!(position < 0 || position > w3d->mlx->mlx_img->max_size))
-				ft_memcpy(data + position, &color, w3d->mlx->mlx_img->octet);
-			position += width;
-		}
-		return ;
+		ft_trace_bot(var, position, var->line_start);
 	}
 }
