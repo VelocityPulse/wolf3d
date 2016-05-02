@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 15:39:55 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/20 17:45:32 by                  ###   ########.fr       */
+/*   Updated: 2016/05/02 18:11:57 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ void			get_map_path(t_wolf3d *w3d, const int fd)
 	if (!ft_check_pos_spawn3(w3d))
 		ft_exit_wolf3d(w3d, 4);
 	ft_putstr("Completing void case...\n");
-	ft_complete_case(w3d);
+//	ft_complete_case(w3d);
 }

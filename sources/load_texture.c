@@ -6,13 +6,11 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 19:17:32 by                   #+#    #+#             */
-/*   Updated: 2016/04/22 18:16:05 by                  ###   ########.fr       */
+/*   Updated: 2016/05/02 16:48:06 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/header.h"
-
-
 
 static int		ft_load_image(t_mlx *m, t_img *i, char *path)
 {
@@ -22,9 +20,9 @@ static int		ft_load_image(t_mlx *m, t_img *i, char *path)
 	i->p_img = mlx_xpm_file_to_image(m->p_mlx, path, &i->size.x, &i->size.y);
 	if (!i->p_img)
 	{
-		ft_putstr("ERROR\nTexture ");
+		ft_putstr("Texture ");
 		ft_putstr(path);
-		ft_putstr(" : NOT LOADED\n");
+		ft_putstr(" : NOT LOADED !!\n");
 		i->loaded = 0;
 		return (1);
 	}
@@ -92,7 +90,7 @@ void			ft_load_textures(t_wolf3d *w3d, t_mlx *mlx, t_texture *t)
 	i += ft_load_image(mlx, &t->redbrick, "./images/redbrick.xpm");
 	i += ft_load_image(mlx, &t->wood, "./images/wood.xpm");
 	if (i > 0)
-		ft_exit_wolf3d(w3d, 3);
+		ft_exit_wolf3d(w3d, 2);
 	ft_list_image(&w3d->t);
 	ft_list_texture(&w3d->t);
 	ft_putstr("All textures loaded\n");

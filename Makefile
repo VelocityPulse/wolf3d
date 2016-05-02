@@ -29,7 +29,8 @@ SRC =			./sources/main.c \
 				./sources/display_map.c \
 				./sources/load_texture.c \
 				./sources/clear_texture.c \
-				./sources/trace.c
+				./sources/trace.c \
+				./sources/trace_monocolor.c
 
 OBJS =			./main.o \
 				./start.o \
@@ -48,7 +49,8 @@ OBJS =			./main.o \
 				./display_map.o \
 				./load_texture.o \
 				./clear_texture.o \
-				./trace.o
+				./trace.o \
+				./trace_monocolor.o
 
 DRAW =			./draw/draw.a
 

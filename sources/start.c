@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/29 14:48:42 by                  ###   ########.fr       */
+/*   Updated: 2016/05/02 16:30:01 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			ft_init_rc(t_wolf3d *w3d)
 }
 
 /*
-** void ft_init_rc(t_raycasting *r); is not a static beacause
+** void ft_init_rc(); is not a static beacause
 ** she's called in ft_edit_wolf3d in edit_wolf.c
 */
 
@@ -90,6 +90,5 @@ void			ft_start(char *path)
 	mlx_hook(w3d->mlx->p_win, KeyRelease, KeyPressMask, unpress_wolf3d, w3d);
 	mlx_hook(w3d->mlx->p_win, MotionNotify, KeyPressMask, mouse_wolf3d, w3d);
 	mlx_loop_hook(w3d->mlx->p_mlx, loop_wolf3d, w3d);
-
 	mlx_loop(w3d->mlx->p_mlx);
 }

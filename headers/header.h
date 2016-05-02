@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/02 13:00:34 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/02 17:34:00 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@
 
 # define W_WIDTH 1080
 # define W_HEIGHT 750
+
+# define _NORTH_ 4
+# define _EST_ 3
+# define _SOUTH_ 2
+# define _WEST_ 1
 
 typedef struct	s_wolf_line
 {

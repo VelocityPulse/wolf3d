@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:32 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/22 18:53:54 by                  ###   ########.fr       */
+/*   Updated: 2016/05/02 16:59:17 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,17 @@ static void		ft_exit_1(t_wolf3d *w3d)
 
 static void		ft_exit_2(t_wolf3d *w3d)
 {
-	ft_putstr("Bad file\n");
+	int		i;
+
+	i = -1;
+	ft_clear_image(w3d->mlx, w3d->t);
+	ft_clear_mlx(w3d->mlx);
+	ft_putstr("mlx :\t\tCLEAR\n");
+	while (++i < w3d->height)
+		ft_memdel((void **)&w3d->map[i]);
+	ft_memdel((void **)w3d->map);
+	ft_putstr("Map tab :\tCLEAR\n");
+	ft_memdel((void **)&w3d->len_map);
 	ft_memdel((void **)&w3d);
 	ft_putstr("Wolf3d :\tCLEAR\n");
 	exit(0);
@@ -33,7 +43,7 @@ static void		ft_exit_3(t_wolf3d *w3d)
 
 	i = -1;
 	ft_clear_list_textures(&w3d->t, w3d->t.list_text);
-//	ft_clear_image(w3d->mlx, w3d->t);
+	ft_clear_image(w3d->mlx, w3d->t);
 	ft_clear_mlx(w3d->mlx);
 	ft_putstr("mlx :\t\tCLEAR\n");
 	while (++i < w3d->height)

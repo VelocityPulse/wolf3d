@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 17:11:57 by                   #+#    #+#             */
-/*   Updated: 2016/05/02 13:00:27 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/02 15:52:10 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,30 +28,6 @@ static int		ft_tex_x(t_raycasting *r, int size_x)
 	if (r->side == 1 && r->ray_diry < 0)
 		tex_x = size_x - tex_x - 1;
 	return (tex_x);
-}
-
-int				ft_trace_top(t_trace_var *var, int x, int l_start, int octet)
-{
-	int 	position;
-	int		color;
-	int		o;
-	void	*data;
-	int		width;
-//	int		max_size;
-
-	position = x * octet;
-	color = 0x44CCFF;
-	data = var->data;
-	width = var->width;
-//	max_size = var->max_size;
-	o = -1;
-	while (++o < l_start)
-	{
-//		if (!(position < 0 || position > max_size))
-			ft_memcpy(data + position, &color, octet);
-		position += width;
-	}
-	return (position);
 }
 
 static int		ft_trace_tex(t_trace_var *var, int pos, int l_h, int size_y)
@@ -78,6 +54,30 @@ static int		ft_trace_tex(t_trace_var *var, int pos, int l_h, int size_y)
 	return (pos);
 }
 
+int				ft_trace_top(t_trace_var *var, int x, int l_start, int octet)
+{
+	int 	position;
+	int		color;
+	int		o;
+	void	*data;
+	int		width;
+//	int		max_size;
+
+	position = x * octet;
+	color = 0x44CCFF;
+	data = var->data;
+	width = var->width;
+//	max_size = var->max_size;
+	o = -1;
+	while (++o < l_start)
+	{
+//		if (!(position < 0 || position > max_size))
+			ft_memcpy(data + position, &color, octet);
+		position += width;
+	}
+	return (position);
+}
+
 void			ft_trace_bot(t_trace_var *var, int pos, int line_start)
 {
 	int 	octet;
@@ -91,23 +91,27 @@ void			ft_trace_bot(t_trace_var *var, int pos, int line_start)
 	octet = var->octet;
 	width = var->width;
 	max_size = var->max_size;
-	while (++line_start < var->mlx_height)
+	while (++line_start <= var->mlx_height)
 	{
 		if (!(pos < 0 || pos > max_size))
 			ft_memcpy(data + pos, &color, octet);
 		pos += width;
 	}
-
 }
+
+/*
+** ft_trace_bot(); and ft_trace_top(); aren't static because
+** they called in ft_trace_monocolor(); in trace_monocolor.c
+*/
 
 void			ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 {
 	t_raycasting	*r;
-	int				color;
+//	int				color;
 
-	int				width;
+//	int				width;
 	long int		position;
-	void			*data;
+//	void			*data;
 	t_trace_var		*var;
 
 	r = &w3d->r;
@@ -120,35 +124,5 @@ void			ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 		ft_trace_bot(var, position, var->line_start);
 	}
 	else
-	{
-		data = var->data;
-		width = var->width;
-		position = ft_trace_top(var, x, var->line_start, var->octet);
-		if (r->val == 1)
-			color = 0x555555;
-		else if (r->val == 2)
-			color = 0x00ff00;
-		else if (r->val == 3)
-			color = 0xff0000;
-		else if (r->val == 4)
-			color = 0x0000ff;
-		else
-			color = 0x0f0f00;
-		if (r->side == 1)
-		{
-			t_rgb c;
-			c = ft_get_rgb(color);
-			c.r /= 2;
-			c.g /= 2;
-			c.b /= 2;
-			color = ft_get_hexa(c);
-		}
-		while (++line_start < line_end)
-		{
-			if (!(position < 0 || position > var->max_size))
-				ft_memcpy(data + position, &color, var->octet);
-			position += width;
-		}
-		ft_trace_bot(var, position, var->line_start);
-	}
+		ft_trace_monocolor(w3d, line_start, line_end, x);
 }
