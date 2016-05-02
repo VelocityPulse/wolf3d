@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/29 14:48:19 by                  ###   ########.fr       */
+/*   Updated: 2016/05/02 13:00:36 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ void			ft_wolf3d(t_wolf3d *w3d)
 	x = -1;
 	while (++x < W_WIDTH)
 	{
-
 		init_ray(r, x);
 		calculate_step(r);
 		r->val = dda(r, w3d, &r->map_x, &r->map_y);

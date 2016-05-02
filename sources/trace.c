@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 17:11:57 by                   #+#    #+#             */
-/*   Updated: 2016/04/29 14:59:06 by                  ###   ########.fr       */
+/*   Updated: 2016/05/02 13:00:27 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int		ft_tex_x(t_raycasting *r, int size_x)
 	return (tex_x);
 }
 
-int				ft_trace_top(t_trace_var *var, int x, int line_start, int octet)
+int				ft_trace_top(t_trace_var *var, int x, int l_start, int octet)
 {
 	int 	position;
 	int		color;
@@ -45,7 +45,7 @@ int				ft_trace_top(t_trace_var *var, int x, int line_start, int octet)
 	width = var->width;
 //	max_size = var->max_size;
 	o = -1;
-	while (++o < line_start)
+	while (++o < l_start)
 	{
 //		if (!(position < 0 || position > max_size))
 			ft_memcpy(data + position, &color, octet);

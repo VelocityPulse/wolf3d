@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/29 14:48:06 by                  ###   ########.fr       */
+/*   Updated: 2016/05/02 13:00:34 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct	s_trace_var
 	double			*key_squat;
 	int				tex_val;
 	int				mlx_height;
+	char			cardinal;
 }				t_trace_var;
 
 typedef struct	s_wolf3d
@@ -141,6 +142,9 @@ void			ft_reset_wolf_horizon(t_wolf3d *w3d, double squat);
 
 void			ft_wolf3d(t_wolf3d *w3d);
 
+int				ft_trace_top(t_trace_var *var, int x, int l_start, int octet);
+void			ft_trace_bot(t_trace_var *var, int pos, int line_start);
+void			ft_trace_monocolor(t_wolf3d *w3d, int lstart, int lend, int x);
 void			ft_exit_wolf3d(t_wolf3d *w3d, const int exit);
 
 #endif
