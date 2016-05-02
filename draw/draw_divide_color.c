@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_clear_mlx.c                                   :+:      :+:    :+:   */
+/*   draw_divide_color.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/03 12:31:57 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/04/20 10:34:26 by                  ###   ########.fr       */
+/*   Created: 2016/05/02 15:07:48 by cchameyr          #+#    #+#             */
+/*   Updated: 2016/05/02 15:12:50 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
-void	ft_clear_mlx(t_mlx *mlx)
+int		ft_divide_color(int color)
 {
-	if (!mlx)
-		return ;
-	mlx_destroy_image(mlx->p_mlx, mlx->mlx_img->p_img);
-	ft_memdel((void **)&mlx->mlx_img);
-	mlx_clear_window(mlx->p_mlx, mlx->p_win);
-	mlx_destroy_window(mlx->p_mlx, mlx->p_win);
-	ft_memdel((void **)&mlx);
+	t_rgb	c;
+
+	c = ft_get_rgb(color);
+	c.r /= 2;
+	c.g /= 2;
+	c.b /= 2;
+	return (ft_get_rgb(c));
 }
