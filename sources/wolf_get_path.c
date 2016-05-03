@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/08 15:39:55 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/02 18:11:57 by cchameyr         ###   ########.fr       */
+/*   Created: 2016/05/03 11:55:18 by cchameyr          #+#    #+#             */
+/*   Updated: 2016/05/03 11:59:09 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,16 @@ void			get_map_path(t_wolf3d *w3d, const int fd)
 		nb_line++;
 	}
 	if (list == NULL)
-		ft_exit_wolf3d(w3d, 2);
+		ft_exit_wolf3d(w3d, 1);
 	if (!ft_check_map(w3d, list, 0, 0))
 	{
 		ft_lstline_del(list);
-		ft_exit_wolf3d(w3d, 1);
+		ft_exit_wolf3d(w3d, 5);
 	}
 	ft_line_to_tab(list, nb_line, w3d);
 	ft_lstline_del(list);
 	w3d->height = nb_line;
 	if (!ft_check_pos_spawn3(w3d))
 		ft_exit_wolf3d(w3d, 4);
-	ft_putstr("Completing void case...\n");
-//	ft_complete_case(w3d);
+	ft_complete_case(w3d);
 }

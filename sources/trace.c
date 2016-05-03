@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   trace.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  <>                                        +#+  +:+       +#+        */
+/*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/20 17:11:57 by                   #+#    #+#             */
-/*   Updated: 2016/05/03 12:03:00 by cchameyr         ###   ########.fr       */
+/*   Created: 2016/05/03 12:07:21 by cchameyr          #+#    #+#             */
+/*   Updated: 2016/05/03 12:08:04 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int		ft_trace_tex(t_trace_var *var, int pos, int l_h, int size_y)
 
 int				ft_trace_top(t_trace_var *var, int x, int l_start, int octet)
 {
-	int 	position;
+	int		position;
 	int		color;
 	int		o;
 	void	*data;
@@ -76,7 +76,7 @@ int				ft_trace_top(t_trace_var *var, int x, int l_start, int octet)
 
 void			ft_trace_bot(t_trace_var *var, int pos, int line_start)
 {
-	int 	octet;
+	int		octet;
 	int		color;
 	void	*data;
 	int		width;
@@ -110,7 +110,7 @@ void			ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x)
 	var = &w3d->var;
 	if (r->val >= 30 && r->val <= 37)
 	{
-		w3d->var.tex_val  = w3d->r.val - 30;
+		w3d->var.tex_val = w3d->r.val - 30;
 		position = ft_trace_top(var, x, var->line_start, var->octet);
 		position = ft_trace_tex(var, position, var->line_height, 0);
 		ft_trace_bot(var, position, var->line_start);
