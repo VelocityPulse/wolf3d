@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/02 16:30:01 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/03 14:31:07 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void		ft_open_fd(t_wolf3d *w3d, char *path)
 	ft_putstr(path);
 	ft_putstr(" SELECTED\nStart check map\n");
 	w3d->default_map = false;
-	get_map_path(w3d, fd);
+	get_map_path(w3d, fd, 0, NULL);
 	ft_putstr("All checks are good\n");
 	w3d->mlx = ft_mlx_init(W_WIDTH, W_HEIGHT, "wolf3d");
 }

@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/02 17:34:00 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/03 14:29:55 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int				mouse_wolf3d(int x, int y, t_wolf3d *w3d);
 int				loop_wolf3d(t_wolf3d *w3d);
 
 void			get_map1(t_wolf3d *w3d);
-void			get_map_path(t_wolf3d *w3d, const int fd);
+void			get_map_path(t_wolf3d *w3d, const int fd, int nb_l, char *line);
 int				ft_check_map(t_wolf3d *w3d, t_lstline *l, int max_x, int s);
 void			ft_complete_case(t_wolf3d *w3d);
 void			ft_display_map(t_wolf3d *w3d);
