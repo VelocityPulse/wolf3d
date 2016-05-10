@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 11:55:18 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/03 15:10:45 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/10 11:48:09 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void		ft_line_to_tab(t_lstline *list, int nb_line, t_wolf3d *w3d)
 
 static void		ft_exit_list(t_wolf3d *w3d, t_lstline *list, int nb_line)
 {
-	ft_putstr("ERROR:\nLINE : ");
+	ft_putstr("\n\033[31mERROR:\033[0m\nLINE : ");
 	ft_putnbr(nb_line + 1);
 	ft_putstr(" is empty\n");
 	ft_lstline_del(list);

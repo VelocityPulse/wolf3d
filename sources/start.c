@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/03 14:31:07 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/10 12:12:16 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ static void		ft_open_fd(t_wolf3d *w3d, char *path)
 
 	if (!path)
 	{
-		ft_putstr("Default_map SELECTED\n");
+		ft_putstr("Default_map : SELECTED\n");
 		w3d->default_map = true;
 		w3d->mlx = ft_mlx_init(W_WIDTH, W_HEIGHT, "wolf3d");
 		return ;
 	}
 	if ((fd = open(path, O_RDONLY)) == -1)
 	{
-		ft_putstr("\nERROR:\nBad path\n");
+		ft_putstr("\n\nERROR:\nBad path\n");
 		ft_exit_wolf3d(w3d, 1);
 	}
 	ft_putstr(path);
-	ft_putstr(" SELECTED\nStart check map\n");
+	ft_putstr(" : SELECTED\nStart check map\n");
 	w3d->default_map = false;
 	get_map_path(w3d, fd, 0, NULL);
 	ft_putstr("All checks are good\n");
@@ -80,6 +80,7 @@ void			ft_start(char *path)
 {
 	t_wolf3d	*w3d;
 
+	ft_putstr("\033[32mSTART\033[0m\n");
 	w3d = (t_wolf3d *)ft_memalloc(sizeof(t_wolf3d));
 	ft_open_fd(w3d, path);
 	ft_init_wolf3d(w3d);

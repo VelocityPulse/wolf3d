@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:32 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/03 12:53:28 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/10 12:13:08 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void		ft_exit_2(t_wolf3d *w3d)
 	int		i;
 
 	i = -1;
+	ft_putchar('\n');
 	ft_clear_image(w3d->mlx, w3d->t);
 	ft_clear_mlx(w3d->mlx);
 	ft_putstr("mlx :\t\tCLEAR\n");
@@ -42,6 +43,7 @@ static void		ft_exit_3(t_wolf3d *w3d)
 	int		i;
 
 	i = -1;
+	ft_putchar('\n');
 	ft_clear_list_textures(&w3d->t, w3d->t.list_text);
 	ft_clear_image(w3d->mlx, w3d->t);
 	ft_clear_mlx(w3d->mlx);
@@ -73,7 +75,6 @@ static void		ft_exit_4(t_wolf3d *w3d)
 
 void			ft_exit_wolf3d(t_wolf3d *w3d, const int exit_code)
 {
-	ft_putchar('\n');
 	if (exit_code == 1)
 		ft_exit_1(w3d);
 	else if (exit_code == 2)
@@ -84,7 +85,7 @@ void			ft_exit_wolf3d(t_wolf3d *w3d, const int exit_code)
 		ft_exit_4(w3d);
 	else if (exit_code == 5)
 	{
-		ft_putstr("Bad file\n");
+		ft_putstr("\n\033[31mERROR\033[0m\nBad file\n");
 		ft_exit_1(w3d);
 	}
 }
