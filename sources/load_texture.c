@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 12:08:49 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/03 12:08:50 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/10 11:32:15 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void			ft_load_textures(t_wolf3d *w3d, t_mlx *mlx, t_texture *t)
 	i += ft_load_image(mlx, &t->wood, "./images/wood.xpm");
 	if (i > 0)
 		ft_exit_wolf3d(w3d, 2);
-	ft_list_image(&w3d->t);
-	ft_list_texture(&w3d->t);
+	ft_list_image(t);
+	ft_list_texture(t);
 	ft_putstr("All textures loaded\n");
 }
