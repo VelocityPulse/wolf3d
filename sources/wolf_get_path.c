@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 11:55:18 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/11 11:03:11 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/11 11:06:21 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int		ft_void_line(t_wolf3d *w3d, t_lstline *list, int nb_l, char *l)
 {
 	static int		temp = 0;
 	static int		void_line = 0;
-	
+
 	if (l[0] == '\0' && temp == 0)
 	{
 		temp = 1;
