@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 12:08:49 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/11 11:28:52 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/11 11:38:44 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void			ft_load_textures(t_wolf3d *w3d, t_mlx *mlx, t_texture *t)
 	int		i;
 
 	i = 0;
-	ft_putstr("Loading textures ...\n");
+	ft_putstr("Loading textures...\n");
 	i += ft_load_image(mlx, &t->bluestone, "./images/bluestone.xpm");
 	i += ft_load_image(mlx, &t->colorstone, "./images/colorstone.xpm");
 	i += ft_load_image(mlx, &t->eagle, "./images/eagle.xpm");
