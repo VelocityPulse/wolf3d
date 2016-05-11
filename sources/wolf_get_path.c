@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 11:55:18 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/10 11:48:09 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/11 11:03:11 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,26 @@ static void		ft_line_to_tab(t_lstline *list, int nb_line, t_wolf3d *w3d)
 	}
 }
 
-static void		ft_exit_list(t_wolf3d *w3d, t_lstline *list, int nb_line)
+static int		ft_void_line(t_wolf3d *w3d, t_lstline *list, int nb_l, char *l)
 {
-	ft_putstr("\n\033[31mERROR:\033[0m\nLINE : ");
-	ft_putnbr(nb_line + 1);
-	ft_putstr(" is empty\n");
-	ft_lstline_del(list);
-	ft_exit_wolf3d(w3d, 1);
+	static int		temp = 0;
+	static int		void_line = 0;
+	
+	if (l[0] == '\0' && temp == 0)
+	{
+		temp = 1;
+		void_line = nb_l + 1;
+		return (1);
+	}
+	else if (l[0] != '\0' && temp == 1)
+	{
+		ft_putstr("\n\033[31mERROR:\033[0m\nLINE : ");
+		ft_putnbr(void_line);
+		ft_putstr(" is empty\n");
+		ft_lstline_del(list);
+		ft_exit_wolf3d(w3d, 1);
+	}
+	return (0);
 }
 
 void			get_map_path(t_wolf3d *w3d, const int fd, int nb_l, char *line)
@@ -52,10 +65,11 @@ void			get_map_path(t_wolf3d *w3d, const int fd, int nb_l, char *line)
 	list = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
-		if (line[0] == '\0')
-			ft_exit_list(w3d, list, nb_l);
-		list = ft_add_lstline(list, line);
-		nb_l++;
+		if (ft_void_line(w3d, list, nb_l, line) == 0)
+		{
+			list = ft_add_lstline(list, line);
+			nb_l++;
+		}
 	}
 	if (list == NULL)
 		ft_exit_wolf3d(w3d, 5);
