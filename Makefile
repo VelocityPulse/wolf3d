@@ -16,6 +16,9 @@ OUT =				MAC
 COMPILE_SDL =		YES
 #COMPILE_SDL =		NO
 
+#available on ubuntu or debian ect....
+XORGDEV = $(shell dpkg -s xorg-dev 2>&-)
+
 NAME =				wolf3d
 
 SRC =				./sources/main.c \
@@ -113,9 +116,18 @@ else
 $(NAME): $(PATHDYNLIB) $(LIBFT) $(OBJS)
 	$(CC) $(EXTRAFLAGS) $(OBJS) $(LIBFT) $(LFLAGS) -o $(NAME)
 
-$(PATHDYNLIB): #xorg-dev installed
+
+ifeq ($(XORGDEV),)
+$(PATHDYNLIB):
 	./$(PATHSDL)/configure
 	make -C ./$(PATHSDL)
+
+else
+$(PATHDYNLIB):
+	@echo "Package xorg-dev must be installed"
+	@kill -INT 0
+
+endif
 
 endif
 
