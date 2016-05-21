@@ -74,8 +74,9 @@ ifeq ($(OUT),MAC)
 
 ifeq ($(COMPILE_SDL),YES)
 DYNLIB =			libSDL2-2.0.0.dylib
+PATHDYNLIB =		./$(PATHSDL)/build/.libs/$(DYNLIB)
 LFLAGS =			-L$(PATHSDL)/build/.libs -lSDL2
-EDITLIB =			install_name_tool -change /usr/local/lib/$(DYNLIB) @executable_path/SDL2-2.0.4/build/.libs/$(DYNLIB) $(NAME)
+EDITLIB =			install_name_tool -change /usr/local/lib/$(DYNLIB) @executable_path/$(PATHDYNLIB) $(NAME)
 
 else
 LFLAGS =			-L$(PATHFRAMEWORKSDL)/Versions/Current -F. -framework SDL2 -framwork Cocoa
@@ -84,28 +85,39 @@ EDITLIB =			install_name_tool -change @rpath/SDL2.framework/Version/A/SDL2 @exec
 endif
 
 else
-DYNSDL =			libSDL2-2.0.so.0
-SPECIFYLIB =		-Wl, -R`pwd`/$(PATHSDL)/build/.libSDL2
+PATHDYNLIB =		./$(PATHSDL)/build/.libs/libSDL2-2.0.so.0
+SPECIFYLIB =		-Wl, -R`pwd`/$(PATHSDL)/build/.libs
 LFLAGS =			$(SPECIFYLIB) -L$(PATHSDL)/build/.libs -lSDL2
 
 endif
 
-
-
-
-
-
-
-
-
-
-
-
-
 all: $(NAME)
 
+ifeq ($(OUT),MAC)
+
+ifeq ($(COMPILE_SDL),YES)
+$(NAME): $(PATHDYNLIB) $(LIBFT) $(OBJS)
+	$(CC) $(EXTRAFLAGS) $(OBJS) $(LIBFT) $(LFLAGS) -o $(NAME)
+
+$(PATHDYNLIB):
+	./$(PATHSDL)/configure
+	make -C ./$(PATHSDL)
+
+else
 $(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(EXTRAFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+	$(CC) $(EXTRAFLAGS) $(OBJS) $(LIBFT) $(LFLAGS) -o $(NAME)
+
+endif
+
+else
+$(NAME): $(PATHDYNLIB) $(LIBFT) $(OBJS)
+	$(CC) $(EXTRAFLAGS) $(OBJS) $(LIBFT) $(LFLAGS) -o $(NAME)
+
+$(PATHDYNLIB): #xorg-dev installed
+	./$(PATHSDL)/configure
+	make -C ./$(PATHSDL)
+
+endif
 
 $(OBJS): $(LIBFT)
 	$(CC) $(EXTRAFLAGS) -c $(SRC)
@@ -118,6 +130,8 @@ clean:
 	make clean -C ./libft/
 
 fclean: clean
+	make clean -C ./$(PATHSDL)
+	rm -Rf ./$(PATHSDL)/build
 	$(RM) $(NAME) $(LIBFT)
 
 re: fclean all
