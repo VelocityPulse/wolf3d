@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 12:07:21 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/03 12:08:04 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/22 14:48:33 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ static int		ft_trace_tex(t_trace_var *var, int pos, int l_h, int size_y)
 	int			color;
 	long int	d;
 
-	size_y = var->t->list_img[var->tex_val]->size.y;
+	size_y = var->t->list_img[var->tex_val]->h;
 	colon = var->t->list_text[var->tex_val]
-	[ft_tex_x(var->r, var->t->list_img[var->tex_val]->size.x)];
+	[ft_tex_x(var->r, var->t->list_img[var->tex_val]->w)];
 	tmp = var->line_start + (*var->key_squat == 1 ? 0 : 120);
 	while (++var->line_start < var->line_end)
 	{
@@ -87,7 +87,7 @@ void			ft_trace_bot(t_trace_var *var, int pos, int line_start)
 	octet = var->octet;
 	width = var->width;
 	max_size = var->max_size;
-	while (++line_start <= var->mlx_height)
+	while (++line_start <= W_HEIGHT)
 	{
 		if (!(pos < 0 || pos > max_size))
 			ft_memcpy(data + pos, &color, octet);

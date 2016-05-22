@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/22 12:33:30 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/22 14:48:41 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void		ft_open_fd(t_wolf3d *w3d, char *path)
 	{
 		ft_putstr("Default_map : SELECTED\n");
 		w3d->default_map = true;
-		w3d->env = ft_init_sdl(W_WIDTH, W_HEIGHT, "wolf3d");
+		w3d->env = ft_init_sdl(w3d, W_WIDTH, W_HEIGHT, "wolf3d");
 		return ;
 	}
 	ft_putstr("Opening file...\n");
@@ -46,7 +46,7 @@ static void		ft_open_fd(t_wolf3d *w3d, char *path)
 	w3d->default_map = false;
 	get_map_path(w3d, fd, 0, NULL);
 	ft_putstr("All checks are good\n\n");
-	w3d->env = ft_init_sdl(W_WIDTH, W_HEIGHT, "wolf3d");
+	w3d->env = ft_init_sdl(w3d, W_WIDTH, W_HEIGHT, "wolf3d");
 }
 
 static void		ft_init_wolf3d(t_wolf3d *w3d)
@@ -67,14 +67,13 @@ static void		ft_init_wolf3d(t_wolf3d *w3d)
 		get_map1(w3d);
 	}
 	ft_init_rc(w3d);
-	w3d->var.data = w3d->mlx->mlx_img->data;
-	w3d->var.width = w3d->mlx->mlx_img->width;
-	w3d->var.octet = w3d->mlx->mlx_img->octet;
-	w3d->var.max_size = w3d->mlx->mlx_img->max_size;
+	w3d->var.data = w3d->env->img->pixels;
+	w3d->var.width = w3d->env->img->w * w3d->env->img->format->BytesPerPixel;
+	w3d->var.octet = w3d->env->img->format->BytesPerPixel;
+	w3d->var.max_size = w3d->var.width * w3d->env->img->h;
 	w3d->var.r = &w3d->r;
 	w3d->var.t = &w3d->t;
 	w3d->var.key_squat = &w3d->key_squat;
-	w3d->var.mlx_height = w3d->mlx->height;
 }
 
 void			ft_start(char *path)

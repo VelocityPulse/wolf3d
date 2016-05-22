@@ -27,7 +27,6 @@ SRC =				./sources/main.c \
 					./sources/wolf_map.c \
 					./sources/wolf3d.c \
 					./sources/edit_wolf.c \
-					./sources/reset_image.c \
 					./sources/delta_time.c \
 					./sources/get_next_line.c \
 					./sources/wolf_get_path.c \
@@ -49,7 +48,6 @@ OBJS =				./main.o \
 					./wolf_map.o \
 					./wolf3d.o \
 					./edit_wolf.o \
-					./reset_image.o \
 					./delta_time.o \
 					./get_next_line.o \
 					./wolf_get_path.o \
