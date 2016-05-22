@@ -63,9 +63,9 @@ OBJS =				./main.o \
 
 LIBFT =				./libft/libft.a
 
-PATHSDL =			./SDL2-2.0.4
+PATHSDL =			SDL2-2.0.4
 
-PATHFRAMEWORKSDL =	./SDL.framework
+PATHFRAMEWORKSDL =	SDL.framework
 
 EXTRAFLAGS =		-fsanitize=address -Wall -Wextra -Werror
 
@@ -103,8 +103,8 @@ $(NAME): $(PATHDYNLIB) $(LIBFT) $(OBJS)
 	$(CC) $(EXTRAFLAGS) $(OBJS) $(LIBFT) $(LFLAGS) -o $(NAME)
 
 $(PATHDYNLIB):
-	./$(PATHSDL)/configure
-	make -C ./$(PATHSDL)
+	@echo "$(PATHDYNLIB)"
+	cd $(PATHSDL) && ./configure && make
 
 else
 $(NAME): $(LIBFT) $(OBJS)
@@ -119,8 +119,7 @@ $(NAME): $(PATHDYNLIB) $(LIBFT) $(OBJS)
 
 ifeq ($(XORGDEV),)
 $(PATHDYNLIB):
-	./$(PATHSDL)/configure
-	make -C ./$(PATHSDL)
+	cd $(PATHSDL) && ./configure && make
 
 else
 $(PATHDYNLIB):
@@ -137,13 +136,23 @@ $(OBJS): $(LIBFT)
 $(LIBFT):
 	make -C ./libft/
 
+ifeq ($(COMPILE_SDL),YES)
+fclean: clean
+	$(RM) $(NAME) $(LIBFT)
+	make clean -C ./libft/
+	make clean -C ./$(PATHSDL)
+
+else
+fclean: clean
+	$(RM) $(OBJS)
+	make clean -C ./libft/
+
+endif
+
 clean:
 	$(RM) $(OBJS)
 	make clean -C ./libft/
 
-fclean: clean
-	make clean -C ./$(PATHSDL)
-	rm -Rf ./$(PATHSDL)/build
-	$(RM) $(NAME) $(LIBFT)
+r: clean all
 
 re: fclean all
