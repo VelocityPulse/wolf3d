@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/03 14:29:55 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/22 12:55:27 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdbool.h>
+# include "../SDL2-2.0.4/include/SDL.h"
 # include "delta_time.h"
 # include "libft.h"
-# include "draw.h"
 # include "get_next_line.h"
-# include "../libmlx/mlx.h"
-# include "../libmlx/X.h"
 
 # include "debug.h"
 
@@ -34,24 +32,27 @@
 # define _SOUTH_ 2
 # define _WEST_ 1
 
-typedef struct	s_wolf_line
+typedef struct	s_env
 {
-	int		line_start;
-	int		line_end;
-}				t_wolf_line;
+	SDL_Window		*win;
+	SDL_Surface		*img;
+	SDL_Event		events;
+	int				width;
+	int				height;
+}				t_env;
 
 typedef struct	s_texture
 {
-	t_img	bluestone;
-	t_img	colorstone;
-	t_img	eagle;
-	t_img	greystone;
-	t_img	mossy;
-	t_img	purplestone;
-	t_img	redbrick;
-	t_img	wood;
-	int		***list_text;
-	t_img	**list_img;
+	SDL_Surface		*bluestone;
+	SDL_Surface		*colorstone;
+	SDL_Surface		*eagle;
+	SDL_Surface		*greystone;
+	SDL_Surface		*mossy;
+	SDL_Surface		*purplestone;
+	SDL_Surface		*redbrick;
+	SDL_Surface		*wood;
+	int				***list_text;
+	SDL_Surface		***list_img;
 }				t_texture;
 
 typedef struct	s_raycasting
@@ -98,7 +99,7 @@ typedef struct	s_trace_var
 
 typedef struct	s_wolf3d
 {
-	t_mlx			*mlx;
+	t_env			*env;
 	t_ptd			start_pos;
 	int				key1;
 	int				key2;
@@ -116,6 +117,9 @@ typedef struct	s_wolf3d
 	t_texture		t;
 	t_raycasting	r;
 }				t_wolf3d;
+
+t_env			*ft_init_sdl(t_wolf3d *w3d, int width, int height, char *name);
+void			ft_destroy_env(t_env *env);
 
 void			ft_start(char *path);
 int				press_wolf3d(int keycode, t_wolf3d *w3d);
@@ -136,7 +140,7 @@ int				ft_check_pos_spawn3(t_wolf3d *w3d);
 
 void			ft_load_textures(t_wolf3d *w3d, t_mlx *mlx, t_texture *t);
 void			ft_clear_list_textures(t_texture *t, int ***list_text);
-void			ft_clear_image(t_mlx *mlx, t_texture t);
+void			ft_clear_image(t_texture t);
 
 void			ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x);
 

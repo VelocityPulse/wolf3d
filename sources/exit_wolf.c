@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:32 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/10 12:13:08 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/22 13:47:48 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void		ft_exit_2(t_wolf3d *w3d)
 
 	i = -1;
 	ft_putchar('\n');
-	ft_clear_image(w3d->mlx, w3d->t);
-	ft_clear_mlx(w3d->mlx);
+	ft_clear_image(w3d->t);
+	ft_destroy_env(w3d->env);
 	ft_putstr("mlx :\t\tCLEAR\n");
 	while (++i < w3d->height)
 		ft_memdel((void **)&w3d->map[i]);
@@ -45,8 +45,8 @@ static void		ft_exit_3(t_wolf3d *w3d)
 	i = -1;
 	ft_putchar('\n');
 	ft_clear_list_textures(&w3d->t, w3d->t.list_text);
-	ft_clear_image(w3d->mlx, w3d->t);
-	ft_clear_mlx(w3d->mlx);
+	ft_clear_image(w3d->t);
+	ft_destroy_env(w3d->env);
 	ft_putstr("mlx :\t\tCLEAR\n");
 	while (++i < w3d->height)
 		ft_memdel((void **)&w3d->map[i]);

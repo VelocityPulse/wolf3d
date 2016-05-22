@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/11 11:35:49 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/22 12:33:30 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void		ft_open_fd(t_wolf3d *w3d, char *path)
 	{
 		ft_putstr("Default_map : SELECTED\n");
 		w3d->default_map = true;
-		w3d->mlx = ft_mlx_init(W_WIDTH, W_HEIGHT, "wolf3d");
+		w3d->env = ft_init_sdl(W_WIDTH, W_HEIGHT, "wolf3d");
 		return ;
 	}
 	ft_putstr("Opening file...\n");
@@ -46,7 +46,7 @@ static void		ft_open_fd(t_wolf3d *w3d, char *path)
 	w3d->default_map = false;
 	get_map_path(w3d, fd, 0, NULL);
 	ft_putstr("All checks are good\n\n");
-	w3d->mlx = ft_mlx_init(W_WIDTH, W_HEIGHT, "wolf3d");
+	w3d->env = ft_init_sdl(W_WIDTH, W_HEIGHT, "wolf3d");
 }
 
 static void		ft_init_wolf3d(t_wolf3d *w3d)
@@ -85,7 +85,7 @@ void			ft_start(char *path)
 	w3d = (t_wolf3d *)ft_memalloc(sizeof(t_wolf3d));
 	ft_open_fd(w3d, path);
 	ft_init_wolf3d(w3d);
-	ft_load_textures(w3d, w3d->mlx, &w3d->t);
+	ft_load_textures(w3d, w3d->env, &w3d->t);
 	ft_putstr("Press M for see MAP\n");
 	ft_putstr("Press F for see FPS\n");
 	mlx_hook(w3d->mlx->p_win, KeyPress, KeyPressMask, press_wolf3d, w3d);

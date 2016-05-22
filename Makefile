@@ -39,7 +39,9 @@ SRC =				./sources/main.c \
 					./sources/load_texture.c \
 					./sources/clear_texture.c \
 					./sources/trace.c \
-					./sources/trace_monocolor.c
+					./sources/trace_monocolor.c \
+					./sources/init_sdl.c \
+					./sources/destroy_sdl_env.c
 
 OBJS =				./main.o \
 					./start.o \
@@ -59,7 +61,9 @@ OBJS =				./main.o \
 					./load_texture.o \
 					./clear_texture.o \
 					./trace.o \
-					./trace_monocolor.o
+					./trace_monocolor.o \
+					./init_sdl.o \
+					./destroy_sdl_env.o
 
 LIBFT =				./libft/libft.a
 
