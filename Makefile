@@ -10,149 +10,88 @@
 #                                                                              #
 # **************************************************************************** #
 
-OUT =				MAC
-#OUT =				LINUX
+NAME =			wolf3d
 
-COMPILE_SDL =		YES
-#COMPILE_SDL =		NO
+SRC =			./sources/main.c \
+				./sources/start.c \
+				./sources/wolf_hook.c \
+				./sources/wolf_map.c \
+				./sources/wolf3d.c \
+				./sources/edit_wolf.c \
+				./sources/reset_image.c \
+				./sources/delta_time.c \
+				./sources/get_next_line.c \
+				./sources/wolf_get_path.c \
+				./sources/exit_wolf.c \
+				./sources/wolf_check_map.c \
+				./sources/error_text.c \
+				./sources/wolf_complete_case.c \
+				./sources/display_map.c \
+				./sources/load_texture.c \
+				./sources/clear_texture.c \
+				./sources/trace.c \
+				./sources/trace_monocolor.c
 
-#available on ubuntu or debian ect....
-XORGDEV = $(shell dpkg -s xorg-dev 2>&-)
+OBJS =			./main.o \
+				./start.o \
+				./wolf_hook.o \
+				./wolf_map.o \
+				./wolf3d.o \
+				./edit_wolf.o \
+				./reset_image.o \
+				./delta_time.o \
+				./get_next_line.o \
+				./wolf_get_path.o \
+				./exit_wolf.o \
+				./wolf_check_map.o \
+				./error_text.o \
+				./wolf_complete_case.o \
+				./display_map.o \
+				./load_texture.o \
+				./clear_texture.o \
+				./trace.o \
+				./trace_monocolor.o
 
-NAME =				wolf3d
+DRAW =			./draw/draw.a
 
-SRC =				./sources/main.c \
-					./sources/start.c \
-					./sources/wolf_hook.c \
-					./sources/wolf_map.c \
-					./sources/wolf3d.c \
-					./sources/edit_wolf.c \
-					./sources/reset_image.c \
-					./sources/delta_time.c \
-					./sources/get_next_line.c \
-					./sources/wolf_get_path.c \
-					./sources/exit_wolf.c \
-					./sources/wolf_check_map.c \
-					./sources/error_text.c \
-					./sources/wolf_complete_case.c \
-					./sources/display_map.c \
-					./sources/load_texture.c \
-					./sources/clear_texture.c \
-					./sources/trace.c \
-					./sources/trace_monocolor.c
+LIBFT =			./libft/libft.a
 
-OBJS =				./main.o \
-					./start.o \
-					./wolf_hook.o \
-					./wolf_map.o \
-					./wolf3d.o \
-					./edit_wolf.o \
-					./reset_image.o \
-					./delta_time.o \
-					./get_next_line.o \
-					./wolf_get_path.o \
-					./exit_wolf.o \
-					./wolf_check_map.o \
-					./error_text.o \
-					./wolf_complete_case.o \
-					./display_map.o \
-					./load_texture.o \
-					./clear_texture.o \
-					./trace.o \
-					./trace_monocolor.o
+LIBMLX =		./libmlx/libmlx.a
 
-LIBFT =				./libft/libft.a
+LMLX =			#-lmlx
 
-PATHSDL =			SDL2-2.0.4
+FRAMEWORK =		$(LMLX) -framework OpenGL -framework AppKit -o3
 
-PATHFRAMEWORKSDL =	SDL.framework
+FLAGS =			-fsanitize=address -Wall -Wextra -Werror
 
-EXTRAFLAGS =		-fsanitize=address -Wall -Wextra -Werror
+CC =			gcc
 
-CC =				gcc
-
-RM =				rm -f
-
-ifeq ($(OUT),MAC)
-
-ifeq ($(COMPILE_SDL),YES)
-DYNLIB =			libSDL2-2.0.0.dylib
-PATHDYNLIB =		./$(PATHSDL)/build/.libs/$(DYNLIB)
-LFLAGS =			-L$(PATHSDL)/build/.libs -lSDL2
-EDITLIB =			install_name_tool -change /usr/local/lib/$(DYNLIB) @executable_path/$(PATHDYNLIB) $(NAME)
-
-else
-LFLAGS =			-L$(PATHFRAMEWORKSDL)/Versions/Current -F. -framework SDL2 -framwork Cocoa
-EDITLIB =			install_name_tool -change @rpath/SDL2.framework/Version/A/SDL2 @executable_path/SDL2.framework/SDL2 $(NAME) && install_name_tool -change @executable_path/../Frameworks/$(PATHFRAMEWORKSDL)/SDL2 @executable_path/$(PATHFRAMEWORKSDL)/SDL2
-
-endif
-
-else
-PATHDYNLIB =		./$(PATHSDL)/build/.libs/libSDL2-2.0.so.0
-SPECIFYLIB =		-Wl, -R`pwd`/$(PATHSDL)/build/.libs
-LFLAGS =			$(SPECIFYLIB) -L$(PATHSDL)/build/.libs -lSDL2
-
-endif
+RM =			rm -f
 
 all: $(NAME)
 
-ifeq ($(OUT),MAC)
+$(NAME): $(LIBFT) $(LIBMLX) $(DRAW) $(OBJS)
+	$(CC) $(FLAGS) $(FRAMEWORK) $(OBJS) $(LIBFT) $(LIBMLX) $(DRAW) -o $(NAME)
 
-ifeq ($(COMPILE_SDL),YES)
-$(NAME): $(PATHDYNLIB) $(LIBFT) $(OBJS)
-	$(CC) $(EXTRAFLAGS) $(OBJS) $(LIBFT) $(LFLAGS) -o $(NAME)
-
-$(PATHDYNLIB):
-	@echo "$(PATHDYNLIB)"
-	cd $(PATHSDL) && ./configure && make
-
-else
-$(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(EXTRAFLAGS) $(OBJS) $(LIBFT) $(LFLAGS) -o $(NAME)
-
-endif
-
-else
-$(NAME): $(PATHDYNLIB) $(LIBFT) $(OBJS)
-	$(CC) $(EXTRAFLAGS) $(OBJS) $(LIBFT) $(LFLAGS) -o $(NAME)
-
-
-ifeq ($(XORGDEV),)
-$(PATHDYNLIB):
-	cd $(PATHSDL) && ./configure && make
-
-else
-$(PATHDYNLIB):
-	@echo "Package xorg-dev must be installed"
-	@kill -INT 0
-
-endif
-
-endif
-
-$(OBJS): $(LIBFT)
-	$(CC) $(EXTRAFLAGS) -c $(SRC)
+$(OBJS): $(LIBFT) $(LIBMLX) $(DRAW)
+	$(CC) $(FLAGS) -c $(SRC)
 
 $(LIBFT):
 	make -C ./libft/
 
-ifeq ($(COMPILE_SDL),YES)
-fclean: clean
-	$(RM) $(NAME) $(LIBFT)
-	make clean -C ./libft/
-	make clean -C ./$(PATHSDL)
+$(DRAW):
+	make -C ./draw/
 
-else
-fclean: clean
-	$(RM) $(OBJS)
-	make clean -C ./libft/
-
-endif
+$(LIBMLX):
+	make -C ./libmlx/
 
 clean:
 	$(RM) $(OBJS)
+	make clean -C ./draw/
 	make clean -C ./libft/
+	make clean -C ./libmlx/
 
-r: clean all
+fclean: clean
+	$(RM) $(NAME) $(LIBFT) $(DRAW) $(LIBMLX)
 
 re: fclean all
