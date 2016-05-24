@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:32 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/24 11:09:54 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/24 11:13:39 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static void		ft_exit_3(t_wolf3d *w3d)
 		ft_memdel((void **)&w3d->map[i]);
 	ft_memdel((void **)w3d->map);
 	ft_putstr("Map tab :\tCLEAR\n");
-	free(w3d->t.list_img);
 	ft_memdel((void **)&w3d->len_map);
 	ft_memdel((void **)&w3d);
 	ft_putstr("Wolf3d :\tCLEAR\n\n");
