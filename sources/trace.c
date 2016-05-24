@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 12:07:21 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/03 12:08:04 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/22 14:48:01 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int				ft_trace_top(t_trace_var *var, int x, int l_start, int octet)
 		ft_memcpy(data + position, &color, octet);
 		position += width;
 	}
+
 	return (position);
 }
 
@@ -87,7 +88,7 @@ void			ft_trace_bot(t_trace_var *var, int pos, int line_start)
 	octet = var->octet;
 	width = var->width;
 	max_size = var->max_size;
-	while (++line_start <= var->mlx_height)
+	while (++line_start <= W_HEIGHT)
 	{
 		if (!(pos < 0 || pos > max_size))
 			ft_memcpy(data + pos, &color, octet);

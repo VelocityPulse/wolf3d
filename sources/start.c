@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/11 11:35:49 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/22 14:49:10 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ static void		ft_init_wolf3d(t_wolf3d *w3d)
 	w3d->var.r = &w3d->r;
 	w3d->var.t = &w3d->t;
 	w3d->var.key_squat = &w3d->key_squat;
-	w3d->var.mlx_height = w3d->mlx->height;
 }
 
 void			ft_start(char *path)

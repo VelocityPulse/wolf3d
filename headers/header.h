@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/03 14:29:55 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/22 14:51:16 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@
 # define _SOUTH_ 2
 # define _WEST_ 1
 
-typedef struct	s_wolf_line
-{
-	int		line_start;
-	int		line_end;
-}				t_wolf_line;
 
 typedef struct	s_texture
 {
@@ -92,7 +87,6 @@ typedef struct	s_trace_var
 	int				size_y;
 	double			*key_squat;
 	int				tex_val;
-	int				mlx_height;
 	char			cardinal;
 }				t_trace_var;
 
@@ -143,7 +137,6 @@ void			ft_trace(t_wolf3d *w3d, int line_start, int line_end, int x);
 void			ft_edit_wolf3d(t_wolf3d *w3d);
 void			edit_direction(t_wolf3d *w3d, t_ptd *dir, t_ptd *p);
 void			ft_init_rc(t_wolf3d *w3d);
-void			ft_reset_wolf_horizon(t_wolf3d *w3d, double squat);
 
 void			ft_wolf3d(t_wolf3d *w3d);
 
