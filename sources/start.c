@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/22 14:48:41 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/24 13:26:47 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,11 @@ void			ft_start(char *path)
 	w3d = (t_wolf3d *)ft_memalloc(sizeof(t_wolf3d));
 	ft_open_fd(w3d, path);
 	ft_init_wolf3d(w3d);
-	ft_load_textures(w3d, w3d->env, &w3d->t);
+	ft_load_textures(w3d, &w3d->t);
 	ft_putstr("Press M for see MAP\n");
 	ft_putstr("Press F for see FPS\n");
+	ft_run(w3d);
+
 	mlx_hook(w3d->mlx->p_win, KeyPress, KeyPressMask, press_wolf3d, w3d);
 	mlx_hook(w3d->mlx->p_win, KeyRelease, KeyPressMask, unpress_wolf3d, w3d);
 	mlx_hook(w3d->mlx->p_win, MotionNotify, KeyPressMask, mouse_wolf3d, w3d);

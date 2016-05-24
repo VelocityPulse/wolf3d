@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/22 14:50:30 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/24 11:25:36 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct	s_wolf3d
 	int				*len_map;
 	int				**map;
 	int				height;
+	int				scanvalue[285];
 	t_trace_var		var;
 	t_texture		t;
 	t_raycasting	r;
