@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 12:08:41 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/03 12:08:43 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/24 14:04:04 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,6 @@ int				loop_wolf3d(t_wolf3d *w3d)
 	start_delta(&w3d->d);
 	ft_wolf3d(w3d);
 	end_delta(&w3d->d);
-	get_deltatime(&w3d->d, w3d->fps_mode);
+	get_delta(&w3d->d, w3d->fps_mode);
 	return (0);
 }
