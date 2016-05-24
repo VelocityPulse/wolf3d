@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/24 11:25:36 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/24 14:01:03 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,12 @@ typedef struct	s_wolf3d
 {
 	t_env			*env;
 	t_ptd			start_pos;
-	int				key1;
-	int				key2;
-	int				key3;
-	int				key_sprint;
-	double			key_squat;
-	double			diff_x;
-	int				fps_mode;
+//	int				key1;
+//	int				key2;
+//	int				key3;
+//	int				key_sprint;
+//	double			key_squat;
+//	double			diff_x;
 	t_delta			d;
 	bool			default_map;
 	int				*len_map;
@@ -122,10 +121,10 @@ t_env			*ft_init_sdl(t_wolf3d *w3d, int width, int height, char *name);
 void			ft_destroy_env(t_env *env);
 
 void			ft_start(char *path);
-int				press_wolf3d(int keycode, t_wolf3d *w3d);
-int				unpress_wolf3d(int keycode, t_wolf3d *w3d);
-int				mouse_wolf3d(int x, int y, t_wolf3d *w3d);
-int				loop_wolf3d(t_wolf3d *w3d);
+//int				press_wolf3d(int keycode, t_wolf3d *w3d);
+//int				unpress_wolf3d(int keycode, t_wolf3d *w3d);
+//int				mouse_wolf3d(int x, int y, t_wolf3d *w3d);
+//int				loop_wolf3d(t_wolf3d *w3d);
 
 void			get_map1(t_wolf3d *w3d);
 void			get_map_path(t_wolf3d *w3d, const int fd, int nb_l, char *line);
@@ -148,6 +147,7 @@ void			ft_edit_wolf3d(t_wolf3d *w3d);
 void			edit_direction(t_wolf3d *w3d, t_ptd *dir, t_ptd *p);
 void			ft_init_rc(t_wolf3d *w3d);
 
+void			ft_run(t_wolf3d *w3d);
 void			ft_wolf3d(t_wolf3d *w3d);
 
 int				ft_trace_top(t_trace_var *var, int x, int l_start, int octet);

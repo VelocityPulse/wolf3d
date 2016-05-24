@@ -6,7 +6,7 @@
 #    By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/15 16:45:32 by cchameyr          #+#    #+#              #
-#*   Updated: 2016/04/22 12:29:28 by                  ###   ########.fr       *#
+#*   Updated: 2016/05/24 14:43:43 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ NAME =				wolf3d
 
 SRC =				./sources/main.c \
 					./sources/start.c \
-					./sources/wolf_hook.c \
 					./sources/wolf_map.c \
 					./sources/wolf3d.c \
 					./sources/edit_wolf.c \
@@ -40,11 +39,11 @@ SRC =				./sources/main.c \
 					./sources/trace.c \
 					./sources/trace_monocolor.c \
 					./sources/init_sdl.c \
-					./sources/destroy_sdl_env.c
+					./sources/destroy_sdl_env.c \
+					./sources/wolf_run.c
 
 OBJS =				./main.o \
 					./start.o \
-					./wolf_hook.o \
 					./wolf_map.o \
 					./wolf3d.o \
 					./edit_wolf.o \
@@ -61,7 +60,8 @@ OBJS =				./main.o \
 					./trace.o \
 					./trace_monocolor.o \
 					./init_sdl.o \
-					./destroy_sdl_env.o
+					./destroy_sdl_env.o \
+					./wolf_run.o
 
 LIBFT =				./libft/libft.a
 
@@ -103,6 +103,7 @@ ifeq ($(OUT),MAC)
 ifeq ($(COMPILE_SDL),YES)
 $(NAME): $(PATHDYNLIB) $(LIBFT) $(OBJS)
 	$(CC) $(EXTRAFLAGS) $(OBJS) $(LIBFT) $(LFLAGS) -o $(NAME)
+	$(EDITLIB)
 
 $(PATHDYNLIB):
 	@echo "$(PATHDYNLIB)"
@@ -111,6 +112,7 @@ $(PATHDYNLIB):
 else
 $(NAME): $(LIBFT) $(OBJS)
 	$(CC) $(EXTRAFLAGS) $(OBJS) $(LIBFT) $(LFLAGS) -o $(NAME)
+	$(EDITLIB)
 
 endif
 
