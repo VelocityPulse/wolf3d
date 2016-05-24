@@ -6,13 +6,13 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 15:56:26 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/11 11:11:33 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/24 11:29:29 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/delta_time.h"
 
-void	get_deltatime(t_delta *d, const int fps_mode)
+void	get_delta(t_delta *d, const int fps_mode)
 {
 	static double		timer = 0;
 
