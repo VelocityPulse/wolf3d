@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 11:55:18 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/11 11:06:21 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/26 14:30:00 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ static void		ft_line_to_tab(t_lstline *list, int nb_line, t_wolf3d *w3d)
 	{
 		str = ft_strsplit(list->line, ' ');
 		w3d->len_map[y] = ft_memlen((void **)str);
-		w3d->map[y] = (int *)ft_memalloc(sizeof(int) * (w3d->len_map[y] + 1));
+		w3d->map[y] = (int *)ft_memalloc(sizeof(int) * (w3d->len_map[y]));
 		x = -1;
 		while (str[++x])
 			w3d->map[y][x] = ft_atoi(str[x]);
+
 		while (x--)
 			ft_memdel((void **)&str[x]);
-		ft_memdel((void **)str);
+		free(str);
 		list = list->next;
 	}
 }

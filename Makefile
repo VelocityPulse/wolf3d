@@ -48,7 +48,7 @@ OBJS =			./main.o \
 				./load_texture.o \
 				./clear_texture.o \
 				./trace.o \
-				./trace_monocolor.o
+								./trace_monocolor.o
 
 DRAW =			./draw/draw.a
 
