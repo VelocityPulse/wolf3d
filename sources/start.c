@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/26 14:36:09 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/27 14:41:57 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void			ft_start(char *path)
 {
 	t_wolf3d	*w3d;
 
-	ft_putstr("\033[32m--- START ---\033[0m\n");
 	w3d = (t_wolf3d *)ft_memalloc(sizeof(t_wolf3d));
+	ft_putstr("\033[32m--- START ---\033[0m\n");
 	ft_open_fd(w3d, path);
 	ft_init_wolf3d(w3d);
 	ft_load_textures(w3d, w3d->mlx, &w3d->t);
