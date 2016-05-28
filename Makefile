@@ -125,12 +125,12 @@ $(NAME): $(PATHDYNLIB) $(LIBFT) $(OBJS)
 
 ifeq ($(XORGDEV),)
 $(PATHDYNLIB):
-	cd $(PATHSDL) && ./configure && make -j
+	@echo "Package xorg-dev must be installed"
+	@kill -INT 0
 
 else
 $(PATHDYNLIB):
-	@echo "Package xorg-dev must be installed"
-	@kill -INT 0
+	cd $(PATHSDL) && ./configure && make -j
 
 endif
 
