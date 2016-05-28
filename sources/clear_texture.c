@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 11:59:40 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/24 14:15:03 by                  ###   ########.fr       */
+/*   Updated: 2016/05/28 10:15:12 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void			ft_clear_list_textures(t_texture *t, int ***list_text)
 		y = t->list_img[i]->size.y;
 		while (y--)
 			ft_memdel((void **)&list_text[i][y]);
-		ft_memdel((void **)list_text[i]);
+		free(list_text[i]);
 	}
 	free(list_text);
 	free(t->list_img);

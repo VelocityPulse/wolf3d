@@ -60,7 +60,9 @@ LMLX =			#-lmlx
 
 FRAMEWORK =		$(LMLX) -framework OpenGL -framework AppKit -o3
 
-FLAGS =			-fsanitize=address -Wall -Wextra -Werror -g3
+SEGDEBUG =		-fsanitize=address
+
+FLAGS =			-Wall -Wextra -Werror -g3 #$(SEGDEBUG)
 
 CC =			gcc
 

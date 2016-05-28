@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:32 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/27 14:46:03 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/28 10:15:37 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void		ft_exit_2(t_wolf3d *w3d)
 	ft_putstr("mlx :\t\tCLEAR\n");
 	while (++i < w3d->height)
 		ft_memdel((void **)&w3d->map[i]);
-	ft_memdel((void **)w3d->map);
+	free(w3d->map);
 	ft_putstr("Map tab :\tCLEAR\n");
 	ft_memdel((void **)&w3d->len_map);
 	ft_memdel((void **)&w3d);
@@ -50,12 +50,11 @@ static void		ft_exit_3(t_wolf3d *w3d)
 	ft_putstr("mlx :\t\tCLEAR\n");
 	while (++i < w3d->height)
 		ft_memdel((void **)&w3d->map[i]);
-	ft_memdel((void **)w3d->map);
+	free(w3d->map);
 	ft_putstr("Map tab :\tCLEAR\n");
 	ft_memdel((void **)&w3d->len_map);
 	ft_memdel((void **)&w3d);
 	ft_putstr("Wolf3d :\tCLEAR\n\n");
-	sleep(100000000);
 	exit(0);
 }
 
@@ -66,7 +65,7 @@ static void		ft_exit_4(t_wolf3d *w3d)
 	i = -1;
 	while (++i < w3d->height)
 		ft_memdel((void **)&w3d->map[i]);
-	ft_memdel((void **)w3d->map);
+	free(w3d->map);
 	ft_putstr("Map tab :\tCLEAR\n");
 	ft_memdel((void **)&w3d->len_map);
 	ft_memdel((void **)&w3d);
