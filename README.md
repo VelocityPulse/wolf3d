@@ -8,6 +8,6 @@ Now you must open the Makefile and modify OUT variable to "linux"
 
 make
 
-# REQUIRED 
+# required
 
 xorg-dev package (for linux only)
