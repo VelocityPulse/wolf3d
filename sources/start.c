@@ -63,7 +63,7 @@ static void		ft_init_wolf3d(t_wolf3d *w3d)
 	w3d->d.elipsed_time = 0;
 	if (w3d->default_map == true)
 	{
-		w3d->start_pos = ft_make_ptd(3, 2);
+		w3d->start_pos = ft_make_ptd(3.05, 2.05);
 		get_map1(w3d);
 	}
 	ft_init_rc(w3d);
