@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 12:09:37 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/28 11:17:47 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/28 11:22:53 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void			edit_direction(t_wolf3d *w3d, t_ptd *dir, t_ptd *p)
 
 void			ft_edit_wolf3d(t_wolf3d *w3d)
 {
-	if (w3d->scanvalue[SDL_SCANCODE_ESCAPE] == 1)
+	if (w3d->scanvalue[SDL_SCANCODE_SPACE] == 1)
 		ft_init_rc(w3d);
 	edit_backfront(w3d, &w3d->r.pos, &w3d->r.dir);
 	edit_lateral(w3d, &w3d->r.pos, &w3d->r.dir);
