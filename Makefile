@@ -13,8 +13,8 @@
 OUT =				MAC
 #OUT =				LINUX
 
-COMPILE_SDL =		YES
-#COMPILE_SDL =		NO
+#COMPILE_SDL =		YES
+COMPILE_SDL =		NO
 
 #available on ubuntu or debian ect....
 XORGDEV = $(shell dpkg -s xorg-dev 2>&-)
@@ -67,7 +67,7 @@ LIBFT =				./libft/libft.a
 
 PATHSDL =			SDL2-2.0.4
 
-PATHFRAMEWORKSDL =	SDL.framework
+PATHFRAMEWORKSDL =	SDL2.framework
 
 DEBUGSEGFAULT =		-fsanitize=address
 
@@ -86,8 +86,8 @@ LFLAGS =			-L$(PATHSDL)/build/.libs -lSDL2
 EDITLIB =			install_name_tool -change /usr/local/lib/$(DYNLIB) @executable_path/$(PATHDYNLIB) $(NAME)
 
 else
-LFLAGS =			-L$(PATHFRAMEWORKSDL)/Versions/Current -F. -framework SDL2 -framwork Cocoa
-EDITLIB =			install_name_tool -change @rpath/SDL2.framework/Version/A/SDL2 @executable_path/SDL2.framework/SDL2 $(NAME) && install_name_tool -change @executable_path/../Frameworks/$(PATHFRAMEWORKSDL)/SDL2 @executable_path/$(PATHFRAMEWORKSDL)/SDL2
+LFLAGS =			-L./$(PATHFRAMEWORKSDL)/Versions/Current -F. -framework SDL2 -framework Cocoa
+EDITLIB =			install_name_tool -change @rpath/$(PATHFRAMEWORKSDL)/Versions/A/SDL2 @executable_path/SDL2.framework/SDL2 $(NAME) && install_name_tool -change @executable_path/../Frameworks/$(PATHFRAMEWORKSDL)/SDL2 @executable_path/$(PATHFRAMEWORKSDL)/SDL2 $(NAME)
 
 endif
 
