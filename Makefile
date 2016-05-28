@@ -69,7 +69,9 @@ PATHSDL =			SDL2-2.0.4
 
 PATHFRAMEWORKSDL =	SDL.framework
 
-EXTRAFLAGS =		-fsanitize=address -Wall -Wextra -Werror
+DEBUGSEGFAULT =		-fsanitize=address
+
+EXTRAFLAGS =		-Wall -Wextra -Werror #$(DEBUGSEGFAULT)
 
 CC =				gcc
 
