@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 11:24:13 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/02 17:48:09 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/28 11:03:21 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ static int		ft_select_color(int val)
 		color = 0x0f0f0f;
 	return (color);
 }
+
+/*
+** Don't look this man... It's not for you..
+*/
 
 void			ft_trace_monocolor(t_wolf3d *w3d, int lstart, int lend, int x)
 {

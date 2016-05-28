@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 12:45:52 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/02 13:00:36 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/28 10:49:11 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ void			ft_wolf3d(t_wolf3d *w3d)
 		calculate_step(r);
 		r->val = dda(r, w3d, &r->map_x, &r->map_y);
 		var->line_height = calculate_line(
-		r, &var->line_start, &var->line_end, w3d->key_squat);
+		r, &var->line_start, &var->line_end,
+		w3d->scanvalue[SDL_SCANCODE_LCTRL] == 1 ? 0.2 : 1);
 		ft_trace(w3d, var->line_start, var->line_end, r->x = x);
 	}
-	ft_flush_image(w3d->mlx);
 }

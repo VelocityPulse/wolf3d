@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/24 13:26:47 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/28 10:50:08 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,6 @@ static void		ft_open_fd(t_wolf3d *w3d, char *path)
 static void		ft_init_wolf3d(t_wolf3d *w3d)
 {
 	ft_putstr("Initialising wolf3d\n");
-	w3d->key1 = -1;
-	w3d->key2 = -1;
-	w3d->key3 = -1;
-	w3d->key_sprint = 1;
-	w3d->key_squat = 1;
-	w3d->diff_x = 1;
-	w3d->fps_mode = 0;
 	w3d->d.dt = 1;
 	w3d->d.elipsed_time = 0;
 	if (w3d->default_map == true)
@@ -73,7 +66,6 @@ static void		ft_init_wolf3d(t_wolf3d *w3d)
 	w3d->var.max_size = w3d->var.width * w3d->env->img->h;
 	w3d->var.r = &w3d->r;
 	w3d->var.t = &w3d->t;
-	w3d->var.key_squat = &w3d->key_squat;
 }
 
 void			ft_start(char *path)
@@ -88,10 +80,4 @@ void			ft_start(char *path)
 	ft_putstr("Press M for see MAP\n");
 	ft_putstr("Press F for see FPS\n");
 	ft_run(w3d);
-
-	mlx_hook(w3d->mlx->p_win, KeyPress, KeyPressMask, press_wolf3d, w3d);
-	mlx_hook(w3d->mlx->p_win, KeyRelease, KeyPressMask, unpress_wolf3d, w3d);
-	mlx_hook(w3d->mlx->p_win, MotionNotify, KeyPressMask, mouse_wolf3d, w3d);
-	mlx_loop_hook(w3d->mlx->p_mlx, loop_wolf3d, w3d);
-	mlx_loop(w3d->mlx->p_mlx);
 }
