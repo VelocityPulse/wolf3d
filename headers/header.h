@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/24 14:01:03 by                  ###   ########.fr       */
+/*   Updated: 2016/05/28 12:24:57 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,21 +91,16 @@ typedef struct	s_trace_var
 	int				line_end;
 	int				line_height;
 	int				size_y;
-	double			*key_squat;
 	int				tex_val;
 	char			cardinal;
+	int				*key_squat;
 }				t_trace_var;
 
 typedef struct	s_wolf3d
 {
 	t_env			*env;
 	t_ptd			start_pos;
-//	int				key1;
-//	int				key2;
-//	int				key3;
-//	int				key_sprint;
-//	double			key_squat;
-//	double			diff_x;
+	bool			fps_mode;
 	t_delta			d;
 	bool			default_map;
 	int				*len_map;
@@ -121,10 +116,6 @@ t_env			*ft_init_sdl(t_wolf3d *w3d, int width, int height, char *name);
 void			ft_destroy_env(t_env *env);
 
 void			ft_start(char *path);
-//int				press_wolf3d(int keycode, t_wolf3d *w3d);
-//int				unpress_wolf3d(int keycode, t_wolf3d *w3d);
-//int				mouse_wolf3d(int x, int y, t_wolf3d *w3d);
-//int				loop_wolf3d(t_wolf3d *w3d);
 
 void			get_map1(t_wolf3d *w3d);
 void			get_map_path(t_wolf3d *w3d, const int fd, int nb_l, char *line);

@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 12:07:21 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/28 12:09:22 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/28 12:21:34 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static int		ft_trace_tex(t_trace_var *var, int pos, int l_h, int size_y)
 	colon = var->t->list_text[var->tex_val]
 	[ft_tex_x(var->r, var->t->list_img[var->tex_val]->w)];
 	tmp = var->line_start + (*var->key_squat == 1 ? 0 : 120);
+	YOLO
 	while (++var->line_start < var->line_end)
 	{
 		d = ++tmp * 256 - W_HEIGHT * 128 + l_h * 128;
