@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/22 11:57:37 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/22 12:59:26 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/28 11:52:47 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ t_env	*ft_init_sdl(t_wolf3d *w3d, int width, int height, char *name)
 	env = (t_env *)ft_memalloc(sizeof(t_env));
 	env->width = width;
 	env->height = height;
-	if (!(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS)) ||
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) ||
 	!(env->win = SDL_CreateWindow(name, SDL_WINDOWPOS_UNDEFINED,
-			SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN)) ||
+	SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN)) ||
 	!(env->img = SDL_CreateRGBSurface(0, width, height, 32, 0, 0, 0, 0)))
 	{
 		ft_putstr("\n\033[31mERROR:\033[0m\n");

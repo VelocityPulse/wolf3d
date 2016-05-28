@@ -125,7 +125,7 @@ $(NAME): $(PATHDYNLIB) $(LIBFT) $(OBJS)
 
 ifeq ($(XORGDEV),)
 $(PATHDYNLIB):
-	cd $(PATHSDL) && ./configure && make
+	cd $(PATHSDL) && ./configure && make -j
 
 else
 $(PATHDYNLIB):

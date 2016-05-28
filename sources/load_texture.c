@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 12:08:49 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/22 14:32:14 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/28 11:21:30 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void			ft_load_textures(t_wolf3d *w3d, t_texture *t)
 	i += ft_load_bmp(&t->bluestone, "images/bluestone.bmp");
 	i += ft_load_bmp(&t->colorstone, "images/colorstone.bmp");
 	i += ft_load_bmp(&t->eagle, "images/eagle.bmp");
-	i += ft_load_bmp(&t->greystone, "images/greystones.bmp");
+	i += ft_load_bmp(&t->greystone, "images/greystone.bmp");
 	i += ft_load_bmp(&t->mossy, "images/mossy.bmp");
 	i += ft_load_bmp(&t->purplestone, "images/purplestone.bmp");
 	i += ft_load_bmp(&t->redbrick, "images/redbrick.bmp");

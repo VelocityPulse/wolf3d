@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/28 10:50:08 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/28 12:08:44 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void		ft_init_wolf3d(t_wolf3d *w3d)
 	ft_putstr("Initialising wolf3d\n");
 	w3d->d.dt = 1;
 	w3d->d.elipsed_time = 0;
+	w3d->fps_mode = 0;
 	if (w3d->default_map == true)
 	{
 		w3d->start_pos = ft_make_ptd(3, 2);
@@ -66,6 +67,7 @@ static void		ft_init_wolf3d(t_wolf3d *w3d)
 	w3d->var.max_size = w3d->var.width * w3d->env->img->h;
 	w3d->var.r = &w3d->r;
 	w3d->var.t = &w3d->t;
+	w3d->var.key_squat = &w3d->scanvalue[SDL_SCANCODE_LCTRL];
 }
 
 void			ft_start(char *path)
