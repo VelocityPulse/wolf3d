@@ -93,8 +93,8 @@ endif
 
 else
 PATHDYNLIB =		./$(PATHSDL)/build/.libs/libSDL2-2.0.so.0
-SPECIFYLIB =		-Wl, -R`pwd`/$(PATHSDL)/build/.libs
-LFLAGS =			$(SPECIFYLIB) -L$(PATHSDL)/build/.libs -lSDL2
+SPECIFYLIB =		-Wl,-R`pwd`/$(PATHSDL)/build/.libs
+LFLAGS =			$(SPECIFYLIB) -L$(PATHSDL)/build/.libs -lSDL2 -lm
 
 endif
 
