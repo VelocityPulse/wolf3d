@@ -109,7 +109,7 @@ $(NAME): $(PATHDYNLIB) $(LIBFT) $(OBJS)
 
 $(PATHDYNLIB):
 	@echo "$(PATHDYNLIB)"
-	cd $(PATHSDL) && ./configure && make
+	cd $(PATHSDL) && ./configure && make -j
 
 else
 $(NAME): $(LIBFT) $(OBJS)
@@ -130,7 +130,7 @@ $(PATHDYNLIB):
 
 else
 $(PATHDYNLIB):
-	cd $(PATHSDL) && ./configure && make -j
+	cd $(PATHSDL) && ./configure && make
 
 endif
 
