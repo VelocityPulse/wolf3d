@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 12:08:49 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/28 11:21:30 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/29 15:45:37 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int		ft_load_bmp(SDL_Surface **surface, char *path)
 	{
 		ft_putstr("Texture ");
 		ft_putstr(path);
-		ft_putstr(" : NOT LOADED !!\n");
+		ft_putstr(" : \033[31mNOT LOADED !!\033[0m\n");
 		return (1);
 	}
 	ft_putstr("Texture ");

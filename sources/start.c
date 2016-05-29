@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/29 14:00:51 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/29 15:42:59 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ void			ft_start(char *path)
 	ft_load_textures(w3d, &w3d->t);
 	ft_putstr("Press M for see MAP\n");
 	ft_putstr("Press F for see FPS\n");
+	ft_putstr("Press right-ctrl for get mouse\n");
 	ft_run(w3d);
 }

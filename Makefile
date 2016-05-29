@@ -14,8 +14,8 @@
 #OUT =				LINUX
 OUT =				$(shell uname)
 
-COMPILE_SDL =		YES
-#COMPILE_SDL =		NO
+#COMPILE_SDL =		YES
+COMPILE_SDL =		NO
 
 #available on ubuntu or debian ect....
 XORGDEV = $(shell dpkg -s xorg-dev 2>&-)

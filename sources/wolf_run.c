@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 11:26:30 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/29 15:38:18 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/29 15:50:40 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ static void		ft_help_key(t_wolf3d *w3d)
 
 static void		ft_mouse_motion(t_wolf3d *w3d, SDL_MouseMotionEvent *mevent)
 {
-	int				x;
-
-	x = mevent->xrel;
-	w3d->diff_x = x / 5;
+	w3d->diff_x = mevent->xrel / 10;
 	if (w3d->diff_x < 0.0f)
 	{
 		w3d->diff_x = -w3d->diff_x;
