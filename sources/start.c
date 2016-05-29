@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:51:25 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/28 12:08:44 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/29 12:06:08 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void		ft_init_wolf3d(t_wolf3d *w3d)
 	w3d->fps_mode = 0;
 	if (w3d->default_map == true)
 	{
-		w3d->start_pos = ft_make_ptd(3, 2);
+		w3d->start_pos = ft_make_ptd(2.9, 1.9);
 		get_map1(w3d);
 	}
 	ft_init_rc(w3d);
