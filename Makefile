@@ -13,8 +13,8 @@
 OUT =				MAC
 #OUT =				LINUX
 
-#COMPILE_SDL =		YES
-COMPILE_SDL =		NO
+COMPILE_SDL =		YES
+#COMPILE_SDL =		NO
 
 #available on ubuntu or debian ect....
 XORGDEV = $(shell dpkg -s xorg-dev 2>&-)
@@ -68,6 +68,8 @@ LIBFT =				./libft/libft.a
 PATHSDL =			SDL2-2.0.4
 
 PATHFRAMEWORKSDL =	SDL2.framework
+
+MAKEFILESDL =		$(shell ls SDL2-2.0.4/Makefile 2>&-)
 
 DEBUGSEGFAULT =		-fsanitize=address
 
@@ -143,15 +145,25 @@ $(LIBFT):
 	make -C ./libft/
 
 ifeq ($(COMPILE_SDL),YES)
-fclean: clean
+fclean: clean cleansdl
 	$(RM) $(NAME) $(LIBFT)
 	make clean -C ./libft/
-	make distclean -C ./$(PATHSDL)
+	$(RM) ./$(PATHSDL)/config.log ./$(PATHSDL)/sdl2-config.cmake ./$(PATHSDL)/sdl2.pc
 
 else
-fclean: clean
+fclean: clean cleansdl
 	$(RM) $(NAME) $(LIBFT)
 	make clean -C ./libft/
+	$(RM) ./$(PATHSDL)/config.log ./$(PATHSDL)/sdl2-config.cmake ./$(PATHSDL)/sdl2.pc
+
+endif
+
+ifeq ($(MAKEFILESDL),)
+cleansdl:
+	@echo "SDL clean"
+
+else
+cleansdl:
 	make distclean -C ./$(PATHSDL)
 
 endif
