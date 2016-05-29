@@ -10,8 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-OUT =				MAC
+#OUT =				MAC
 #OUT =				LINUX
+OUT =				$(shell uname)
 
 COMPILE_SDL =		YES
 #COMPILE_SDL =		NO
@@ -79,7 +80,7 @@ CC =				gcc
 
 RM =				rm -f
 
-ifeq ($(OUT),MAC)
+ifneq (,$(filter $(OUT),MAC Darwin))
 
 ifeq ($(COMPILE_SDL),YES)
 DYNLIB =			libSDL2-2.0.0.dylib
@@ -102,7 +103,7 @@ endif
 
 all: $(NAME)
 
-ifeq ($(OUT),MAC)
+ifneq (,$(filter $(OUT),MAC Darwin))
 
 ifeq ($(COMPILE_SDL),YES)
 $(NAME): $(PATHDYNLIB) $(LIBFT) $(OBJS)
