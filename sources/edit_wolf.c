@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 12:09:37 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/28 11:22:53 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/29 14:00:27 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void			edit_direction(t_wolf3d *w3d, t_ptd *dir, t_ptd *p)
 //	rot_speed = w3d->d.dt * 3 * w3d->diff_x;
 	if (w3d->scanvalue[SDL_SCANCODE_RIGHT] == 1)
 	{
-		rot_speed = w3d->d.dt * 3;
+		rot_speed = w3d->d.dt * 3 * w3d->diff_x;
 		old_dirx = dir->x;
 		dir->x = dir->x * cos(-rot_speed) - dir->y * sin(-rot_speed);
 		dir->y = old_dirx * sin(-rot_speed) + dir->y * cos(-rot_speed);
@@ -79,7 +79,7 @@ void			edit_direction(t_wolf3d *w3d, t_ptd *dir, t_ptd *p)
 	}
 	else if (w3d->scanvalue[SDL_SCANCODE_LEFT] == 1)
 	{
-		rot_speed = w3d->d.dt * 3;
+		rot_speed = w3d->d.dt * 3 * w3d->diff_x;
 		old_dirx = dir->x;
 		dir->x = dir->x * cos(rot_speed) - dir->y * sin(rot_speed);
 		dir->y = old_dirx * sin(rot_speed) + dir->y * cos(rot_speed);

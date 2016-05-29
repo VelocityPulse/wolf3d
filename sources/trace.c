@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 12:07:21 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/28 14:21:07 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/29 12:59:04 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void			ft_trace_bot(t_trace_var *var, int pos, int line_start)
 	octet = var->octet;
 	width = var->width;
 	max_size = var->max_size;
-	while (++line_start <= W_HEIGHT)
+	while (++line_start <= W_HEIGHT + 1)
 	{
 		if (!(pos < 0 || pos > max_size))
 			ft_memcpy(data + pos, &color, octet);

@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/28 15:08:51 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/05/29 15:23:18 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct	s_wolf3d
 	t_trace_var		var;
 	t_texture		t;
 	t_raycasting	r;
+	double			diff_x;
 }				t_wolf3d;
 
 t_env			*ft_init_sdl(t_wolf3d *w3d, int width, int height, char *name);
