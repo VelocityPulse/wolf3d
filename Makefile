@@ -146,12 +146,13 @@ ifeq ($(COMPILE_SDL),YES)
 fclean: clean
 	$(RM) $(NAME) $(LIBFT)
 	make clean -C ./libft/
-	make clean -C ./$(PATHSDL)
+	make distclean -C ./$(PATHSDL)
 
 else
 fclean: clean
 	$(RM) $(NAME) $(LIBFT)
 	make clean -C ./libft/
+	make distclean -C ./$(PATHSDL)
 
 endif
 
