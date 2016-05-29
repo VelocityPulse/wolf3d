@@ -150,7 +150,7 @@ fclean: clean
 
 else
 fclean: clean
-	$(RM) $(OBJS)
+	$(RM) $(NAME) $(LIBFT)
 	make clean -C ./libft/
 
 endif
