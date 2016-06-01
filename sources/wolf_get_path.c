@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 11:55:18 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/01 11:37:49 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/01 13:18:27 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int		ft_void_line(t_wolf3d *w3d, t_lstline *list, int nb_l, char *l)
 		ft_putstr("\n\033[31mERROR:\033[0m\nLINE : ");
 		ft_putnbr(void_line);
 		ft_putstr(" is empty\n");
-		ft_lstline_del(list);
+		list = ft_lstline_del(list);
 		ft_exit_wolf3d(w3d, 1);
 	}
 	return (0);
@@ -72,15 +72,16 @@ void			get_map_path(t_wolf3d *w3d, const int fd, int nb_l, char *line)
 			nb_l++;
 		}
 	}
+	ft_memdel((void **)&line);
 	if (list == NULL)
 		ft_exit_wolf3d(w3d, 5);
 	if (!ft_check_map(w3d, list, 0, 0))
 	{
-		ft_lstline_del(list);
+		list = ft_lstline_del(list);
 		ft_exit_wolf3d(w3d, 1);
 	}
 	ft_line_to_tab(list, nb_l, w3d);
-	ft_lstline_del(list);
+	list = ft_lstline_del(list);
 	w3d->height = nb_l;
 	if (!ft_check_pos_spawn3(w3d))
 		ft_exit_wolf3d(w3d, 4);
