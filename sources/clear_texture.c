@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 11:59:40 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/28 10:20:51 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/01 14:02:31 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ void			ft_clear_list_textures(t_texture *t, int ***list_text)
 		free(list_text[i]);
 	}
 	free(list_text);
+	free(t->list_img);
 	ft_putstr("Texture tab :\tCLEAR\n");
 }

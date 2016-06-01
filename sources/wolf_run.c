@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 11:26:30 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/05/29 15:50:40 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/01 14:16:08 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,12 @@ static void		ft_mouse_motion(t_wolf3d *w3d, SDL_MouseMotionEvent *mevent)
 	w3d->diff_x = 1;
 }
 
-static void		ft_mouse_button(t_wolf3d *w3d, SDL_MouseButtonEvent *bevent)
+static void		ft_mouse_button(SDL_MouseButtonEvent *bevent)
 {
 	if ((bevent->button == SDL_BUTTON_LEFT) &&
 	((bevent->x > 0 && bevent->y > 0) &&
 	(bevent->x < W_WIDTH && bevent->y < W_HEIGHT)))
 		SDL_SetRelativeMouseMode(SDL_ENABLE);
-	(void)w3d;
 }
 
 static void		ft_event(t_wolf3d *w3d)
@@ -71,7 +70,7 @@ static void		ft_event(t_wolf3d *w3d)
 		w3d->scanvalue[SDL_SCANCODE_ESCAPE] == 1)
 			ft_exit_wolf3d(w3d, 3);
 		if (events.type == SDL_MOUSEBUTTONDOWN)
-			ft_mouse_button(w3d, &events.button);
+			ft_mouse_button(&events.button);
 	}
 }
 
