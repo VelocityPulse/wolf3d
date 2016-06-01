@@ -154,7 +154,6 @@ fclean: clean cleansdl
 else
 fclean: clean cleansdl
 	$(RM) $(NAME) $(LIBFT)
-	make clean -C ./libft/
 	$(RM) ./$(PATHSDL)/config.log ./$(PATHSDL)/sdl2-config.cmake ./$(PATHSDL)/sdl2.pc
 
 endif
