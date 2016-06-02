@@ -12,8 +12,6 @@
 
 #include "libft.h"
 
-#include <stdio.h>
-
 t_lstline	*ft_lstline_del(t_lstline *begin)
 {
 	t_lstline	*temp1;
