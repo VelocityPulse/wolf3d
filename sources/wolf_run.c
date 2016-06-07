@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 11:26:30 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/01 14:16:08 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/07 11:21:16 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void		ft_help_key(t_wolf3d *w3d)
 		w3d->fps_mode = 1;
 	if (w3d->scanvalue[SDL_SCANCODE_RCTRL] == 1)
 		SDL_SetRelativeMouseMode(SDL_DISABLE);
+	if (w3d->scanvalue[SDL_SCANCODE_M] == 1)
+		ft_display_map(w3d);
 }
 
 static void		ft_mouse_motion(t_wolf3d *w3d, SDL_MouseMotionEvent *mevent)
